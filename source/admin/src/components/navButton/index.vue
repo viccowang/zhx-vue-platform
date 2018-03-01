@@ -1,22 +1,12 @@
 <template>
     <div class="nav-button">
-        <el-button-group>
-            <el-button size="small" icon="el-icon-document">新建</el-button>
-            <el-button size="small" icon="el-icon-edit">修改</el-button>
-            <el-button size="small" icon="el-icon-share">删除</el-button>
-        </el-button-group>
-        <el-button-group>
-            <slot></slot>
-        </el-button-group>
+        <slot></slot>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'NavButton',
-  props: {
-    options: Array
-  }
+  name: 'NavButton'
 }
 </script>
 

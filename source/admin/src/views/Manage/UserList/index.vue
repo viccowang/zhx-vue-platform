@@ -1,14 +1,19 @@
 <template>
     <div>
-      <!-- 顶部菜单部分 封装的组件在components/navButton -->
-      <nav-button :options="buttonList">
-        <el-button size="small" icon="el-icon-search" @click="showSearch = !showSearch">检索</el-button>
-        <el-button size="small" icon="el-icon-upload2">导出</el-button>
+      <!-- 顶部菜单部分 封装了两层组件,在components/navButton -->
+      <nav-button>
+        <!-- 该组件会根据远程数据返回当前页面拥有的按钮 -->
+        <NavPremissonButton :buttonData="buttonData"></NavPremissonButton>
+        <!-- 静态手动添加的其他按钮 -->
+        <el-button-group>
+          <el-button size="small" icon="el-icon-search" @click="showSearch = !showSearch">检索</el-button>
+          <el-button size="small" icon="el-icon-upload2">导出</el-button>
+        </el-button-group>
       </nav-button>
       <!-- 检索框部分 重新封装的组件在components/commonSearchWrapper -->
-      <common-search-wrapper :isShow="showSearch">
+      <common-search :isShow="showSearch">
         <user-list-search @resetSearch="resetSearch"></user-list-search>
-      </common-search-wrapper>
+      </common-search>
       <!-- Grid表格部分 组件在components/commonTable
          重新封装后配置,主要用于保证table和pagination的样式
          size 属性  行高会变窄,显示更多内容
@@ -24,7 +29,12 @@
            </el-table>
          </template>
          <template slot="pagination">
-           <el-pagination background  layout="prev, pager, next" :total="100"></el-pagination>
+           <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="100"
+            @current-change="handleCurrentPage">
+           </el-pagination>
          </template>
       </common-table>
     </div>
@@ -32,26 +42,57 @@
 
 <script>
 import NavButton from '@/components/navButton'
-import CommonSearchWrapper from '@/components/commonSearchWrapper'
+import NavPremissonButton from '@/components/navButton/navPremissonButton'
+import CommonSearch from '@/components/commonSearch'
 import UserListSearch from './userListSearch'
 import CommonTable from '@/components/CommonTable'
 
 import {tableData} from '@/views/DemoList/tableData'
+import {buttonData} from './buttonData'
 
 export default {
   name: 'UserList',
-  components: { NavButton, CommonSearchWrapper, UserListSearch, CommonTable },
+  components: { NavButton, NavPremissonButton, CommonSearch, UserListSearch, CommonTable },
   data () {
     return {
-      buttonList: [],
+      buttonData: [],
       showSearch: false,
       tableData: tableData
     }
   },
+  mounted () {
+    // 模拟动态按钮加载时的Loading
+    setTimeout(() => {
+      this.buttonData = buttonData
+    }, 1000)
+  },
   methods: {
+    create () {
+      this.$message({
+        message: '点击了新建按钮'
+      })
+      console.log('create')
+    },
+    edit () {
+      this.$message({
+        message: '点击了修改按钮',
+        type: 'warning'
+      })
+      console.log('edit')
+    },
+    remove () {
+      this.$message({
+        message: '点击了删除按钮',
+        type: 'error'
+      })
+      console.log('remove')
+    },
     // 重置搜索框为隐藏状态
     resetSearch () {
       this.showSearch = false
+    },
+    handleCurrentPage (page) {
+      console.log(`当前翻页到第${page}页`)
     }
   }
 }

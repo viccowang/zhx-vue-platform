@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'CommonSearchWrapper',
+  name: 'CommonSearch',
   props: {
     isShow: {
       type: Boolean,
