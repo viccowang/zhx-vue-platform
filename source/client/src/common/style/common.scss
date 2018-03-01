@@ -1,0 +1,23 @@
+/**
+ * Common Style Setting;
+ *
+ **/
+
+$base-dark-color: #212121;
+$base-light-color: #f2f2f2;
+
+$base-red-color: #F44336;
+$base-blue-color: #03A9F4;
+$base-indigo-color: #3F51B5;
+$base-green-color: #4CAF50;
+$base-gray-color: #9E9E9E;
+
+@mixin flexCenter {
+    align-items: center;
+    justify-content: center;
+}
+
+// 覆盖样式
+.ps__scrollbar-y-rail {
+    z-index:1000;
+}
