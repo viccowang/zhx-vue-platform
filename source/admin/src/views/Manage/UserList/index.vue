@@ -2,8 +2,12 @@
     <div>
       <!-- 顶部菜单部分 封装了两层组件,在components/navButton -->
       <nav-button>
-        <!-- 该组件会根据远程数据返回当前页面拥有的按钮 -->
-        <NavPremissonButton :buttonData="buttonData"></NavPremissonButton>
+        <!--
+          该组件会根据远程数据返回当前页面拥有的按钮
+          :buttonData 远程按钮数据对象
+          :comp 当前组件实例的引用
+        -->
+        <NavPremissonButton :buttonData="buttonData" :comp="comp"></NavPremissonButton>
         <!-- 静态手动添加的其他按钮 -->
         <el-button-group>
           <el-button size="small" icon="el-icon-search" @click="showSearch = !showSearch">检索</el-button>
@@ -55,6 +59,7 @@ export default {
   components: { NavButton, NavPremissonButton, CommonSearch, UserListSearch, CommonTable },
   data () {
     return {
+      comp: this,
       buttonData: [],
       showSearch: false,
       tableData: tableData
