@@ -4,6 +4,7 @@
 **/
 $base-dark-color: #212121;
 $base-light-color: #f2f2f2;
+$base-white-color: #fff;
 
 $base-red-color: #F44336;
 $base-blue-color: #03A9F4;
@@ -45,5 +46,7 @@ $base-gray-color: #9E9E9E;
 
     .el-submenu .el-menu-item {
         line-height:40px;
+        min-width:180px;
     }
+
 }

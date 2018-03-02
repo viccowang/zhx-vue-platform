@@ -7,7 +7,8 @@ const getters = {
   addRouters: state => state.asyncRouter.addRouters,
   asyncRouter: state => state.asyncRouter.router,
   cachedViews: state => state.views.cachedViews,
-  visitedViews: state => state.views.visitedViews
+  visitedViews: state => state.views.visitedViews,
+  sidebarState: state => state.views.sidebarState
 }
 
 export default getters

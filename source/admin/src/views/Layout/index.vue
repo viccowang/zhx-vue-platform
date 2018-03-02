@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <sidebar :width="sidebarWidth"></sidebar>
-    <div class="main-content" :style="{width: `calc(100% - ${sidebarWidth})`}">
+    <sidebar></sidebar>
+    <div class="main-content" :style="{width: `calc(100% - ${sidebarState.width})`}">
       <headers></headers>
       <tag-tabs></tag-tabs>
       <app-main class="main-wrapper"></app-main>
@@ -15,6 +15,8 @@ import sidebar from './components/Sidebar'
 import tagTabs from './components/tagTabs'
 import appMain from './components/main'
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Layout',
   components: {
@@ -23,10 +25,8 @@ export default {
     tagTabs,
     appMain
   },
-  data () {
-    return {
-      sidebarWidth: '180px'
-    }
+  computed: {
+    ...mapGetters(['sidebarState'])
   }
 }
 </script>
