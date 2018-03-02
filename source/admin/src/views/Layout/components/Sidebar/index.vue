@@ -61,6 +61,7 @@ $sidebar-background-color: #304156;
     background-color:darken($sidebar-background-color,8%);
   }
 
+  // sidebar menu css override
   .vertical-menu:not(.el-menu--collapse) {
     width:180px;
     border-right:none;
