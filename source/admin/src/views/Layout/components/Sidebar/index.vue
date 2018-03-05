@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar" :class="{ width: sidebarState.width }">
       <!-- <div class="logo">System LOGO</div> -->
-      <div class="slide-handler" @click="slideSidebar">slider</div>
+      <div class="slide-handler zvpfont icon-tuozhuai" @click="slideSidebar"></div>
       <el-menu mode="vertical" class="vertical-menu"
                 :default-active="$route.path"
                 background-color="#304156"
