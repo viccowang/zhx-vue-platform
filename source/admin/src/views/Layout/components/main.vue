@@ -1,7 +1,7 @@
 <template>
     <!-- custom scroll bar for main area -->
     <VuePerfectScrollbar class="scroll-area" :settings="scrollOptions">
-        <el-main class="main">
+        <el-main class="main" id="contentMain">
           <keep-alive :include="cachedViews">
             <router-view />
           </keep-alive>
@@ -36,8 +36,14 @@ export default {
     width:100%;
 
     .main {
+      position: relative;
       padding:0;
       min-width:800px;
+      height:100%;
+
+      > div {
+        height:100%;
+      }
     }
 
 }

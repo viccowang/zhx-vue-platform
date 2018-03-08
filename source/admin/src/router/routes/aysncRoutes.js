@@ -27,14 +27,15 @@ export const aysncRoutesMap = [
   {
     path: '/manage',
     component: Layout,
-    meta: { role: ['admin'] },
+    meta: { title: 'Manage', role: ['admin'] },
     children: [
       {
-        path: 'user-list',
+        path: 'user',
         name: 'UserList',
-        component: _import_('Manage/UserList/index'),
-        meta: { title: 'userList', icon: 'el-icon-service' }
+        component: _import_('Manage/Users/UserList/index'),
+        meta: { title: 'users', icon: 'el-icon-service' }
       }
     ]
   }
+
 ]

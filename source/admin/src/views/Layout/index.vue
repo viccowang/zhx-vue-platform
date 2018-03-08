@@ -4,16 +4,16 @@
     <div class="main-content" :style="{width: `calc(100% - ${sidebarState.width})`}">
       <headers></headers>
       <tag-tabs></tag-tabs>
-      <app-main class="main-wrapper"></app-main>
+      <app-main class="main-wrapper" id="mainWrapper"></app-main>
     </div>
   </div>
 </template>
 
 <script>
-import headers from './components/header'
-import sidebar from './components/Sidebar'
-import tagTabs from './components/tagTabs'
-import appMain from './components/main'
+import headers from './Components/header'
+import sidebar from './Components/Sidebar'
+import tagTabs from './Components/tagTabs'
+import appMain from './Components/main'
 
 import { mapGetters } from 'vuex'
 
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .layout{
   display:flex;
   width:100%;

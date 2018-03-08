@@ -1,7 +1,9 @@
 <template>
       <common-table size="small" :flex="120">
          <template slot="table">
-           <el-table height="100%" :data="tableData" stripe >
+           <el-table height="100%"
+           :data="tableData"
+           stripe >
             <el-table-column prop="date" label="日期" width="180"></el-table-column>
             <el-table-column prop="name" label="姓名" width="180"></el-table-column>
             <el-table-column prop="address" label="地址"></el-table-column>

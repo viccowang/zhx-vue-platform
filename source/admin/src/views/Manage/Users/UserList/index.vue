@@ -25,7 +25,10 @@
        -->
       <common-table size="small" :flex="120">
          <template slot="table">
-           <el-table height="100%" :data="tableData" stripe >
+           <el-table height="100%"
+           :data="tableData"
+           @selection-change="handleSelectionChange"
+           stripe >
              <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column prop="date" label="日期" width="180"></el-table-column>
             <el-table-column prop="name" label="姓名" width="180"></el-table-column>
@@ -48,11 +51,13 @@
 import NavButton from '@/components/navButton'
 import NavPremissonButton from '@/components/navButton/navPremissonButton'
 import CommonSearch from '@/components/commonSearch'
-import UserListSearch from './userListSearch'
+import UserListSearch from '../Components/userListSearch'
 import CommonTable from '@/components/CommonTable'
 
 import {tableData} from '@/views/DemoList/tableData'
-import {buttonData} from './buttonData'
+import {buttonData} from '../Components/buttonData'
+
+import AddUser from '../AddUser'
 
 export default {
   name: 'UserList',
@@ -73,10 +78,13 @@ export default {
   },
   methods: {
     create () {
-      this.$message({
-        message: '点击了新建按钮'
+      this.$nextPage({
+        component: AddUser
       })
-      console.log('create')
+      // this.$message({
+      //   message: '点击了新建按钮'
+      // })
+      // console.log('create')
     },
     edit () {
       this.$message({
@@ -95,6 +103,9 @@ export default {
     // 重置搜索框为隐藏状态
     resetSearch () {
       this.showSearch = false
+    },
+    handleSelectionChange (val) {
+      console.log('已勾选数据', val)
     },
     handleCurrentPage (page) {
       console.log(`当前翻页到第${page}页`)

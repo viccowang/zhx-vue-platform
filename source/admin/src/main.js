@@ -15,16 +15,19 @@ import '@/font/plateform-font/iconfont.css'
 // import 'swiper/dist/css/swiper.css'
 import './router/premission'
 
+import NextPage from './components/nextPage/'
+
 Vue.use(ElementUI)
 // Vue.use(VueAwesomeSwiper)
+Vue.use(NextPage)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   store,
+  router,
   components: { App },
   template: '<App/>'
 })
