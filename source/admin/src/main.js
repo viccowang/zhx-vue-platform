@@ -19,7 +19,7 @@ import NextPage from './components/nextPage/'
 
 Vue.use(ElementUI)
 // Vue.use(VueAwesomeSwiper)
-Vue.use(NextPage)
+Vue.use(NextPage, { router })
 
 Vue.config.productionTip = false
 

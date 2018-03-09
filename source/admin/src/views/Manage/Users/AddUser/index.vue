@@ -50,7 +50,8 @@ export default {
   methods: {
     open () {
       this.$nextPage({
-        data: {
+        name: '其他内容',
+        props: {
           pushVal: this.pushVal
         },
         component: AddUserOther
@@ -64,3 +65,7 @@ export default {
   components: { NavButton }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

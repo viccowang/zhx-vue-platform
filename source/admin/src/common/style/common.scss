@@ -50,3 +50,8 @@ $base-gray-color: #9E9E9E;
     }
 
 }
+
+.el-menu--collapse .el-submenu .el-menu {
+    z-index:500;
+}
+

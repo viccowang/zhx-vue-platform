@@ -79,6 +79,7 @@ export default {
   methods: {
     create () {
       this.$nextPage({
+        name: '新建用户',
         component: AddUser
       })
       // this.$message({

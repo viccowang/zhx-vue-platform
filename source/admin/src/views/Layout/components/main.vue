@@ -39,7 +39,7 @@ export default {
       position: relative;
       padding:0;
       min-width:800px;
-      height:100%;
+      // height:100%;
 
       > div {
         height:100%;
