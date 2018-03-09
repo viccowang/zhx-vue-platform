@@ -1,7 +1,7 @@
 <template>
   <div>
       <nav-button>
-        <slot name="button"></slot>
+         <el-button size="small">导出</el-button>
       </nav-button>
       <div style="padding:10px;">
         <h2>第二级NextPage页面</h2>
@@ -13,7 +13,11 @@
           <el-form-item label="输入文字会传回上一级">
             <el-input v-model="val" size="small"></el-input>
           </el-form-item>
+          <el-form-item label="输入文字发给下一级">
+            <el-input v-model="nextVal" size="small"></el-input>
+          </el-form-item>
           <el-form-item>
+            <el-button @click="openNext">open Next Page!</el-button>
             <el-button @click="close">关闭并回传</el-button>
           </el-form-item>
 
@@ -26,6 +30,9 @@
 <script>
 import NavButton from '@/components/navButton/'
 import eventBus from '@/components/eventBus'
+
+import Others2 from '../Others2'
+
 export default {
   name: 'AddUserOther',
   props: {
@@ -33,10 +40,20 @@ export default {
   },
   data () {
     return {
-      val: ''
+      val: '',
+      nextVal: ''
     }
   },
   methods: {
+    openNext () {
+      this.$nextPage({
+        title: '第三集',
+        props: {
+          pullVal: this.nextVal
+        },
+        component: Others2
+      })
+    },
     close () {
       // 传递一些参数, 用Vue基础规则
       eventBus.$emit('passSomeVal', this.val)

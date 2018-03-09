@@ -15,7 +15,7 @@ import '@/font/plateform-font/iconfont.css'
 // import 'swiper/dist/css/swiper.css'
 import './router/premission'
 
-import NextPage from './components/nextPage/'
+import NextPage from './components/nextPage2/'
 
 Vue.use(ElementUI)
 // Vue.use(VueAwesomeSwiper)

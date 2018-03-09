@@ -74,13 +74,17 @@ export default {
     // 模拟动态按钮加载时的Loading
     setTimeout(() => {
       this.buttonData = buttonData
-    }, 1000)
+    }, 200)
   },
   methods: {
     create () {
       this.$nextPage({
-        name: '新建用户',
-        component: AddUser
+        title: '新建用户',
+        props: {
+          userName: 'Vicco Wang'
+        },
+        component: AddUser,
+        cache: true
       })
       // this.$message({
       //   message: '点击了新建按钮'

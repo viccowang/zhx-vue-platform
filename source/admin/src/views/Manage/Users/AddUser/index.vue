@@ -9,7 +9,7 @@
     </nav-button>
     <div style="padding:10px;">
       <h2>第一级NextPage页面</h2>
-      <span>{{ test }}</span>
+      <span>{{ userName }}</span>
       <div style="width:700px;">
         <el-form width="300px">
           <el-form-item label="测试回传值">
@@ -35,6 +35,7 @@ import eventBus from '@/components/eventBus'
 
 export default {
   name: 'AddUser',
+  props: ['userName'],
   data () {
     return {
       test: '这是第一层级NexPage, 理论可以无限嵌套',
@@ -50,11 +51,12 @@ export default {
   methods: {
     open () {
       this.$nextPage({
-        name: '其他内容',
+        title: '其他内容',
         props: {
           pushVal: this.pushVal
         },
-        component: AddUserOther
+        component: AddUserOther,
+        cache: true
       })
     },
     close () {
