@@ -1,8 +1,8 @@
 <template>
   <el-container class="main">
       <section>
-          <div class="content">Ops! Premission Denied!</div>
-          <el-button type="primary" class="gohome" @click="backToHome">Go Home :P</el-button>
+          <div class="content">抱歉!您访问的页面权限不够.请返回.</div>
+          <el-button type="primary" class="gohome" @click="backToHome">回首页 :P</el-button>
       </section>
   </el-container>
 </template>

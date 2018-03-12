@@ -53,6 +53,9 @@ router.beforeEach((to, from, next) => {
           // 权限不够,跳转错误页面, 不留路由记录
           next({path: '/401', replace: true})
         }
+        if (to.name === null) {
+          next({path: '/404', replace: true})
+        }
       }
     }
   } else {

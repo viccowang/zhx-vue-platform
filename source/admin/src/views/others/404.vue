@@ -1,8 +1,8 @@
 <template>
   <el-container class="main">
       <section>
-          <div class="content">Ops! You lost your direction?</div>
-          <el-button type="primary" class="gohome" @click="backToHome">Go Home :P</el-button>
+          <div class="content">抱歉!访问的页面不存在.</div>
+          <el-button type="primary" class="gohome" @click="backToHome">回首页 :P</el-button>
       </section>
   </el-container>
 </template>

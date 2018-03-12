@@ -1,12 +1,12 @@
 <template>
   <div class="zhx-next-page" >
     <el-breadcrumb class="breadcrumb" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item @click.native="closeAll">{{rootCrumb}}</el-breadcrumb-item>
-       <el-breadcrumb-item v-for="np in nextPages" :key="np.id" @click.native="np.component.__closePageByCrumb(np.id)">{{np.name}}</el-breadcrumb-item>
+        <el-breadcrumb-item @click.native="closeNextPage(router.currentRoute.name)">{{rootCrumb}}</el-breadcrumb-item>
+       <el-breadcrumb-item v-for="np in nextPages" :key="np.id" @click.native="closeNextPage(np.name)">{{np.title}}</el-breadcrumb-item>
     </el-breadcrumb>
-    <component :is="component" v-bind="props">
-        <el-button slot="button" @click="closeBySelf" size="small" icon="el-icon-arrow-left" class="nextpage-button">返回</el-button>
-    </component>
+    <keep-alive :include="cacheList">
+      <component :is="component" v-bind="props"></component>
+    </keep-alive>
   </div>
 </template>
 
@@ -17,6 +17,8 @@ export default {
   data () {
     return {
       props: null, // 给子组件传递的参数对象
+      cacheList: [], // 需要缓存的组件名称
+      currentRoute: null,
       rootCrumb: null,
       nextPages: [],
       component: null
@@ -26,13 +28,8 @@ export default {
     this.rootCrumb = this.router.currentRoute.meta.title
   },
   methods: {
-    closeBySelf () {
-      // 插件方法
-      this.__closeNextPage(this.id)
-    },
-    closeAll () {
-      // 插件方法
-      this.__closeAllNextPage()
+    closeNextPage (name) {
+      this.__closeNextPageComponentsByCrumb(name)
     },
     destroyNextPage () {
       this.$destroy()
@@ -50,6 +47,7 @@ export default {
     top:0;left:0;
     overflow:hidden;
     background:#fff;
+    z-index:100;
 
     .breadcrumb{
       padding:10px;

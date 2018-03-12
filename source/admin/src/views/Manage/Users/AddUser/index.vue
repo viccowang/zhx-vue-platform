@@ -30,7 +30,8 @@
 <script>
 import NavButton from '@/components/navButton/'
 
-import AddUserOther from './Others'
+// import AddUserOther from './Others'
+
 import eventBus from '@/components/eventBus'
 
 export default {
@@ -55,7 +56,7 @@ export default {
         props: {
           pushVal: this.pushVal
         },
-        component: AddUserOther,
+        component: () => import('./Others'), // 该组件会通过Webpack分开打包,并异步加载
         cache: true
       })
     },
