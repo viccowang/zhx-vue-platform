@@ -14,7 +14,11 @@
           <el-button size="small" icon="el-icon-upload2">导出</el-button>
         </el-button-group>
       </nav-button>
-      <!-- 检索框部分 重新封装的组件在components/commonSearchWrapper -->
+      <!-- 检索框部分
+           重新封装的组件在components/commonSearchWrapper
+           isShow
+           isAbsolute
+      -->
       <common-search :isShow="showSearch">
         <user-list-search @resetSearch="resetSearch"></user-list-search>
       </common-search>
