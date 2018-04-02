@@ -1,5 +1,5 @@
 <template>
-    <div class="common-table" :class="{'flex-table': flex}" :style="{height: flexGridHeight + 'px'}">
+    <div class="common-table" :class="{'flex-table': !!flex}" :style="{height: flexHeight }">
         <div :class="{'small-table': size === 'small'}">
             <slot name="table"></slot>
         </div>
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import CommonWrapper from '@/components/commonWrapper'
+
 export default {
   name: 'CommonTable',
   props: {
@@ -17,14 +19,21 @@ export default {
       type: String,
       default: 'small'
     },
+    minHeight: {
+      type: Number,
+      default: 200
+    },
     flex: {
       type: Number,
       default: 0
     }
   },
   data () {
+    const mh = document.documentElement.clientHeight - this.flex > this.minHeight
+      ? document.documentElement.clientHeight - this.flex
+      : this.minHeight
     return {
-      flexGridHeight: document.documentElement.clientHeight - this.flex
+      flexHeight: mh + 'px'
     }
   },
   mounted () {
@@ -32,16 +41,23 @@ export default {
     if (this.flex !== 0) {
       const vm = this
       let timer = null
-      window.onresize = () => {
+      const _initTableSize = () => {
         // 这里增加一个延迟保证不会触发频次不会太高,减少开销
         if (timer) return
         timer = setTimeout(() => {
-          vm.flexGridHeight = document.documentElement.clientHeight - vm.flex
+          const mh = document.documentElement.clientHeight - vm.flex > this.minHeight
+            ? document.documentElement.clientHeight - vm.flex
+            : this.minHeight
+          vm.flexHeight = mh + 'px'
           timer = null
         }, 300)
       }
+      window.addEventListener('resize', _initTableSize)
+    } else {
+      this.flexHeight = 'auto'
     }
-  }
+  },
+  components: { CommonWrapper }
 }
 </script>
 
@@ -56,7 +72,7 @@ export default {
         width:100%;
         flex:1;
         display: inherit;
-        thead th, tbody td { padding: 7px 0 !important; }
+        // thead th, tbody td { padding: 7px 0 !important; }
     }
     .panination {
         margin:5px 0;

@@ -1,5 +1,5 @@
-import http from '@/utils/http'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import { commonLogin, getUserInfo } from '@/api/user'
 /**
  * User STORE
  */
@@ -7,31 +7,47 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 const store = {
 
   state: {
-    name: '',
-    avatar: '',
+    userId: '',
+    userAccount: '',
+    userName: '',
+    userStatus: '',
+    userCityCode: '',
+    userCityName: '',
+    avatar: '../static/myAvatar200.png', // static
     token: getToken(),
     roles: null // 权限应该是返回个数组对象吧?
   },
 
   mutations: {
-    SET_TOKEN (state, data) {
-      if (data.userToken) {
-        state.token = data.userToken
-        setToken(data.userToken)
+    SET_TOKEN (state, token) {
+      if (token) {
+        state.token = token
+        setToken(token)
       }
     },
     REMOVE_TOKEN (state, data) {
+      state.token = null
       removeToken()
     },
     SET_USERINFO (state, data) {
-      state.name = data.name
-      state.avatar = data.avatar
-      state.roles = data.roles
+      state.userId = data.userId
+      state.userAccount = data.userAccount
+      state.userName = data.userName
+      state.userStatus = data.userStatus
+      state.userCityCode = data.userCityCode
+      state.userCityName = data.userCityName
+      state.roles = data.roles // static roles
+      // state.avatar = data.avatar
+      // state.roles = data.roles
     },
     RESET_USERINFO (state, data) {
-      state.name = ''
+      state.userId = ''
+      state.userAccount = ''
+      state.userName = ''
+      state.userStatus = ''
+      state.userCityCode = ''
+      state.userCityName = ''
       state.avatar = ''
-      state.token = null
       state.roles = null
     }
   },
@@ -47,9 +63,10 @@ const store = {
      */
     userLogin ({commit, state}, params) {
       return new Promise((resolve, reject) => {
-        http.post('/login', params)
+        commonLogin(params)
           .then(res => {
-            commit('SET_TOKEN', res.data)
+            // 假装有TOKEN, 将Token暂时存为userId
+            commit('SET_TOKEN', res.userId)
             resolve()
           }).catch(err => {
             reject(err)
@@ -67,6 +84,7 @@ const store = {
       return new Promise((resolve, reject) => {
         // 重置用户相关信息
         commit('REMOVE_TOKEN')
+        // 重置用户信息
         commit('RESET_USERINFO')
         // 重置浏览记录以及tab页面记录等,该mutation访问 store/views.js
         commit('REMOVE_ALL_VISITED')
@@ -86,11 +104,12 @@ const store = {
      */
     getUserInfo ({commit, state}, params) {
       return new Promise((resolve, reject) => {
-        http.post('/user/info', {
-          'token': state.token
-        })
+        getUserInfo(state.token)
           .then(res => {
-            commit('SET_USERINFO', res.data)
+            // TODO: 暂时这里把权限写死, 用户暂时无权限列表
+            // TODO: 需要暂时配置一个最高管理员权限
+            res.roles = res.userAccount === 'sysadmin' ? ['admin'] : ['user']
+            commit('SET_USERINFO', res)
             resolve(res)
           }).catch(err => {
             reject(err)

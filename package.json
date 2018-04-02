@@ -12,11 +12,19 @@
     "analyz:admin": "cross-env npm_config_report=true npm run build:admin",
     "analyz:client": "cross-env npm_config_report=true npm run build:client",
     "start": "npm run dev",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "test": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config build/webpack.base.conf.js --require test/setup.js test/**/*.spec.js"
+  },
+  "nyc": {
+    "include": [
+      "source/**/*.(js|vue)"
+    ],
+    "instrument": false,
+    "sourceMap": false
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "element-ui": "^2.0.11",
+    "element-ui": "^2.2.2",
     "moment": "^2.20.1",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.2",
@@ -30,11 +38,13 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.12",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
+    "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -51,16 +61,23 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-mocha": "^4.12.1",
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.0.0",
+    "expect": "^23.0.0-alpha.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "jsdom": "^11.6.2",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^5.0.4",
+    "mocha-webpack": "^1.0.1",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.7.2",
+    "nyc": "^11.6.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "portfinder": "^1.0.13",
@@ -82,7 +99,8 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "webpack-node-externals": "^1.6.0"
   },
   "engines": {
     "node": ">= 6.0.0",

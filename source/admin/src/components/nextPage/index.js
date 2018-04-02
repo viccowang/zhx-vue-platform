@@ -113,6 +113,12 @@ export default {
       let NpInstance
       // console.log(mergeOptions.router.currentRoute)
       let userOptions = Object.assign({}, mergeOptions, options)
+      if (!userOptions.router) {
+        throw new Error('NextPage需要绑定router实例,Vue.use()时传入router实例.')
+      }
+      if (!userOptions.store) {
+        throw new Error('NextPage需要绑定Store实例,Vue.use()时传入Store实例.')
+      }
       //
       userOptions.currentRoute = userOptions.router.currentRoute
 
@@ -133,7 +139,10 @@ export default {
         if (!__hasCreated(routerName)) {
         //
           NpInstance = __createNextPage(userOptions)
-          document.getElementById('contentMain').childNodes[0].appendChild(NpInstance.$mount().$el)
+          //
+          NpInstance.store = userOptions.store
+          // 根据目前项目的路径挂载DOM
+          document.getElementById('mainWrapper').childNodes[0].childNodes[0].appendChild(NpInstance.$mount().$el)
           NEXTPAGES.push(NpInstance)
         } else {
         //

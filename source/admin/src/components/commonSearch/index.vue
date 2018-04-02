@@ -1,15 +1,20 @@
 <template>
     <transition name="el-zoom-in-top">
-        <div class="search-wrapper-absolute section-content" v-if="isShow && !isAbsolute">
+        <div
+         class="section-content search-wrapper-absolute"
+         v-bind:class="{'search-wrapper': !isShow && isAbsolute}"
+         v-show="(isShow && !isAbsolute) || (!isShow && isAbsolute)">
             <slot></slot>
         </div>
-        <div class="search-wrapper section-content" v-else-if="!isShow && isAbsolute">
+        <!-- <div class="search-wrapper section-content" v-if="!isShow && isAbsolute">
             <slot></slot>
-        </div>
+        </div> -->
     </transition>
 </template>
 
 <script>
+import CommonWrapper from '@/components/commonWrapper'
+
 export default {
   name: 'CommonSearch',
   props: {
@@ -18,11 +23,20 @@ export default {
       default: false
     },
     isAbsolute: Boolean
-  }
+  },
+  components: { CommonWrapper }
 }
 </script>
 
 <style lang="scss" scoped>
+.search-wrapper {
+    padding:0 !important;
+    position: static !important;
+    box-shadow:none !important;
+    border: none !important;
+    border-radius:none !important;
+    opacity:none !important;
+}
 .search-wrapper-absolute{
     position:absolute;
     padding:10px;
@@ -36,11 +50,5 @@ export default {
     box-shadow:0 5px 10px rgba(0,0,0,.10);
     z-index:10;
 }
-.search-wrapper{
-    padding:10px;
-    width:100%;
-    box-sizing: border-box;
-    border-bottom: 1px solid darken($base-light-color, 10%);
 
-}
 </style>

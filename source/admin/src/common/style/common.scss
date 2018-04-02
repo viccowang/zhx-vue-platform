@@ -5,53 +5,59 @@
 $base-dark-color: #212121;
 $base-light-color: #f2f2f2;
 $base-white-color: #fff;
-
+ 
 $base-red-color: #F44336;
 $base-blue-color: #03A9F4;
 $base-indigo-color: #3F51B5;
 $base-green-color: #4CAF50;
 $base-gray-color: #9E9E9E;
-
+ 
 @mixin flexCenter {
     align-items: center;
     justify-content: center;
 }
-
+ 
 // 配置居右显示
 .flex-right {
     display: flex;
     justify-content: flex-end;
 }
-
+ 
 // 块级包裹的内容
-.section-content {
-
-}
-
+// .section-content {
+ 
+// }
+ 
 // 覆盖原有自定义滚动条样式,保证滚动条始终的层级始终在顶部
 .ps__scrollbar-y-rail {
     z-index:500;
 }
-
+ 
 // 覆盖sidebar navigation 样式
-.sidebar-wrapper{
-    .el-menu-item, .el-submenu__title {
-        height:40px;
+.el-menu-item, .el-submenu__title {
+    height:40px;
+    font-size:1.1rem;
+    line-height:40px;
+
+    span {
         line-height:40px;
-
-        span {
-            line-height:40px;
-        }
     }
-
-    .el-submenu .el-menu-item {
-        line-height:40px;
-        min-width:180px;
-    }
-
 }
 
+.el-submenu .el-menu-item {
+    line-height:40px;
+    min-width:180px;
+}
+ 
+.hide-sidebar i {
+    font-size:20px !important;
+}
+ 
 .el-menu--collapse .el-submenu .el-menu {
     z-index:500;
 }
 
+// 不显示百度地图的版权信息
+.BMap_cpyCtrl, .anchorBL{
+    display: none;
+}

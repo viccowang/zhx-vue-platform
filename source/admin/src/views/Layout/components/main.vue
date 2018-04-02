@@ -1,12 +1,12 @@
 <template>
+  <el-main class="main" id="contentMain">
     <!-- custom scroll bar for main area -->
     <VuePerfectScrollbar class="scroll-area" :settings="scrollOptions">
-        <el-main class="main" id="contentMain">
-          <keep-alive :include="cachedViews">
-            <router-view />
-          </keep-alive>
-        </el-main>
+      <keep-alive :include="cachedViews">
+        <router-view />
+      </keep-alive>
     </VuePerfectScrollbar>
+  </el-main>
 </template>
 
 <script>
@@ -32,19 +32,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scroll-area{
-    width:100%;
+.main {
+  position: relative;
+  width:100%;
+  height:100%;
+  padding:0;
+  min-width:800px;
 
-    .main {
-      position: relative;
-      padding:0;
-      min-width:800px;
-      // height:100%;
+  .scroll-area{
+      width:100%;
+      height:100%;
 
-      > div {
-        height:100%;
-      }
+    > div {
+      width:100%;
     }
 
+  }
+
 }
+
 </style>

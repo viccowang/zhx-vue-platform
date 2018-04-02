@@ -17,9 +17,9 @@ import './router/premission'
 
 import NextPage from './components/nextPage/'
 
-Vue.use(ElementUI)
+Vue.use(ElementUI, { size: 'mini' })
 // Vue.use(VueAwesomeSwiper)
-Vue.use(NextPage, { router })
+Vue.use(NextPage, { router, store })
 
 Vue.config.productionTip = false
 

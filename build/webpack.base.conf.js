@@ -101,3 +101,14 @@ module.exports = {
     child_process: 'empty'
   }
 }
+
+//
+if (process.env.NODE_ENV === 'test') {
+  module.exports.resolve.alias = {
+    '@': resolve('source/admin/src'),
+  }
+  // exclude NPM deps from test bundle
+  module.exports.externals = [require('webpack-node-externals')()]
+  // use inline source map so that it works with mocha-webpack
+  module.exports.devtool = 'inline-cheap-module-source-map'
+}

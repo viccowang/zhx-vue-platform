@@ -1,21 +1,21 @@
 <template>
-    <el-header class="header" height="35px">
+    <el-header v-show="!windowMaxState" class="header" :height="headerHeight">
         <div class="center">
         </div>
         <div class="user">
-                <span class="avatar">
+                <!-- <span class="avatar">
                     <img :src="'static/' + avatar" />
-                </span>
-                <span class="name">Hi,{{ userName }}</span>
+                </span> -->
+                <span class="name">{{ dayTime }}好,{{ userName }}</span>
             </div>
         <div class="settings">
         <ul>
             <li>
-                <el-dropdown>
+                <el-dropdown size="small">
                     <span class="el-icon-setting">设置</span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item @click.native="openSettingDialog">个人配置</el-dropdown-item>
-                        <el-dropdown-item @click.native="openEditPwdDialog">修改密码</el-dropdown-item>
+                        <!-- <el-dropdown-item @click.native="openSettingDialog">个人配置</el-dropdown-item> -->
+                        <el-dropdown-item @click.native="modifyPassword">修改密码</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </li>
@@ -23,38 +23,49 @@
         </ul>
         </div>
         <!--  个人设置 Dialog  -->
-        <personal-setting ref="settingDialog" />
-        <!-- 修改密码 Dialog -->
-        <modify-password ref="passwordDialog" />
+        <!-- <personal-setting ref="settingDialog"/> -->
     </el-header>
 </template>
 
 <script>
+import moment from 'moment'
 import { mapGetters } from 'vuex'
 
-import ModifyPassword from './ModifyPassword'
 import PersonalSetting from './Settings'
 
 export default {
   name: 'Headers',
+  data () {
+    return {
+      dayTime: '',
+      commonDialog: null
+    }
+  },
   computed: {
-    ...mapGetters(['userName', 'avatar'])
+    ...mapGetters(['userName', 'avatar', 'windowMaxState', 'headerHeight'])
+  },
+  mounted () {
+    const now = parseInt(moment().format('HH'))
+    if (now < 12) this.dayTime = '早上'
+    else if (now >= 12 && now < 18) this.dayTime = '下午'
+    else if (now >= 18 && now <= 23) this.dayTime = '晚上'
+    else this.dayTime = ''
   },
   methods: {
     openSettingDialog () {
       this.$refs.settingDialog.visible = true
     },
-    openEditPwdDialog () {
-      this.$refs.passwordDialog.visible = true
+    modifyPassword () {
+      this.$router.replace({path: '/modify-password'})
     },
     logout () {
       this.$store.dispatch('userLogout').then(() => {
-        this.$router.push('/login')
+        // this.$router.push('/login')
+        location.reload()
       })
     }
   },
   components: {
-    ModifyPassword,
     PersonalSetting
   }
 }

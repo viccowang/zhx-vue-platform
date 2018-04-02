@@ -31,10 +31,10 @@ router.beforeEach((to, from, next) => {
        * 如果没有获取到当前用户的权限数据则需要远程获取用户权限
        */
       if (!store.getters.roles) {
-        // 获取权限列表
+        // TODO 还没有权限部分 获取权限列表
         store.dispatch('getUserInfo').then(res => {
           // 根据获取到的用户权限来构建动态路由表,或者做其他事情;
-          store.dispatch('generateRouters', res.data.roles)
+          store.dispatch('generateRouters', res.roles)
             .then((res) => {
               router.addRoutes(store.getters.addRouters)
               // 每次刷新页面都回到dash页面
@@ -45,6 +45,7 @@ router.beforeEach((to, from, next) => {
               }
             })
         })
+      // 未刷新页面,在系统中跳转路由
       } else {
         // 判断 超管或其他超级用户
         if (hasPermession(store.getters.roles, to.meta.role)) {
@@ -54,7 +55,7 @@ router.beforeEach((to, from, next) => {
           next({path: '/401', replace: true})
         }
         if (to.name === null) {
-          next({path: '/404', replace: true})
+          next({path: '*', replace: true})
         }
       }
     }
@@ -64,5 +65,9 @@ router.beforeEach((to, from, next) => {
     } else {
       next('/login')
     }
+  }
+  // 在切换路由时,为了保证不出现忘记回复窗口大小导致看不到标签页问题
+  if (store.getters.windowMaxState) {
+    store.dispatch('maxWindow', false)
   }
 })

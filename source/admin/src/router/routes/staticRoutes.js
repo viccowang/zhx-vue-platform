@@ -20,9 +20,15 @@ export const constantRouterMap = [
         path: 'dash',
         name: 'Dashboard',
         component: _import_('Dashboard/index'),
-        meta: { title: 'Dashboard', icon: 'el-icon-star-off', noCache: false } }
+        meta: { title: '主页', icon: 'zvpfont icon-home', noCache: false } }
     ]
   },
+  {
+    path: '/modify-password',
+    component: _import_('Layout/Components/ModifyPassword/index'),
+    hidden: true,
+    meta: { title: '修改密码', icon: 'zvpfont icon-home', noCache: true }
+  },
   { path: '/401', component: _import_('others/401'), hidden: true },
-  { path: '/404', component: _import_('others/404'), hidden: true }
+  { path: '*', component: _import_('others/404'), hidden: true }
 ]

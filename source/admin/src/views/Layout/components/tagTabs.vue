@@ -1,5 +1,5 @@
 <template>
-  <div class="tag-tabs">
+  <div class="tag-tabs" v-bind:style="{height: tagTabHeight}">
     <scroll-pane>
       <router-link
         tag="div"
@@ -9,7 +9,7 @@
         :key="tab.path"
         :class="{active: isActive(tab), isShowCloseBtn: !isShowCloseBtn(tab)}"
       >
-        <span >{{ tab.meta.title }}</span>
+        <span><i :class="tab.meta.icon"></i>{{ tab.meta.title }}</span>
         <span v-if="isShowCloseBtn(tab)" class="close el-icon-close" @click.prevent.stop="closeTab(tab)"></span>
       </router-link>
     </scroll-pane>
@@ -19,6 +19,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import scrollPane from '@/components/scrollPane'
+// import eventBus from '@/components/eventBus'
 
 export default {
   name: 'TagTabs',
@@ -29,7 +30,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['visitedViews'])
+    ...mapGetters(['visitedViews', 'tagTabHeight'])
   },
   watch: {
     $route () {
@@ -52,34 +53,39 @@ export default {
     },
     closeTab (view) {
       this.$store.dispatch('removeVisitedViews', view).then((res) => {
+        this.$nextTick(() => {
         // 移除过后的visitedViews Array object
-        const views = [...res.views]
-        // 移除view的下一个view, 用于帮助自动Acitve下一个view
-        const nextView = res.theNextView
-        // 如果移除的是已Active的View才需要协助触发一些后续操作
-        if (this.isActive(view)) {
+          const views = [...res.views]
+          // 移除view的下一个view, 用于帮助自动Acitve下一个view
+          const nextView = res.theNextView
+          // 如果移除的是已Active的View才需要协助触发一些后续操作
+          if (this.isActive(view)) {
           // 如果没有下一个view,可能当前移除的已经是最后一个,那么需要返回 visitedViews的最后一个
-          const lastView = nextView === null && views.slice(-1)[0]
-          // 如果有下一个则直接跳转路由
-          if (nextView) {
-            this.$router.push(nextView.path)
-          // 如果当前移除的已经是最后一个,则应该跳转至visitedViews的最后一个路由
-          } else {
-            if (lastView) {
-              this.$router.push(lastView.path)
+            const lastView = nextView === null && views.slice(-1)[0]
+            // 如果有下一个则直接跳转路由
+            if (nextView) {
+              this.$router.push(nextView.path)
+              // 如果当前移除的已经是最后一个,则应该跳转至visitedViews的最后一个路由
             } else {
+              if (lastView) {
+                this.$router.push(lastView.path)
+              } else {
               // 保证最后不能出现空visitedList
               // TODO 应该做一个可以默认无法关闭的首页view
-              this.$router.push({
-                path: '/',
-                query: {
-                  t: new Date().getTime()
-                }
-              })
+                this.$router.push({
+                  path: '/',
+                  query: {
+                    t: new Date().getTime()
+                  }
+                })
               // if (view.path === '/dash') this.$store.dispatch('addVisitedViews', view)
+              }
             }
           }
-        }
+        })
+        // 关闭标签时触发一个广播
+        // TODO: 暂时不发送广播
+        // eventBus.$emit('plateform.navTab.removed', { removed: view })
       })
     }
   }
@@ -88,16 +94,15 @@ export default {
 
 <style lang="scss" scoped>
 .tag-tabs{
-  height:30px;
   background-color: $base-light-color;
 
   .tab-item{
-    display: inline-flex;
+    display: flex;
     align-items: center;
     padding:6px 10px 6px 15px;
-    background-color: lighten($base-gray-color, 18%);
-    border-right:1px solid lighten($base-gray-color, 5%);
-    box-sizing:border-box;
+    background-color: lighten($base-gray-color, 22%);
+    border-right:1px solid lighten($base-gray-color, 15%);
+    box-sizing: border-box;
     cursor:pointer;
     overflow: hidden;
     user-select: none;
@@ -108,16 +113,49 @@ export default {
 
     > span {
       display: inline-block;
+      white-space:nowrap;
+      vertical-align: middle;
+
+      > i {
+        color: lighten($base-dark-color, 30%);
+        position:relative;
+        top:1px;
+        margin-right:5px;
+      }
 
       &.close {
-        margin-left:10px;
+        width:12px;height:12px;
+        border-radius:15px;
+        margin:1px 0 0 10px;
+
+        &:before {
+          position:relative;
+          top:1px;
+        }
+
+        &:hover {
+          color: darken($base-red-color, 30%);
+          font-weight:600;
+          background-color: lighten($base-red-color, 5%);
+        }
+
       }
 
     }
 
     &.active{
-      background-color: lighten($base-dark-color, 8%);
-      color: lighten($base-gray-color, 100%);
+      position:relative;
+      background-color: lighten($base-light-color, 100%);
+      // color: lighten($base-gray-color, 100%);
+      &:before{
+        content:'';
+        width:100%;
+        height:3px;
+        overflow:hidden;
+        position:absolute;
+        top:0;left:0;
+        background-color:darken($base-blue-color, 5%);
+      }
     }
 
     &:last-child{

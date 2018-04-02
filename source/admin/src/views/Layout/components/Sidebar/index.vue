@@ -4,19 +4,45 @@
       <div class="slide-handler zvpfont icon-tuozhuai" @click="slideSidebar"></div>
       <el-menu mode="vertical" class="vertical-menu"
                 :default-active="$route.path"
+                :router="true"
                 background-color="#304156"
                 :collapse="!sidebarState.isOpen"
                 text-color="#bfcbd9"
                 active-text-color="#409EFF">
-        <sidebar-menu-item :routes="asyncRouter"></sidebar-menu-item>
+                  <template v-for="item in asyncRouter" v-if="!item.hidden && item.children">
+                      <!-- no children -->
+                      <template v-if="item.children.length === 1 && !item.children[0].children" >
+                        <el-menu-item :index="item.path + '/' + item.children[0].path" :key="item.path + '/' + item.children[0].path">
+                            <i v-if="!sidebarState.isOpen" :class="item.children[0].meta.icon"></i>
+                            <i v-else :class="item.children[0].meta.icon"></i>
+                            <span slot="title">{{ item.children[0].meta.title }}</span>
+                        </el-menu-item>
+                      </template>
+                      <!-- have children -->
+                      <el-submenu v-else :index="item.name || item.path" :key="item.name">
+                          <template slot="title" >
+                            <i v-if="item.meta && item.meta.icon" :class="item.meta.icon"></i>
+                            <span v-if="item.meta && item.meta.title">{{ item.meta.title }}</span>
+                          </template>
+                          <template v-for="child in item.children" v-if="!child.hidden">
+                            <sidebar-menu-item  v-if="child.children && child.children.length > 0"
+                                :is-nest="true" class="nest-menu" :routes="[child]" :key="child.path">
+                            </sidebar-menu-item>
+                            <template v-else>
+                                <el-menu-item :index="item.path + '/' + child.path" :key="item.path + '/' + child.path">
+                                    <i v-if="child.meta && child.meta.icon" :class="child.meta.icon"></i>
+                                    <span  v-if="child.meta && child.meta.title">{{ child.meta.title }}</span>
+                                </el-menu-item>
+                            </template>
+                          </template>
+                      </el-submenu>
+                  </template>
       </el-menu>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import SidebarMenuItem from './SidebarMenuItem'
-
 export default {
   name: 'Sidebar',
   computed: {
@@ -26,9 +52,6 @@ export default {
     slideSidebar () {
       this.$store.dispatch('collapseSidebar', !this.sidebarState.isOpen)
     }
-  },
-  components: {
-    SidebarMenuItem
   }
 }
 </script>
@@ -42,6 +65,8 @@ $sidebar-background-color: #304156;
   flex-direction: column;
   flex: none;
   background: $sidebar-background-color;
+  transition: all .3s ease-in-out 0s;
+  overflow: hidden;
 
   .slide-handler {
     padding:3px 0;
@@ -66,9 +91,14 @@ $sidebar-background-color: #304156;
     width:180px;
     border-right:none;
   }
-  .el-menu--collapse {
-    border-right:none;
+
+  .el-menu--collapse i {
+    font-size:1.6rem;
   }
+
+  // .el-menu--collapse {
+  //   border-right:none;
+  // }
 }
 
 </style>
