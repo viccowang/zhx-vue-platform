@@ -39,6 +39,14 @@ $base-gray-color: #9E9E9E;
     font-size:1.1rem;
     line-height:40px;
 
+    i.zvpfont { 
+        display: inline-block;
+        font-size:18px;
+        width:24px;
+        text-align: center;
+        margin-right:5px;
+    }
+
     span {
         line-height:40px;
     }

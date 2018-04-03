@@ -31,6 +31,9 @@ npm run build:admin
 npm run build:client
 ```
 ---
+详细平台使用文档请参阅```/document/```目录
+
+---
 ## 更新记录
 
 ### Ver 1.1 2018.04.02

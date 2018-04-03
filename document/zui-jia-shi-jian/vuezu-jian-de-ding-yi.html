@@ -1,0 +1,449 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Vue组件的定义 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="vscode-pei-zhi-zhi-nan.html" />
+    
+    
+    <link rel="prev" href="ding-yi-api.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">平台介绍</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">开发指南</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../kai-fa-zhi-nan/kuai-su-shang-shou.html">
+            
+                <a href="../kai-fa-zhi-nan/kuai-su-shang-shou.html">
+            
+                    
+                    快速上手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../kai-fa-zhi-nan/xiang-mu-jie-gou.html">
+            
+                <a href="../kai-fa-zhi-nan/xiang-mu-jie-gou.html">
+            
+                    
+                    项目结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">自定义组件</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../zi-ding-yi-zu-jian/commonsearch.html">
+            
+                <a href="../zi-ding-yi-zu-jian/commonsearch.html">
+            
+                    
+                    CommonSearch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../zi-ding-yi-zu-jian/commontable.html">
+            
+                <a href="../zi-ding-yi-zu-jian/commontable.html">
+            
+                    
+                    CommonTable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../zi-ding-yi-zu-jian/commonwrapper.html">
+            
+                <a href="../zi-ding-yi-zu-jian/commonwrapper.html">
+            
+                    
+                    CommonWrapper
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../zi-ding-yi-zu-jian/eventbus.html">
+            
+                <a href="../zi-ding-yi-zu-jian/eventbus.html">
+            
+                    
+                    EventBus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../zi-ding-yi-zu-jian/navbutton.html">
+            
+                <a href="../zi-ding-yi-zu-jian/navbutton.html">
+            
+                    
+                    NavButton
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../zi-ding-yi-zu-jian/nextpage.html">
+            
+                <a href="../zi-ding-yi-zu-jian/nextpage.html">
+            
+                    
+                    NextPage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">最佳实践</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="ding-yi-api.html">
+            
+                <a href="ding-yi-api.html">
+            
+                    
+                    定义API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.2" data-path="vuezu-jian-de-ding-yi.html">
+            
+                <a href="vuezu-jian-de-ding-yi.html">
+            
+                    
+                    Vue组件的定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="vscode-pei-zhi-zhi-nan.html">
+            
+                <a href="vscode-pei-zhi-zhi-nan.html">
+            
+                    
+                    vscode 配置指南
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Vue组件的定义</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x7EC4;&#x4EF6;&#x7684;&#x5B9A;&#x4E49;">&#x7EC4;&#x4EF6;&#x7684;&#x5B9A;&#x4E49;</h2>
+<hr>
+<p>&#x6211;&#x4EEC;&#x5728;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x65F6;,&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x7EDF;&#x4E00;&#x6027;&#x4E0E;&#x826F;&#x597D;&#x7684;&#x53EF;&#x9605;&#x8BFB;&#x6027;,&#x52BF;&#x5FC5;&#x9700;&#x8981;&#x9075;&#x5FAA;&#x4E00;&#x5B9A;&#x7684;&#x5B9A;&#x4E49;&#x987A;&#x5E8F;. &#x867D;&#x7136;Vue&#x5728;&#x7EC4;&#x4EF6;&#x7684;&#x5B9A;&#x4E49;&#x4E0A;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5F3A;&#x5236;&#x8981;&#x6C42;.&#x4F46;&#x6211;&#x4EEC;&#x4E3A;&#x4E86;&#x6240;&#x6709;&#x524D;&#x7AEF;&#x56E2;&#x961F;&#x4E2D;&#x6210;&#x5458;&#x5728;&#x76F8;&#x4E92;&#x9605;&#x8BFB;&#x4EE3;&#x7801;&#x65F6;&#x7684;&#x4FBF;&#x5229;&#x6027;&#x4E0A;&#x8003;&#x8651;,&#x8FD8;&#x662F;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x4E9B;&#x89C4;&#x5219;.</p>
+<blockquote>
+<p><strong>[warning] &#x5173;&#x4E8E;name&#x4E0E;props </strong></p>
+<p>&#x6211;&#x4EEC;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x65E5;&#x540E;&#x517C;&#x5BB9;Class&#x6A21;&#x5F0F;&#x7684;&#x5B9A;&#x4E49;,&#x7EC4;&#x4EF6;&#x7684;&#x540D;&#x79F0;&#x9996;&#x5B57;&#x6BCD;&#x5FC5;&#x987B;&#x4E3A;<strong>&#x5927;&#x5199;</strong>.</p>
+<p>&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5728;&#x5B9A;&#x4E49;Props&#x65F6;<strong>&#x5F3A;&#x5236;&#x4F7F;&#x7528;&#x7C7B;&#x578B;&#x9A8C;&#x8BC1;</strong>&#x6A21;&#x5F0F;,&#x4EE5;&#x907F;&#x514D;&#x51FA;&#x73B0;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x9519;&#x8BEF;.</p>
+</blockquote>
+<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> BarComponent <span class="token keyword">from</span> <span class="token string">&apos;./BarComponent&apos;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">&apos;FooComponent&apos;</span><span class="token punctuation">,</span>
+    props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            type<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+            required<span class="token punctuation">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        isStudent<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            type<span class="token punctuation">:</span> Boolean<span class="token punctuation">,</span>
+            <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    data <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tableList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    mixins<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    beforeCreate <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    created <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    beforeMount <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    mounted <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    beforeUpdate <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    updated <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    activated <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    deactivated <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    beforeDestroy <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    destroyed <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    watch <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        isStudent <span class="token punctuation">(</span>newVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newVal<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+         create <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+         <span class="token punctuation">}</span>   
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    directives<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    components <span class="token punctuation">:</span> <span class="token punctuation">{</span> BarComponent <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="ding-yi-api.html" class="navigation navigation-prev " aria-label="Previous page: 定义API">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="vscode-pei-zhi-zhi-nan.html" class="navigation navigation-next " aria-label="Next page: vscode 配置指南">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Vue组件的定义","level":"4.2","depth":1,"next":{"title":"vscode 配置指南","level":"4.3","depth":1,"path":"zui-jia-shi-jian/vscode-pei-zhi-zhi-nan.md","ref":"zui-jia-shi-jian/vscode-pei-zhi-zhi-nan.md","articles":[]},"previous":{"title":"定义API","level":"4.1","depth":1,"path":"zui-jia-shi-jian/ding-yi-api.md","ref":"zui-jia-shi-jian/ding-yi-api.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["emphasize","alerts","prism","-highlight"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism.css"]},"emphasize":{},"alerts":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css"}},"file":{"path":"zui-jia-shi-jian/vuezu-jian-de-ding-yi.md","mtime":"2018-04-02T08:34:18.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-03T00:56:23.786Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
