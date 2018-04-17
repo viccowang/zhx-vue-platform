@@ -20,7 +20,7 @@ export const constantRouterMap = [
         path: 'dash',
         name: 'Dashboard',
         component: _import_('Dashboard/index'),
-        meta: { title: '主页', icon: 'zvpfont icon-home', noCache: false } }
+        meta: { title: 'Dashboard', icon: 'zvpfont icon-home', noCache: false } }
     ]
   },
   {

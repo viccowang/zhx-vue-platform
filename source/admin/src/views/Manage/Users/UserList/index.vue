@@ -58,7 +58,7 @@ import CommonSearch from '@/components/commonSearch'
 import UserListSearch from '../Components/userListSearch'
 import CommonTable from '@/components/CommonTable'
 
-import {tableData} from '@/views/DemoList/tableData'
+import {tableData} from '@/testData/tableData'
 import {buttonData} from '../Components/buttonData'
 
 import AddUser from '../AddUser'

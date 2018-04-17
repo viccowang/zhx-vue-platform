@@ -6,36 +6,54 @@ const _import_ = file => () => import('@/views/' + file + '.vue')
  */
 export const aysncRoutesMap = [
   {
-    path: '/demo',
+    path: '/form',
     component: Layout,
-    meta: { title: 'Demo', icon: 'el-icon-news', role: ['user'] },
+    meta: { title: 'Form', icon: 'el-icon-news', role: ['user'] },
     children: [
       {
-        path: 'demo-list',
-        name: 'DemoList',
-        component: _import_('DemoList/index'),
-        meta: { title: 'demoList', icon: 'el-icon-service' }
+        path: 'table-list',
+        name: 'TableList',
+        component: _import_('Form/List/index'),
+        meta: { title: 'Table List', icon: 'el-icon-service' }
       },
       {
-        path: 'demo-chart',
-        name: 'DemoChart',
-        component: _import_('DemoChart/index'),
-        meta: { title: 'demoChart', icon: 'el-icon-date' }
+        path: 'nextpage',
+        name: 'NextPage',
+        component: _import_('Form/NextPage/index'),
+        meta: { title: 'NextPage', icon: 'el-icon-service' }
       }
     ]
   },
   {
-    path: '/manage',
+    path: '/charts',
     component: Layout,
-    meta: { title: 'Manage', role: ['admin'] },
+    meta: { title: 'Charts', icon: 'el-icon-news', role: ['user'] },
     children: [
       {
-        path: 'user',
-        name: 'UserList',
-        component: _import_('Manage/Users/UserList/index'),
-        meta: { title: 'users', icon: 'el-icon-service' }
+        path: 'echart',
+        name: 'Charts',
+        component: _import_('Charts/index'),
+        meta: { title: 'chart', icon: 'el-icon-service' }
+      }
+    ]
+  },
+  {
+    path: '/map',
+    component: Layout,
+    meta: { title: 'Map', icon: 'el-icon-news', role: ['user'] },
+    children: [
+      {
+        path: 'bmap',
+        name: 'BaiduMapCom',
+        component: _import_('Map/BaiduMap/index'),
+        meta: { title: 'baidu Map', icon: 'el-icon-service' }
+      },
+      {
+        path: 'heat-map',
+        name: 'HeatMap',
+        component: _import_('Map/HeatMap/index'),
+        meta: { title: 'Heat Map', icon: 'el-icon-service' }
       }
     ]
   }
-
 ]
