@@ -1,9 +1,13 @@
 <template>
   <div class="tag-tabs" v-bind:style="{height: tagTabHeight}">
+    <v-contextmenu ref="menu" @beforeShow="beforeShowContextmenu">
+      <v-contextmenu-item :disabled="isDisableCloseItem" @click="closeTabByContextmenu">关闭标签页</v-contextmenu-item>
+    </v-contextmenu>
     <scroll-pane>
       <router-link
         tag="div"
         class="tab-item"
+        v-contextmenu:menu="tab"
         v-for="tab in visitedViews"
         :to="tab.path"
         :key="tab.path"
@@ -23,10 +27,10 @@ import scrollPane from '@/components/scrollPane'
 
 export default {
   name: 'TagTabs',
-  components: { scrollPane },
   data () {
     return {
-      isDashboard: false
+      isDashboard: false,
+      isDisableCloseItem: false
     }
   },
   computed: {
@@ -87,7 +91,16 @@ export default {
         // TODO: 暂时不发送广播
         // eventBus.$emit('plateform.navTab.removed', { removed: view })
       })
+    },
+    beforeShowContextmenu (contextmenu, event, { name }) {
+      this.isDisableCloseItem = name === 'Dashboard'
+    },
+    closeTabByContextmenu (contextmenu, event, tabView) {
+      this.closeTab(tabView)
     }
+  },
+  components: {
+    scrollPane
   }
 }
 </script>
@@ -99,7 +112,7 @@ export default {
   .tab-item{
     display: flex;
     align-items: center;
-    padding:6px 10px 6px 15px;
+    padding:7px 10px 6px 15px;
     background-color: lighten($base-gray-color, 22%);
     border-right:1px solid lighten($base-gray-color, 15%);
     box-sizing: border-box;

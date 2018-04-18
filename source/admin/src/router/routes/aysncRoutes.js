@@ -15,12 +15,6 @@ export const aysncRoutesMap = [
         name: 'TableList',
         component: _import_('Form/List/index'),
         meta: { title: 'Table List', icon: 'el-icon-service' }
-      },
-      {
-        path: 'nextpage',
-        name: 'NextPage',
-        component: _import_('Form/NextPage/index'),
-        meta: { title: 'NextPage', icon: 'el-icon-service' }
       }
     ]
   },
@@ -53,6 +47,25 @@ export const aysncRoutesMap = [
         name: 'HeatMap',
         component: _import_('Map/HeatMap/index'),
         meta: { title: 'Heat Map', icon: 'el-icon-service' }
+      }
+    ]
+  },
+  {
+    path: '/utils',
+    component: Layout,
+    meta: { title: 'Utils', icon: 'el-icon-news', role: ['user'] },
+    children: [
+      {
+        path: 'nextpage',
+        name: 'NextPage',
+        component: _import_('Utils/NextPage/index'),
+        meta: { title: 'NextPage', icon: 'el-icon-service' }
+      },
+      {
+        path: 'contextmenu',
+        name: 'Contextmenu',
+        component: _import_('Utils/Contextmenu/index'),
+        meta: { title: 'contextmenu', icon: 'el-icon-news' }
       }
     ]
   }

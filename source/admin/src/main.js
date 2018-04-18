@@ -7,19 +7,23 @@ import store from './store'
 // Element UI module & style
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+// common icon font
 import '@/font/plateform-font/iconfont.css'
+//
+import contextmenu from '@/components/contextmenu'
 
 // import './common/style/element-variable-extend.scss'
 // import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
 import './router/premission'
-
+// nextPage
 import NextPage from './components/nextPage/'
-
+//
 Vue.use(ElementUI, { size: 'mini' })
 // Vue.use(VueAwesomeSwiper)
 Vue.use(NextPage, { router, store })
+//
+Vue.use(contextmenu)
 
 Vue.config.productionTip = false
 

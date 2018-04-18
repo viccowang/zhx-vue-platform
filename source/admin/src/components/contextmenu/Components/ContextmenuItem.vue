@@ -1,0 +1,58 @@
+<template>
+  <li class="v-contextmenu-divider" v-if="divider"></li>
+
+  <li
+    v-else
+    :class="classname"
+    @click="handleClick"
+    @mouseenter="handleMouseenter"
+    @mouseleave="handleMouseleave">
+    <slot></slot>
+  </li>
+</template>
+
+<script>
+export default {
+  name: 'VContextmenuItem',
+  inject: ['$$contextmenu'],
+  props: {
+    divider: Boolean,
+    disabled: Boolean,
+    autoHide: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data () {
+    return {
+      hover: false
+    }
+  },
+  computed: {
+    classname () {
+      return {
+        'v-contextmenu-item': !this.divider,
+        'v-contextmenu-item--hover': this.hover,
+        'v-contextmenu-item--disabled': this.disabled
+      }
+    }
+  },
+  methods: {
+    handleMouseenter (event) {
+      if (this.disabled) return
+      this.hover = true
+      this.$emit('mouseenter', this, event, this.$$contextmenu.contextmenuParams)
+    },
+    handleMouseleave (event) {
+      if (this.disabled) return
+      this.hover = false
+      this.$emit('mouseleave', this, event, this.$$contextmenu.contextmenuParams)
+    },
+    handleClick (event) {
+      if (this.disabled) return
+      this.$emit('click', this, event, this.$$contextmenu.contextmenuParams)
+      this.autoHide && this.$$contextmenu.hide()
+    }
+  }
+}
+</script>

@@ -1,0 +1,108 @@
+$active-color: #46a0fc;
+$border-color: #e8e8e8;
+$shadow-color: rgba(150, 150, 150, 0.2);
+$padding-vertical: 5px;
+$contextmenu-item-padding-horizonal: 14px;
+$active-color-bright: #ef5350;
+
+.v-contextmenu  {
+  position: absolute;
+  padding: $padding-vertical 0;
+  margin: 0;
+  background-color: #fff;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  box-shadow: 2px 2px 8px 0px $shadow-color;
+  list-style: none;
+  font-size: 1rem;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: 2800;
+  -webkit-tap-highlight-color: transparent;
+
+  .v-contextmenu-item {
+    padding: $padding-vertical $contextmenu-item-padding-horizonal;
+    line-height: 1;
+    color: #333 ;
+  
+    &.v-contextmenu-item--hover {
+      color: #fff 
+    }
+
+    &.v-contextmenu-item--disabled {
+      color: #ccc;
+      cursor: not-allowed 
+    }
+
+  }
+
+  .v-contextmenu-divider {
+    height: 0;
+    margin: $padding-vertical 0;
+    border-bottom: 1px solid $border-color 
+  }
+
+  .v-contextmenu-group__menus {
+    padding: 0 5px;
+    margin: 0;
+    list-style: none ;
+
+    .v-contextmenu-item {
+      display: inline-block;
+      padding: $padding-vertical ($contextmenu-item-padding-horizonal - 5) 
+    }
+  }
+
+  .v-contextmenu-submenu {
+    position: relative;
+
+    & > .v-contextmenu {
+      position: absolute 
+    }
+
+      &.left {
+        left: 0;
+        transform: translateX(-100%) 
+      }
+
+      &.right {
+        right: 0;
+        transform: translateX(100%) 
+      }
+
+      &.top {
+        top: -(padding-vertical) - 1 
+      }
+
+      &.bottom {
+        bottom: -(padding-vertical) - 1 
+      }
+
+    .v-contextmenu-submenu__title {
+      margin-right: $padding-vertical * 2 
+    }
+
+    .v-contextmenu-submenu__icon {
+      position: absolute;
+      right: $padding-vertical ;
+
+      &::before {
+        font-family: 'ctxmenu-font';
+        content: "\e636" 
+      }
+    }
+  }
+
+}
+
+.v-contextmenu--default {
+  .v-contextmenu-item--hover {
+    background-color: $active-color 
+  }
+}
+
+.v-contextmenu--bright {
+  .v-contextmenu-item--hover {
+    background-color: $active-color-bright 
+  }
+}

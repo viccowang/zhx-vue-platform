@@ -20,7 +20,10 @@ export default {
   name: 'NextPage',
   data () {
     return {
-      input: ''
+      input: '',
+      contextTarget: document.body,
+      contextShow: false,
+      menuData: []
     }
   },
   methods: {
