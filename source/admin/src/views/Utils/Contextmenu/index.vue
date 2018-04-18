@@ -93,7 +93,7 @@ export default {
       const item = {
         id: MENU_ID++,
         label: `Dynamic menu ${MENU_ID}`,
-        onClick: ''
+        onClick: this.addItems
       }
       this.menuItems.push(item)
     },
