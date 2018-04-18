@@ -8,64 +8,64 @@ export const aysncRoutesMap = [
   {
     path: '/form',
     component: Layout,
-    meta: { title: 'Form', icon: 'el-icon-news', role: ['user'] },
+    meta: { title: 'Form', icon: 'zvpfont icon-orderform', role: ['user'] },
     children: [
       {
         path: 'table-list',
         name: 'TableList',
         component: _import_('Form/List/index'),
-        meta: { title: 'Table List', icon: 'el-icon-service' }
+        meta: { title: 'Table List', icon: 'zvpfont icon-menu-list' }
       }
     ]
   },
   {
     path: '/charts',
     component: Layout,
-    meta: { title: 'Charts', icon: 'el-icon-news', role: ['user'] },
+    meta: { title: 'Charts', icon: 'zvpfont icon-chart2', role: ['user'] },
     children: [
       {
         path: 'echart',
         name: 'Charts',
         component: _import_('Charts/index'),
-        meta: { title: 'chart', icon: 'el-icon-service' }
+        meta: { title: 'Chart', icon: 'zvpfont icon-chart2' }
       }
     ]
   },
   {
     path: '/map',
     component: Layout,
-    meta: { title: 'Map', icon: 'el-icon-news', role: ['user'] },
+    meta: { title: 'Map', icon: 'zvpfont icon-map', role: ['user'] },
     children: [
       {
         path: 'bmap',
         name: 'BaiduMapCom',
         component: _import_('Map/BaiduMap/index'),
-        meta: { title: 'baidu Map', icon: 'el-icon-service' }
+        meta: { title: 'Baidu Map', icon: 'zvpfont icon-dizhi1' }
       },
       {
         path: 'heat-map',
         name: 'HeatMap',
         component: _import_('Map/HeatMap/index'),
-        meta: { title: 'Heat Map', icon: 'el-icon-service' }
+        meta: { title: 'Heat Map', icon: 'zvpfont icon-icheatmap' }
       }
     ]
   },
   {
     path: '/utils',
     component: Layout,
-    meta: { title: 'Utils', icon: 'el-icon-news', role: ['user'] },
+    meta: { title: 'Utils', icon: 'zvpfont icon-tools', role: ['user'] },
     children: [
       {
         path: 'nextpage',
         name: 'NextPage',
         component: _import_('Utils/NextPage/index'),
-        meta: { title: 'NextPage', icon: 'el-icon-service' }
+        meta: { title: 'NextPage', icon: 'zvpfont icon-page' }
       },
       {
         path: 'contextmenu',
         name: 'Contextmenu',
         component: _import_('Utils/Contextmenu/index'),
-        meta: { title: 'contextmenu', icon: 'el-icon-news' }
+        meta: { title: 'Contextmenu', icon: 'zvpfont icon-menu3caidan3' }
       }
     ]
   }

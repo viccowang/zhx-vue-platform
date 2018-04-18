@@ -5,7 +5,7 @@
     <v-contextmenu ref="menu1">
         <v-contextmenu-item>New Item</v-contextmenu-item>
         <v-contextmenu-item>Edit Item</v-contextmenu-item>
-        <v-contextmenu-item>Delete Item</v-contextmenu-item>
+        <v-contextmenu-item @click="showParam">click to get Param</v-contextmenu-item>
     </v-contextmenu>
 
     <v-contextmenu ref="menu2" eventType="click">
@@ -50,7 +50,7 @@
     <el-row>
         <el-col :span="6">
             <h4>默认右键菜单</h4>
-            <el-button v-contextmenu:menu1>show contextmenu</el-button>
+            <el-button v-contextmenu:menu1="menuParams">show contextmenu</el-button>
         </el-col>
         <el-col :span="6">
              <h4>自定义按键菜单</h4>
@@ -82,13 +82,11 @@ export default {
   name: 'Contextmenu',
   data () {
     return {
+      menuParams: { name: 'Vicco.W.', message: 'Hello World!' },
       menuItems: [
         { id: 0, label: 'Add Other Item', onClick: this.addItems }
       ]
     }
-  },
-  mounted () {
-
   },
   methods: {
     addItems () {
@@ -98,7 +96,12 @@ export default {
         onClick: ''
       }
       this.menuItems.push(item)
-      console.log('add')
+    },
+    showParam (menuItem, event, {name, message}) {
+      this.$message({
+        message: `name: ${name}, text: ${message}`,
+        type: 'success'
+      })
     }
   }
 }
