@@ -35,8 +35,8 @@
 import { GridLayout, GridItem } from 'vue-grid-layout'
 import DynamicComponent from './DynamicComponent'
 import EventBus from '@/components/eventBus'
-import { layoutData } from './layoutData'
-
+import { layoutData } from '@/testData/layoutData'
+// vue-grid-layout css
 import './layout.scss'
 
 export default {
@@ -45,9 +45,10 @@ export default {
     return {
       // 布局数据
       layout: [],
-      // 一共可放置多少列
+      // 默认可配置的列数
       columnSize: 12,
-      // 行高度(px)
+      // 行高度(px),表示默认单行的高度,在数据队形中对应字段'h',
+      // 如果配置了'h': 10, 则表示组件默认高度为300px
       itemRowHeight: 30,
       // 默认元素间距
       itemMargin: [10, 10]
@@ -67,7 +68,7 @@ export default {
       EventBus.$emit('moved', item)
     },
     removeComponent (item) {
-      this.$confirm('是否要移除该组件?', '提示', {
+      this.$confirm(`是否要移除组件:${item.component}?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
