@@ -14,13 +14,14 @@
           :h="item.h"
           :i="item.i"
           :key="item.i"
+          @resized="itemResize(item)"
           drag-allow-from=".vue-draggable-handle"
           drag-ignore-from=".no-drag"
         >
          <div class="item-main">
            <div class="vue-draggable-handle item-title"></div>
            <div class="item-content no-drag">
-             {{item.i}}
+             <dynamic-component :com="item.component"/>
            </div>
          </div>
         </grid-item>
@@ -30,17 +31,18 @@
 
 <script>
 import { GridLayout, GridItem } from 'vue-grid-layout'
+import DynamicComponent from './DynamicComponent'
+import EventBus from '@/components/eventBus'
 import { layoutData } from './layoutData'
 
 import './layout.scss'
 
 export default {
   name: 'Dashboard',
-  components: { GridLayout, GridItem },
   data () {
     return {
       // 布局数据
-      layout: layoutData,
+      layout: [],
       // 一共可放置多少列
       columnSize: 12,
       // 行高度(px)
@@ -48,6 +50,40 @@ export default {
       // 默认元素间距
       itemMargin: [10, 10]
     }
-  }
+  },
+  mounted () {
+    this.initLayoutData()
+  },
+  methods: {
+    initLayoutData () {
+      this.layout = layoutData.filter(layout => layout.component)
+    },
+    itemResize (item) {
+      EventBus.$emit('resized', item)
+    }
+  },
+  components: { GridLayout, GridItem, DynamicComponent, EventBus }
 }
 </script>
+<style lang="scss" scoped>
+.content{
+
+  .item-main {
+    display: flex;
+    width:100%; height:100%;
+    position:relative;
+
+    .item-title {
+      position: absolute;
+      z-index:10;
+    }
+
+    .item-content {
+      flex:1;
+      overflow: hidden;
+    }
+
+  }
+
+}
+</style>

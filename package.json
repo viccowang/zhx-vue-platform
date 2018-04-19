@@ -5,13 +5,13 @@
   "author": "viccowang <viccowang@gmail.com>",
   "private": true,
   "scripts": {
-    "dev:admin": "cross-env NODE_ENV_TYPE=admin webpack-dev-server --inline --progress --config build/webpack.dev.conf.js && node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js",
+    "dev:admin": "cross-env NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV_TYPE=admin webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "dev:client": "set NODE_ENV_TYPE=client && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build:admin": "cross-env NODE_ENV_TYPE=admin node build/build.js",
     "build:client": "cross-env NODE_ENV_TYPE=client node build/build.js",
     "analyz:admin": "cross-env npm_config_report=true npm run build:admin",
     "analyz:client": "cross-env npm_config_report=true npm run build:client",
-    "start": "npm run dev",
+    "start": "npm run dev:admin",
     "lint": "eslint --ext .js,.vue src",
     "test": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config build/webpack.base.conf.js --require test/setup.js test/**/*.spec.js"
   },
