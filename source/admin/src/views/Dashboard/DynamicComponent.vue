@@ -2,6 +2,7 @@
   <component :is="componentLoader" class="component-wrapper"/>
 </template>
 <script>
+
 export default {
   name: 'DynamicComponent',
   props: {

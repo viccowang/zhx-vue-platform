@@ -35,6 +35,7 @@
 import { GridLayout, GridItem } from 'vue-grid-layout'
 import DynamicComponent from './DynamicComponent'
 import EventBus from '@/components/eventBus'
+
 import { layoutData } from '@/testData/layoutData'
 // vue-grid-layout css
 import './layout.scss'

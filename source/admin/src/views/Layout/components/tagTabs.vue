@@ -113,12 +113,13 @@ export default {
     display: flex;
     align-items: center;
     padding:7px 10px 6px 15px;
-    background-color: lighten($base-gray-color, 22%);
-    border-right:1px solid lighten($base-gray-color, 15%);
+    background-color: lighten($base-gray-color, 21%);
+    border-right:1px solid lighten($base-gray-color, 14%);
     box-sizing: border-box;
     cursor:pointer;
     overflow: hidden;
     user-select: none;
+    transition: all .2s ease 0s;
 
     &.isShowCloseBtn > span {
       padding-right: 10px;
@@ -173,6 +174,10 @@ export default {
 
     &:last-child{
       border-right:none;
+    }
+
+    &:hover:not(.active) {
+       background-color: lighten($base-gray-color, 24%);
     }
 
   }
