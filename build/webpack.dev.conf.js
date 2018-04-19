@@ -1,6 +1,8 @@
 'use strict'
 const utils = require('./utils')
 const webpack = require('webpack')
+const Happypack = require('happypack')
+const os = require('os')
 const isAdmin = process.env.NODE_ENV_TYPE === 'admin'
 const config = isAdmin ? require('../config').admin : require('../config').client
 const merge = require('webpack-merge')
@@ -10,6 +12,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const happypackThreadPool = Happypack.ThreadPool({ size: os.cpus().length })
+const vueLoaderConfig = require('./vue-loader.conf')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -65,7 +69,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    new Happypack({
+      id: 'happy-babel-js',
+      cache: false,
+      loaders: ['babel-loader'],
+      threadPool: happypackThreadPool
+    }),
+    new Happypack({
+      id: 'happy-vue',
+      cache: false,
+      loaders: [{
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+      }]
+    })
   ]
 })
 

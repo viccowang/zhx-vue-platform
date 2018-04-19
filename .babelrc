@@ -10,8 +10,6 @@
   ],
   "plugins": [
     "transform-vue-jsx", 
-    "transform-runtime",
-    "transform-class-properties",
-    "transform-decorators-legacy"
+    "transform-runtime"
   ]
 }

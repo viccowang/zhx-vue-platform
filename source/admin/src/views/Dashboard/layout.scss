@@ -14,7 +14,7 @@
 
         &.vue-grid-placeholder{
             opacity:.7;
-            background:lighten($base-gray-color,25%);
+            background:lighten($base-gray-color,35%);
             border-radius:8px;
             border: 3px dotted darken($base-gray-color,15%);
         }
@@ -68,7 +68,6 @@
         height: 20px;
         bottom: 0;
         right: 0;
-        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
         background-position: bottom right;
         padding: 0 3px 3px 0;
         background-repeat: no-repeat;
@@ -76,19 +75,40 @@
         box-sizing: border-box;
         cursor: se-resize;
     }
+
+    .item-move-handle, .item-remove-handle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $base-gray-color;
+        z-index:10;
+    }
   
-    .vue-draggable-handle {
+    .item-move-handle {
         position: absolute;
         width: 25px;
         height: 25px;
         top: 3px;
         left: 3px;
-        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>") no-repeat;
-        background-position: bottom right;
         padding: 0 8px 8px 0;
-        background-repeat: no-repeat;
-        background-origin: content-box;
         box-sizing: border-box;
         cursor: move;
+    }
+
+    .item-remove-handle {
+        position: absolute;
+        top: 3px;
+        left: 25px;
+        cursor:pointer;
+        transition: all .2s ease-in-out 0s;
+
+        &:hover {
+            color: $base-red-color;
+        }
+
+        &:active {
+            transform: scale(1.2);
+        }
+
     }
   }

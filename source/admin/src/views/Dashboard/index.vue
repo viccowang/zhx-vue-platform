@@ -15,13 +15,15 @@
           :i="item.i"
           :key="item.i"
           @resized="itemResize(item)"
+          @moved="itemMoved(item)"
           drag-allow-from=".vue-draggable-handle"
           drag-ignore-from=".no-drag"
         >
          <div class="item-main">
-           <div class="vue-draggable-handle item-title"></div>
+           <div class="vue-draggable-handle item-move-handle"><i class="zvpfont icon-circle-move"></i></div>
+           <div class="item-remove-handle" @click="removeComponent(item)"><i class="zvpfont icon-circle-close"></i></div>
            <div class="item-content no-drag">
-             <dynamic-component :com="item.component"/>
+             <dynamic-component :com="item.component" />
            </div>
          </div>
         </grid-item>
@@ -60,6 +62,18 @@ export default {
     },
     itemResize (item) {
       EventBus.$emit('resized', item)
+    },
+    itemMoved (item) {
+      EventBus.$emit('moved', item)
+    },
+    removeComponent (item) {
+      this.$confirm('是否要移除该组件?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.layout = this.layout.filter(ly => ly.component !== item.component)
+      })
     }
   },
   components: { GridLayout, GridItem, DynamicComponent, EventBus }

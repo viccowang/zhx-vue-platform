@@ -2,6 +2,8 @@
 const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
+const Happypack = require('happypack')
+const os = require('os')
 const isAdmin = process.env.NODE_ENV_TYPE === 'admin'
 const config = isAdmin ? require('../config').admin : require('../config').client
 const merge = require('webpack-merge')
@@ -11,6 +13,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+const happypackThreadPool = Happypack.ThreadPool({ size: os.cpus().length })
+const vueLoaderConfig = require('./vue-loader.conf')
 
 const env = require('../config/prod.env')
 
@@ -116,7 +121,24 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+
+    // happypack
+    new Happypack({
+      id: 'happy-babel-js',
+      cache: false,
+      loaders: ['babel-loader'],
+      threadPool: happypackThreadPool
+    }),
+    new Happypack({
+      id: 'happy-vue',
+      cache: false,
+      loaders: [{
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+      }]
+    })
+
   ]
 })
 

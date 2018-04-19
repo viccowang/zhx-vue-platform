@@ -3,10 +3,8 @@ const path = require('path')
 const utils = require('./utils')
 const isAdmin = process.env.NODE_ENV_TYPE === 'admin'
 const config = isAdmin ? require('../config').admin : require('../config').client
-const vueLoaderConfig = require('./vue-loader.conf')
 //
 const srcPath = isAdmin ? resolve('source/admin/src') : resolve('source/client/src')
-const testPath = isAdmin ? resolve('source/admin/test') : resolve('source/client/test')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -16,7 +14,7 @@ const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
-  include: [srcPath, testPath],
+  include: [srcPath],
   options: {
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
@@ -48,15 +46,13 @@ module.exports = {
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        loader: 'happypack/loader?id=happy-vue'
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'happypack/loader?id=happy-babel-js',
         include: [
           srcPath,
-          testPath,
           resolve('node_modules/webpack-dev-server/client'),
           resolve('node_modules/vue-echarts'),
           resolve('node_modules/resize-detector')
