@@ -25,6 +25,9 @@ export default {
       initOptions: { }
     }
   },
+  activated () {
+    this.resizeChart()
+  },
   mounted () {
     this.chartData = barChar1Data
     window.addEventListener('resize', this.resizeChart)

@@ -4,7 +4,7 @@
     :ak="mapParams.ak"
     :center="mapParams.center"
     :zoom="mapParams.zoom"
-    :scroll-wheel-zoom="true"
+    :scroll-wheel-zoom="false"
     @ready="initMap"
     ></baidu-map>
 </template>

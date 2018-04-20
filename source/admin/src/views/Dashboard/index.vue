@@ -75,7 +75,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.layout = this.layout.filter(ly => ly.component !== item.component)
-      })
+      }).catch(() => { })
     }
   },
   components: { GridLayout, GridItem, DynamicComponent, EventBus }
