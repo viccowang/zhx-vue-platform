@@ -30,14 +30,14 @@ export default {
   },
   mounted () {
     this.chartData = barChar2Data
-    window.addEventListener('resize', this.resizeChart)
+    window.addEventListener('resized', this.resizeChart)
     // watch and resize chart
-    EventBus.$on('resize', item => {
+    EventBus.$on('resized', item => {
       if (item.component === COM_NAME) this.resizeChart()
     })
   },
   beforeDestroy () {
-    window.removeEventListener('resize', this.resizeChart)
+    window.removeEventListener('resized', this.resizeChart)
     EventBus.$off('resized')
   },
   methods: {
