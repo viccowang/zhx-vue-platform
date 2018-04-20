@@ -5,6 +5,7 @@
         :column="columnSize"
         :row-height="itemRowHeight"
         :margin="itemMargin"
+        @layout-updated="updateLayout"
       >
         <grid-item
           v-for="item in layout"
@@ -46,6 +47,8 @@ export default {
     return {
       // 布局数据
       layout: [],
+      // 初始布局,用于判断布局是否有过变动
+      initLayout: [],
       // 默认可配置的列数
       columnSize: 12,
       // 行高度(px),表示默认单行的高度,在数据队形中对应字段'h',
@@ -61,6 +64,13 @@ export default {
   methods: {
     initLayoutData () {
       this.layout = layoutData.filter(layout => layout.component)
+      this.initLayout = Object.assign({}, this.layout)
+      this.isShowLoading = false
+    },
+    // 当布局更新时,自动保存最新的布局
+    updateLayout (newLayout) {
+      // TODO: update remote data
+
     },
     itemResize (item) {
       EventBus.$emit('resized', item)
@@ -75,6 +85,8 @@ export default {
         type: 'warning'
       }).then(() => {
         this.layout = this.layout.filter(ly => ly.component !== item.component)
+        // 移除操作需要自触发
+        this.updateLayout(this.layout)
       }).catch(() => { })
     }
   },
