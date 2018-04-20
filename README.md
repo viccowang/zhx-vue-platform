@@ -1,5 +1,5 @@
 # 中航讯 前端基础框架 zhx-vue-plateform
-### Author:Vicco Wang / Date: 2018.04.02 / ver:1.1
+#### Author:Vicco Wang / Date: 2018.04.20 / ver:1.2
 ---
 
 ## 开发与打包
