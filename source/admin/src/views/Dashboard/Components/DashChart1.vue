@@ -38,6 +38,7 @@ export default {
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.resizeChart)
+    EventBus.$off('resized')
   },
   methods: {
     resizeChart () {
