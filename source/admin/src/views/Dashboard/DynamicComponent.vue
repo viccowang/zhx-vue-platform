@@ -2,7 +2,11 @@
   <component :is="componentLoader" class="component-wrapper"/>
 </template>
 <script>
-
+/**
+ * Dynamic component loader
+ * 动态加载预设组件;
+ * 组件开发必须放在 Dashboard/Components/ 目录下
+ */
 export default {
   name: 'DynamicComponent',
   props: {
