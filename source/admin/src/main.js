@@ -12,8 +12,7 @@ import '@/font/plateform-font/iconfont.css'
 //
 import contextmenu from '@/components/contextmenu'
 // import './common/style/element-variable-extend.scss'
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import 'swiper/dist/css/swiper.css'
+
 import './router/premission'
 // nextPage
 import NextPage from './components/nextPage/'

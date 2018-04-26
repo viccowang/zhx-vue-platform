@@ -5,22 +5,14 @@
   "author": "viccowang <viccowang@gmail.com>",
   "private": true,
   "scripts": {
-    "dev:admin": "cross-env NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV_TYPE=admin webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev:admin": "cross-env NODE_ENV_TYPE=admin webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "dev:client": "set NODE_ENV_TYPE=client && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build:admin": "cross-env NODE_ENV_TYPE=admin node build/build.js",
     "build:client": "cross-env NODE_ENV_TYPE=client node build/build.js",
     "analyz:admin": "cross-env npm_config_report=true npm run build:admin",
     "analyz:client": "cross-env npm_config_report=true npm run build:client",
     "start": "npm run dev:admin",
-    "lint": "eslint --ext .js,.vue src",
-    "test": "cross-env NODE_ENV=test nyc mocha-webpack --webpack-config build/webpack.base.conf.js --require test/setup.js test/**/*.spec.js"
-  },
-  "nyc": {
-    "include": [
-      "source/**/*.(js|vue)"
-    ],
-    "instrument": false,
-    "sourceMap": false
+    "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -28,7 +20,6 @@
     "moment": "^2.20.1",
     "v-contextmenu": "^2.5.0",
     "vue": "^2.5.2",
-    "vue-awesome-swiper": "^3.1.2",
     "vue-baidu-map": "^0.21.3",
     "vue-cookie": "^1.1.4",
     "vue-echarts": "^3.0.3",
@@ -36,7 +27,6 @@
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-router": "^3.0.1",
     "vue2-scrollbar": "0.0.3",
-    "vuebar": "0.0.18",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
