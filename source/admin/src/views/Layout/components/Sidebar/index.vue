@@ -95,10 +95,6 @@ $sidebar-background-color: #304156;
   .el-menu--collapse i {
     font-size:1.6rem;
   }
-
-  // .el-menu--collapse {
-  //   border-right:none;
-  // }
 }
 
 </style>
