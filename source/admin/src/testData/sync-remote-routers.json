@@ -1,0 +1,77 @@
+{
+  "head": {
+    "success": "true"
+  },
+  "data": [
+       {
+            "path": "/form",
+            "meta": {
+                "title": "Table List",
+                "icon": "zvpfont icon-menu-list"
+            },
+            "children": [{
+                "path": "table-list",
+                "name": "TableList",
+                "component": "Form/List/index",
+                "meta": {
+                    "title": "Table List",
+                    "icon": "zvpfont icon-menu-list"
+                }
+            }]
+        },
+        {
+            "path": "/map",
+            "meta": {
+                "title": "Map",
+                "icon": "zvpfont icon-map"
+            },
+            "children": [
+                {
+                    "path": "bmap",
+                    "name": "BaiduMapCom",
+                    "component": "Map/BaiduMap/index",
+                    "meta": {
+                        "title": "Baidu Map",
+                        "icon": "zvpfont icon-dizhi1"
+                    }
+                },
+                {
+                    "path": "heat-map",
+                    "name": "HeatMap",
+                    "component": "Map/HeatMap/index",
+                    "meta": {
+                        "title": "Heat Map",
+                        "icon": "zvpfont icon-icheatmap"
+                    }
+                }
+            ]
+        },
+        {
+            "path": "/utils",
+            "meta": {
+                "title": "Utils",
+                "icon": "zvpfont icon-tools"
+            },
+            "children": [
+                {
+                    "path": "nextpage",
+                    "name": "NextPage",
+                    "component": "Utils/NextPage/index",
+                    "meta": {
+                        "title": "NextPage",
+                        "icon": "zvpfont icon-page"
+                    }
+                },
+                {
+                    "path": "contextmenu",
+                    "name": "Contextmenu",
+                    "component": "Utils/Contextmenu/index",
+                    "meta": {
+                        "title": "Contextmenu",
+                        "icon": "zvpfont icon-menu3caidan3"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -43,6 +43,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import SidebarMenuItem from './SidebarMenuItem'
+
 export default {
   name: 'Sidebar',
   computed: {
@@ -52,7 +54,8 @@ export default {
     slideSidebar () {
       this.$store.dispatch('collapseSidebar', !this.sidebarState.isOpen)
     }
-  }
+  },
+  components: { SidebarMenuItem }
 }
 </script>
 
