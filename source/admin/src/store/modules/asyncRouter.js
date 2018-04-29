@@ -45,6 +45,9 @@ const _import_ = file => () => import('@/views/' + file + '.vue')
 
 /**
  * 动态路由创建, 可以读取静态文件,也可以后端维护实现权限分级菜单;
+ *
+ * @param {Array} remoteRoutes 远程获取到的路由表数据
+ * @returns {Array} 重构的vueRouter路由表
  */
 function generateNewRoutes (remoteRoutes) {
   let addRouters = []
