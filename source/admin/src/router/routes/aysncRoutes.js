@@ -8,19 +8,19 @@ const _import_ = file => () => import('@/views/' + file + '.vue')
  * PS: 请勿修改 导出的路由名称, 只需要填写路由即可. 如果有任何疑问可以参考平台说明文档.
  */
 export const aysncRoutesMap = [
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   meta: { title: 'Form', icon: 'zvpfont icon-orderform', role: ['user'] },
-  //   children: [
-  //     {
-  //       path: 'table-list',
-  //       name: 'TableList',
-  //       component: _import_('Form/List/index'),
-  //       meta: { title: 'Table List', icon: 'zvpfont icon-menu-list' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/form',
+    component: Layout,
+    meta: { title: 'Form', icon: 'zvpfont icon-orderform', role: ['admin'] },
+    children: [
+      {
+        path: 'table-list',
+        name: 'TableList',
+        component: _import_('Form/List/index'),
+        meta: { title: 'Table List', icon: 'zvpfont icon-menu-list' }
+      }
+    ]
+  },
   {
     path: '/charts',
     component: Layout,

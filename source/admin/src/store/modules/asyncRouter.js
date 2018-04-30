@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import { constantRouterMap } from '@/router/routes/staticRoutes'
 import { aysncRoutesMap } from '@/router/routes/aysncRoutes'
-
 import { setSession, getSession, removeSession } from '@/utils/session'
-
 // layout component
 import Layout from '@/views/Layout'
 // api
 import { getGenerateRoutes } from '@/api/route'
 // async load
 const _import_ = file => () => import('@/views/' + file + '.vue')
-
-const ZVP_USER_PREMESSION_ROUTERS = 'ZVP_USER_PREMESSION_ROUTERS'
+//
+const ZVP_USER_PERMISSION_ROUTERS = 'ZVP_USER_PERMISSION_ROUTERS'
 
 /**
  * TODO: 应该将超管独立出去
@@ -107,13 +105,13 @@ const asyncRouter = {
       state.addRouters = addRoutes
       state.router = constantRouterMap.concat(addRoutes)
       // set session router
-      setSession(ZVP_USER_PREMESSION_ROUTERS, routerRawData)
+      routerRawData && setSession(ZVP_USER_PERMISSION_ROUTERS, routerRawData)
     },
     RESET_ROUTERS: (state, router) => {
       state.addRouters = null
       state.router = constantRouterMap
       // remove session router
-      removeSession(ZVP_USER_PREMESSION_ROUTERS)
+      removeSession(ZVP_USER_PERMISSION_ROUTERS)
     }
   },
 
@@ -123,8 +121,8 @@ const asyncRouter = {
       if (Vue.useStaticRouter) {
         return new Promise((resolve, reject) => {
           // 这里通过权限来过滤出该权限所拥有的动态路由表,然后再SET_ROUTERS
-          const filterRoutes = filterAsyncRoutes(aysncRoutesMap, roles)
-          commit('SET_ROUTERS', filterRoutes)
+          const addRoutes = filterAsyncRoutes(aysncRoutesMap, roles)
+          commit('SET_ROUTERS', {addRoutes, routerRawData: null})
           resolve()
         })
       // 获取动态路由
@@ -133,7 +131,7 @@ const asyncRouter = {
          * 检查sessionStorage是否包含路由信息
          * 取出数据并重构成路由表对象存入
          */
-        const routerRawData = getSession(ZVP_USER_PREMESSION_ROUTERS)
+        const routerRawData = getSession(ZVP_USER_PERMISSION_ROUTERS)
         if (routerRawData) {
           return new Promise(resolve => {
             const addRoutes = generateNewRoutes(routerRawData)

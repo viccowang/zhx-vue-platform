@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import {router} from './router'
 import store from './store'
+import './router/permission'
 // Element UI module & style
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -11,9 +12,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/font/plateform-font/iconfont.css'
 //
 import contextmenu from '@/components/contextmenu'
-// import './common/style/element-variable-extend.scss'
-
-import './router/premission'
 // nextPage
 import NextPage from './components/nextPage/'
 //
