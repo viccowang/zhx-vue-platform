@@ -21,7 +21,7 @@ const plateform = {
     SET_COLLAPSE_SIDEBAR (state, sidebarStatus) {
       state.sidebarState.isOpen = sidebarStatus
       state.sidebarState.width = sidebarStatus ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH
-      Cookie.set('ZVP_sidebar_state', sidebarStatus)
+      Cookie.set('ZVP_sidebar_state', sidebarStatus, 60)
     },
     //
     SET_WINDOW_MAXIMIZE (state, isMaxWindow) {
