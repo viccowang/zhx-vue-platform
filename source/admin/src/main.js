@@ -22,6 +22,8 @@ Vue.use(ElementUI, { size: 'mini' })
 Vue.use(NextPage, { router, store })
 // contextmenu plugin
 Vue.use(contextmenu)
+// config to use Staic router or dynamic one
+Vue.useStaticRouter = false
 
 Vue.config.productionTip = false
 

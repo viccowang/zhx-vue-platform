@@ -11,7 +11,7 @@ const whiteList = ['/login']
  */
 function hasPermession (roles, hasMetaRole) {
   // admin is the super user
-  if (roles.indexOf('admin') >= 0) return true
+  // if (roles.indexOf('admin') >= 0) return true
   // 跳转路由不包含meta.role,则表示不需要验证权限
   if (!hasMetaRole) return true
   // 跳转路由需要的权限是否与当前用户所拥有权限匹配

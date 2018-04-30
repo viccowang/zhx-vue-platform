@@ -5,19 +5,19 @@ const _import_ = file => () => import('@/views/' + file + '.vue')
  * 权限路由表, 判断依据了获取到的权限;
  */
 export const aysncRoutesMap = [
-  {
-    path: '/form',
-    component: Layout,
-    meta: { title: 'Form', icon: 'zvpfont icon-orderform', role: ['user'] },
-    children: [
-      {
-        path: 'table-list',
-        name: 'TableList',
-        component: _import_('Form/List/index'),
-        meta: { title: 'Table List', icon: 'zvpfont icon-menu-list' }
-      }
-    ]
-  },
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   meta: { title: 'Form', icon: 'zvpfont icon-orderform', role: ['user'] },
+  //   children: [
+  //     {
+  //       path: 'table-list',
+  //       name: 'TableList',
+  //       component: _import_('Form/List/index'),
+  //       meta: { title: 'Table List', icon: 'zvpfont icon-menu-list' }
+  //     }
+  //   ]
+  // },
   {
     path: '/charts',
     component: Layout,
