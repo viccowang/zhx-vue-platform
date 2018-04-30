@@ -12,14 +12,13 @@ const _import_ = file => () => import('@/views/' + file + '.vue')
 const ZVP_USER_PERMISSION_ROUTERS = 'ZVP_USER_PERMISSION_ROUTERS'
 
 /**
- * TODO: 应该将超管独立出去
  * 判断传入的权限是否能和路由匹配
  * @param {} roles
  * @param {*} route
  */
 function hasPermission (roles, route) {
   // admin is the super user
-  if (roles.indexOf('admin') >= 0) return true
+  // if (roles.indexOf('admin') >= 0) return true
   // 跳转路由不包含meta.role,则表示不需要验证权限
   if (route.meta && route.meta.role) {
     return roles.some(role => route.meta.role.indexOf(role) >= 0)

@@ -2,10 +2,11 @@ import Layout from '@/views/Layout'
 
 const _import_ = file => () => import('@/views/' + file + '.vue')
 /**
- * 静态路由表配置,
- * 在这里配置业务路由表
+ * 静态路由表配置
  *
- * PS: 请勿修改 导出的路由名称, 只需要填写路由即可. 如果有任何疑问可以参考平台说明文档.
+ * 可根据{role}字段来模拟权限访问. 用户登录后必须含有{role}字段, 与之匹配的路由会被最终过滤出来供访问.
+ * 不匹配的则不会包含在内.
+ * 具体字段表说明可以访问平台文档查看详细资料.
  */
 export const aysncRoutesMap = [
   {
