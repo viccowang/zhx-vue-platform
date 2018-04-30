@@ -2,8 +2,8 @@ import Layout from '@/views/Layout'
 
 const _import_ = file => () => import('@/views/' + file + '.vue')
 /*
- * 静态异步加载路由,
- * 任何人都会拥有的可使用路由表
+ * 公共路由表, 一般情况这里无需任何修改.
+ * 除非你需要配置更多任何角色或权限下都可以访问的路由
  */
 export const constantRouterMap = [
   {
