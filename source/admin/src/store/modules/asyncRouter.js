@@ -8,7 +8,7 @@ import Layout from '@/views/Layout'
 import { getGenerateRoutes } from '@/api/route'
 // async load
 const _import_ = file => () => import('@/views/' + file + '.vue')
-//
+// session storage key
 const ZVP_USER_PERMISSION_ROUTERS = 'ZVP_USER_PERMISSION_ROUTERS'
 
 /**
