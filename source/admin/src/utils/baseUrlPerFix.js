@@ -6,7 +6,5 @@ const baseUrl = {
   dev: ' https://easy-mock.com/mock/5adacb0934648462c311ab20',
   prod: 'http://117.34.118.17:8083'
 }
-
-const BASE_PER_FIX_URL = process.env.NODE_ENV === 'production' ? baseUrl.prod : baseUrl.dev
-
-export { BASE_PER_FIX_URL }
+//
+export const BASE_PER_FIX_URL = process.env.NODE_ENV === 'production' ? baseUrl.prod : baseUrl.dev

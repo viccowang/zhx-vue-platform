@@ -1,6 +1,7 @@
 import Cookie from 'vue-cookie'
+import { BASE_PER_FIX_KEY } from '@/utils/basePer'
 
-const TOKEN_KEY = 'Zhx_PlateForm_'
+const TOKEN_KEY = `${BASE_PER_FIX_KEY}_PlateForm`
 
 function getToken () {
   return Cookie.get(TOKEN_KEY)

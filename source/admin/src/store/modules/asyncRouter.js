@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { constantRouterMap } from '@/router/routes/staticRoutes'
 import { aysncRoutesMap } from '@/router/routes/aysncRoutes'
+import { BASE_PER_FIX_KEY } from '@/utils/basePer'
 import { setSession, getSession, removeSession } from '@/utils/session'
 // layout component
 import Layout from '@/views/Layout'
@@ -9,7 +10,7 @@ import { getGenerateRoutes } from '@/api/route'
 // async load
 const _import_ = file => () => import('@/views/' + file + '.vue')
 // session storage key
-const ZVP_USER_PERMISSION_ROUTERS = 'ZVP_USER_PERMISSION_ROUTERS'
+const ZVP_USER_PERMISSION_ROUTERS = `${BASE_PER_FIX_KEY}_USER_PERMISSION_ROUTERS`
 
 /**
  * 判断传入的权限是否能和路由匹配

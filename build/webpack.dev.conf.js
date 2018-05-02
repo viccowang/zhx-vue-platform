@@ -72,13 +72,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     ]),
     new Happypack({
       id: 'happy-babel-js',
-      cache: false,
       loaders: ['babel-loader'],
       threadPool: happypackThreadPool
     }),
     new Happypack({
       id: 'happy-vue',
-      cache: false,
       loaders: [{
         loader: 'vue-loader',
         options: vueLoaderConfig
