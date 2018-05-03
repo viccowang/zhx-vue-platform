@@ -24,6 +24,19 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'personal-settings',
+        name: 'PersonalSettings',
+        component: _import_('Layout/Components/Settings/index'),
+        meta: { title: '个性化配置', icon: 'zvpfont icon-home', noCache: false }
+      }
+    ]
+  },
+  {
     path: '/modify-password',
     component: _import_('Layout/Components/ModifyPassword/index'),
     hidden: true,

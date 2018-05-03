@@ -14,8 +14,8 @@
                 <el-dropdown size="small">
                     <span class="el-icon-setting">设置</span>
                     <el-dropdown-menu slot="dropdown">
-                        <!-- <el-dropdown-item @click.native="openSettingDialog">个人配置</el-dropdown-item> -->
                         <el-dropdown-item @click.native="modifyPassword">修改密码</el-dropdown-item>
+                        <!-- <el-dropdown-item @click.native="settingPersonal">个人配置</el-dropdown-item> -->
                     </el-dropdown-menu>
                 </el-dropdown>
             </li>
@@ -52,8 +52,8 @@ export default {
     else this.dayTime = ''
   },
   methods: {
-    openSettingDialog () {
-      this.$refs.settingDialog.visible = true
+    settingPersonal () {
+      this.$router.push({ name: 'PersonalSettings' })
     },
     modifyPassword () {
       this.$router.replace({path: '/modify-password'})

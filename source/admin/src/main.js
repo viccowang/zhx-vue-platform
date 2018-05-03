@@ -8,9 +8,8 @@ import './router/permission'
 import store from './store'
 // Element UI module & style
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 // custom zhx-vue-plateform icons
-import '@/font/plateform-font/iconfont.css'
+import '@/assets/plateform-font/iconfont.css'
 /**
  * custom vue plugins
  */

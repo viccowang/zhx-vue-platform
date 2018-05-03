@@ -7,8 +7,7 @@
                 :router="true"
                 background-color="#304156"
                 :collapse="!sidebarState.isOpen"
-                text-color="#bfcbd9"
-                active-text-color="#409EFF">
+                text-color="#bfcbd9">
                   <template v-for="item in asyncRouter" v-if="!item.hidden && item.children">
                       <!-- no children -->
                       <template v-if="item.children.length === 1 && !item.children[0].children" >
