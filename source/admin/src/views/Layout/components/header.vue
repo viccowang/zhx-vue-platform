@@ -15,6 +15,7 @@
                     <span class="el-icon-setting">设置</span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item @click.native="modifyPassword">修改密码</el-dropdown-item>
+                        <!-- 功能未完成, 暂时注释 -->
                         <!-- <el-dropdown-item @click.native="settingPersonal">个人配置</el-dropdown-item> -->
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -22,8 +23,6 @@
             <li class="zvpfont icon-logout" @click="logout">注销</li>
         </ul>
         </div>
-        <!--  个人设置 Dialog  -->
-        <!-- <personal-setting ref="settingDialog"/> -->
     </el-header>
 </template>
 
@@ -76,7 +75,8 @@ export default {
     display: flex;
     padding:0;
     // color: lighten($base-light-color, 100%);
-    background-color: darken($base-light-color, 3%);
+    background-color: darken($base-light-color, 5%);
+    border-bottom: 1px solid  darken($base-light-color, 10%);
     .center{
         flex:1;
         position: relative;
@@ -99,7 +99,7 @@ export default {
 
                 >img { width: 20px; height: 20px; }
             }
-            &.name { }
+            // &.name { }
         }
     }
 

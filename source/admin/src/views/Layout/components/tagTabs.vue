@@ -108,6 +108,7 @@ export default {
 <style lang="scss" scoped>
 .tag-tabs{
   background-color: $base-light-color;
+  box-shadow: 10px 0 15px -6px rgba(0,0,0,.4) inset;
 
   .tab-item{
     display: flex;
@@ -160,6 +161,8 @@ export default {
     &.active{
       position:relative;
       background-color: lighten($base-light-color, 100%);
+      box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+
       // color: lighten($base-gray-color, 100%);
       &:before{
         content:'';
@@ -178,6 +181,7 @@ export default {
 
     &:hover:not(.active) {
        background-color: lighten($base-gray-color, 24%);
+       box-shadow: 0 5px 10px -3px rgba(0,0,0,.2), 0 8px 15px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
     }
 
   }
