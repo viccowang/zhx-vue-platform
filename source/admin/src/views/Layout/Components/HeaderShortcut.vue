@@ -10,7 +10,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { baseTheme } from '@/utils/loadTheme'
+import { baseTheme } from '@/utils/theme'
 
 export default {
   name: 'HeaderShortcut',

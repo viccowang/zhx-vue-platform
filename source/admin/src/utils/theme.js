@@ -15,6 +15,10 @@ export const baseTheme = {
   'belles': '#F06292'
 }
 
+/**
+ * 根据主题名称动态配置当前系统主题包
+ * @param {string} theme
+ */
 export function loadCurrentTheme (theme) {
   const cookieThemeName = Cookie.get(`${BASE_PER_FIX_KEY}_SYSTEM_THEME`)
   const themePath = cookieThemeName

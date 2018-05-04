@@ -7,7 +7,7 @@ import './router/permission'
 // vuex
 import store from './store'
 // load custom theme
-import '@/utils/loadTheme'
+import '@/utils/theme'
 // Element UI module & style
 import ElementUI from 'element-ui'
 // custom zhx-vue-plateform icons

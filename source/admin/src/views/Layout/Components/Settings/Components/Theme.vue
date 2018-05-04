@@ -11,7 +11,7 @@
 <script>
 import Cookie from 'vue-cookie'
 import { BASE_PER_FIX_KEY } from '@/utils/basePer'
-import { loadCurrentTheme, baseTheme } from '@/utils/loadTheme'
+import { loadCurrentTheme, baseTheme } from '@/utils/theme'
 
 export default {
   name: 'Theme',

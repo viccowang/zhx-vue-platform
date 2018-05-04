@@ -27,7 +27,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import scrollPane from '@/components/scrollPane'
-import { baseTheme } from '@/utils/loadTheme'
+import { baseTheme } from '@/utils/theme'
 // import eventBus from '@/components/eventBus'
 
 export default {
