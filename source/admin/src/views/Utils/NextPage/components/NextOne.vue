@@ -1,6 +1,6 @@
 <template>
   <div class="second-page">
-    <el-row type="flex" justify="center">
+    <el-row type="flex" justify="center" style="width:100%;">
       <el-col :span="10">
         <h2>The Second Page</h2>
         <el-form >

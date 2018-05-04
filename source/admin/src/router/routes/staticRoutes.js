@@ -32,7 +32,7 @@ export const constantRouterMap = [
         path: 'personal-settings',
         name: 'PersonalSettings',
         component: _import_('Layout/Components/Settings/index'),
-        meta: { title: '个性化配置', icon: 'zvpfont icon-home', noCache: true }
+        meta: { title: '个性化配置', icon: 'zvpfont icon-custom-settings', noCache: true }
       }
     ]
   },
