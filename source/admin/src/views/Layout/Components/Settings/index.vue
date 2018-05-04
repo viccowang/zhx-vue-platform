@@ -63,6 +63,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .personal-setting{
+  position: relative;
+  height:100%;
+  background:mix($base-gray-color, #fff, 5%);
 
   header {
     color: #fff;
@@ -77,11 +80,14 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 15px 0;
+    background: mix($base-gray-color, #fff, 5%);
 
     .setting-block {
       width:80%;
+      position: relative;
       max-width:980px;
       margin-bottom:15px;
+      z-index:1;
 
       &:last-child {
         margin-bottom:0;
@@ -95,7 +101,8 @@ export default {
       .settings {
         padding:10px;
         border-radius:8px;
-        box-shadow: 0 3px 14px rgba(0,0,0,.15);
+        background:#fff;
+        box-shadow: 0 1px 10px rgba(0,0,0,.2);
 
         .info {
           clear:both;
@@ -108,5 +115,6 @@ export default {
 
     }
   }
+
 }
 </style>

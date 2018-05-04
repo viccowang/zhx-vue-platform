@@ -17,7 +17,7 @@
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item @click.native="modifyPassword">修改密码</el-dropdown-item>
                         <!-- 功能未完成, 暂时注释 -->
-                        <el-dropdown-item @click.native="settingPersonal">个人配置</el-dropdown-item>
+                        <el-dropdown-item @click.native="settingPersonal">个性化设置</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </li>
