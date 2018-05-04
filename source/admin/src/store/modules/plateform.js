@@ -32,7 +32,8 @@ const plateform = {
     SET_HIDDEN_SIDEBAR (state, isHidden) {
       state.sidebarState.isHidden = isHidden
       // 为了保证隐藏动效,这里设置sidebar隐藏后的宽度
-      state.sidebarState.width = isHidden ? 0 : Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_state`) === 'true' ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH
+      // 这里因为计算的原因,必须保证为 {string} 0px, 请勿修改成 {number} 0
+      state.sidebarState.width = isHidden ? '0px' : Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_state`) === 'true' ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH
       Cookie.set(`${BASE_PER_FIX_KEY}_sidebar_isHidden`, isHidden, 1000)
     },
     ADD_SHORTCUTMENU (state, menuItem) {
