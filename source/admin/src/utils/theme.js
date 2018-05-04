@@ -23,8 +23,8 @@ export const baseTheme = {
 export function loadCurrentTheme (theme) {
   const cookieThemeName = Cookie.get(`${BASE_PER_FIX_KEY}_SYSTEM_THEME`)
   const themePath = cookieThemeName
-    ? `/static/elementUI/${cookieThemeName}`
-    : `/static/elementUI/chalk`
+    ? `./static/elementUI/${cookieThemeName}`
+    : `./static/elementUI/chalk`
 
   // 加在主样式表
   const head = document.getElementsByTagName('head')[0]

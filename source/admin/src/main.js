@@ -20,7 +20,7 @@ import contextmenu from '@/components/contextmenu'
 // nextPage
 import NextPage from './components/nextPage/'
 // config to use Staic router or dynamic one
-Vue.useStaticRouter = false
+Vue.useStaticRouter = true
 // initialize custom theme
 loadCurrentTheme()
 // apply plugins

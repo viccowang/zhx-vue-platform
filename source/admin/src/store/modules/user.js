@@ -102,7 +102,7 @@ const store = {
           .then(res => {
             // TODO: 暂时这里把权限写死, 用户暂时无权限列表
             // TODO: 需要暂时配置一个最高管理员权限
-            // res.roles = !res.roles && res.userAccount === 'sysadmin' ? ['admin'] : ['user']
+            // res.roles = res.userAccount === 'sysadmin' ? ['admin'] : ['user']
             commit('SET_USERINFO', res)
             resolve(res)
           }).catch(err => {
