@@ -5,8 +5,8 @@ import { Message } from 'element-ui'
 
 const SIDEBAR_EXPANDED_WIDTH = '180px' // 展开宽度
 const SIDEBAR_COLLAPSED_WIDTH = '60px' // 折叠宽度
-const HEADER_HEIGHT = '35px' // 头部高度
-const TAGTAB_HEIGHT = '30px' // 标签页高度
+const HEADER_HEIGHT = '35px' // 头部(header)高度
+const TAGTAB_HEIGHT = '30px' // 标签页(tagTabs)高度
 // 侧边栏隐藏状态
 const SIDEBAR_HIDDEN_STATE = Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_hidden_state`)
 // 侧边栏折叠状态
@@ -22,9 +22,9 @@ const plateform = {
     },
     systemTheme: Cookie.get(`${BASE_PER_FIX_KEY}_SYSTEM_THEME`) || 'chalk',
     shortcutMenu: getLocalStorage(`${BASE_PER_FIX_KEY}_shortcut_menu`) || [], // 自定义菜单项,由用户自定义出的菜单项
-    windowMaxState: false,
-    headerHeight: HEADER_HEIGHT,
-    tagTabHeight: TAGTAB_HEIGHT
+    windowMaxState: false, // 最大化操作区域(因此顶部header)的显示状态,该属性一般在展示地图等时使用
+    headerHeight: HEADER_HEIGHT, // 头部(header)高度
+    tagTabHeight: TAGTAB_HEIGHT //  标签页(tagTabs)高度
   },
 
   mutations: {

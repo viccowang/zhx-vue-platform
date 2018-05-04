@@ -37,9 +37,6 @@ export default {
     }
   },
   methods: {
-    isActive (item) {
-      return this.$router.currentRoute.name === item.name
-    },
     goToMenu (item) {
       this.$router.push({ name: item.name })
     }
