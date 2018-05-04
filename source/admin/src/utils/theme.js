@@ -5,7 +5,8 @@ import Cookie from 'vue-cookie'
 import { BASE_PER_FIX_KEY } from '@/utils/basePer'
 
 /**
- * 这些色彩对应值目的是帮助游离在elementUI之外的样式来定义相关色彩
+ * 该对象用来配置个性化选项和一些ElementUI框架之外的样式,
+ * 配置项的{key}要和主题包保持一致, {value}为主题主色
  * 自定义主题的色彩取自'static/elementUI'目录的主题包
  */
 export const baseTheme = {
@@ -40,6 +41,3 @@ export function loadCurrentTheme (theme) {
   baseLink.type = 'text/css'
   head.appendChild(baseLink)
 }
-
-// init base theme
-loadCurrentTheme()

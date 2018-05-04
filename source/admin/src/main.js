@@ -7,7 +7,7 @@ import './router/permission'
 // vuex
 import store from './store'
 // load custom theme
-import '@/utils/theme'
+import { loadCurrentTheme } from '@/utils/theme'
 // Element UI module & style
 import ElementUI from 'element-ui'
 // custom zhx-vue-plateform icons
@@ -21,6 +21,8 @@ import contextmenu from '@/components/contextmenu'
 import NextPage from './components/nextPage/'
 // config to use Staic router or dynamic one
 Vue.useStaticRouter = false
+// initialize custom theme
+loadCurrentTheme()
 // apply plugins
 Vue.use(ElementUI, { size: 'mini' })
 Vue.use(NextPage, { router, store })

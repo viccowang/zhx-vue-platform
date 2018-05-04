@@ -1,10 +1,13 @@
 <template>
   <div class="select-theme">
     <ul>
-        <li @click="changeSystemTheme('chalk')" :class="{'active': activeTheme === 'chalk'}" :style="{ background: getColor('chalk')}">Ocean</li>
-        <li @click="changeSystemTheme('batman')" :class="{'active': activeTheme === 'batman'}" :style="{ background: getColor('batman')}">Batman</li>
-        <li @click="changeSystemTheme('jade')" :class="{'active': activeTheme === 'jade'}" :style="{ background: getColor('jade')}">Jade</li>
-        <li @click="changeSystemTheme('belles')" :class="{'active': activeTheme === 'belles'}" :style="{ background: getColor('belles')}">Belles</li>
+       <li
+       v-for="(name,index) in themeName"
+       :key="index"
+       :class="{'active': activeTheme === name}"
+       :style="{ background: getColor(name)}"
+       @click="changeSystemTheme(name)"
+       >{{ name }}</li>
     </ul>
   </div>
 </template>
@@ -15,8 +18,15 @@ import { loadCurrentTheme, baseTheme } from '@/utils/theme'
 
 export default {
   name: 'Theme',
-  mounted () {
-
+  data () {
+    return {
+      themeName: []
+    }
+  },
+  beforeMount () {
+    for (let key of Object.keys(baseTheme)) {
+      this.themeName.push(key)
+    }
   },
   computed: {
     activeTheme () {
