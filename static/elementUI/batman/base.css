@@ -1,0 +1,47 @@
+/**
+ * 覆盖样式
+*/
+
+/**
+ * System
+*/
+/* sidebar */
+.layout > .sidebar,
+.layout > .sidebar > .el-menu[role=menubar]
+ {
+    background: #37474F !important;
+ }
+ /* sidebar handler */
+ .layout > .sidebar > .slide-handler {
+    background: #505f67 !important;
+}
+ /* v-contextmenu */
+ .v-contextmenu li.v-contextmenu-item.v-contextmenu-item--hover {
+    background: #37474F
+}
+ 
+ /**
+  * ElementUI
+ */
+ .el-menu-item, .el-submenu__title {
+     height:40px !important;
+     font-size:1.1rem;
+     line-height:40px;
+ }
+ 
+ .el-menu-item, .el-submenu__title > span {
+     line-height:40px;
+ }
+ 
+ .el-submenu .el-menu-item {
+     line-height:40px;
+     min-width:180px;
+ }
+  
+ .hide-sidebar i {
+     font-size:20px !important;
+ }
+  
+ .el-menu--collapse .el-submenu .el-menu {
+     z-index:500;
+ }

@@ -11,8 +11,6 @@ const store = {
     userAccount: '',
     userName: '',
     userStatus: '',
-    userCityCode: '',
-    userCityName: '',
     avatar: '../static/myAvatar200.png', // static
     token: getToken(),
     roles: null // 权限应该是返回个数组对象吧?
@@ -34,8 +32,6 @@ const store = {
       state.userAccount = data.userAccount
       state.userName = data.userName
       state.userStatus = data.userStatus
-      state.userCityCode = data.userCityCode
-      state.userCityName = data.userCityName
       state.roles = data.roles // static roles
       // state.avatar = data.avatar
       // state.roles = data.roles
@@ -45,8 +41,6 @@ const store = {
       state.userAccount = ''
       state.userName = ''
       state.userStatus = ''
-      state.userCityCode = ''
-      state.userCityName = ''
       state.avatar = ''
       state.roles = null
     }
@@ -108,7 +102,7 @@ const store = {
           .then(res => {
             // TODO: 暂时这里把权限写死, 用户暂时无权限列表
             // TODO: 需要暂时配置一个最高管理员权限
-            res.roles = res.userAccount === 'sysadmin' ? ['admin'] : ['user']
+            // res.roles = !res.roles && res.userAccount === 'sysadmin' ? ['admin'] : ['user']
             commit('SET_USERINFO', res)
             resolve(res)
           }).catch(err => {

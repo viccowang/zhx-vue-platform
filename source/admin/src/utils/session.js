@@ -1,20 +1,38 @@
 
-function setSession (key, data) {
+// Session Storage
+export function setSession (key, data) {
   if (window.sessionStorage) {
     sessionStorage.setItem(key, JSON.stringify(data))
   }
 }
 
-function getSession (key) {
+export function getSession (key) {
   if (window.sessionStorage) {
     return JSON.parse(sessionStorage.getItem(key))
   }
 }
 
-function removeSession (key) {
+export function removeSession (key) {
   if (window.sessionStorage) {
     sessionStorage.removeItem(key)
   }
 }
 
-export { setSession, getSession, removeSession }
+// Local Storage
+export function setLocalStorage (key, data) {
+  if (window.localStorage) {
+    localStorage.setItem(key, JSON.stringify(data))
+  }
+}
+
+export function getLocalStorage (key) {
+  if (window.localStorage) {
+    return JSON.parse(localStorage.getItem(key))
+  }
+}
+
+export function removeLocalStorage (key) {
+  if (window.localStorage) {
+    localStorage.removeItem(key)
+  }
+}

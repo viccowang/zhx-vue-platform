@@ -13,7 +13,11 @@
         :key="tab.path"
         :class="{active: isActive(tab), isShowCloseBtn: !isShowCloseBtn(tab)}"
       >
-        <span><i :class="tab.meta.icon"></i>{{ tab.meta.title }}</span>
+        <span>
+          <i :class="tab.meta.icon"></i>
+          <span class="top-line" v-bind:style="{background: systemThemeColor}"></span>
+          {{ tab.meta.title }}
+        </span>
         <span v-if="isShowCloseBtn(tab)" class="close el-icon-close" @click.prevent.stop="closeTab(tab)"></span>
       </router-link>
     </scroll-pane>
@@ -23,6 +27,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import scrollPane from '@/components/scrollPane'
+import { baseTheme } from '@/utils/loadTheme'
 // import eventBus from '@/components/eventBus'
 
 export default {
@@ -34,7 +39,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['visitedViews', 'tagTabHeight'])
+    ...mapGetters(['visitedViews', 'tagTabHeight', 'systemTheme']),
+    systemThemeColor: function () {
+      return baseTheme[this.systemTheme]
+    }
   },
   watch: {
     $route () {
@@ -163,16 +171,14 @@ export default {
       background-color: lighten($base-light-color, 100%);
       box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
 
-      // color: lighten($base-gray-color, 100%);
-      &:before{
-        content:'';
+      span.top-line {
         width:100%;
         height:3px;
         overflow:hidden;
         position:absolute;
         top:0;left:0;
-        background-color:darken($base-blue-color, 5%);
       }
+
     }
 
     &:last-child{

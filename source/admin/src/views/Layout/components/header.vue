@@ -1,6 +1,7 @@
 <template>
     <el-header v-show="!windowMaxState" class="header" :height="headerHeight">
         <div class="center">
+           <header-shortcut :menu="shortcutMenu" />
         </div>
         <div class="user">
                 <!-- <span class="avatar">
@@ -16,7 +17,7 @@
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item @click.native="modifyPassword">修改密码</el-dropdown-item>
                         <!-- 功能未完成, 暂时注释 -->
-                        <!-- <el-dropdown-item @click.native="settingPersonal">个人配置</el-dropdown-item> -->
+                        <el-dropdown-item @click.native="settingPersonal">个人配置</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </li>
@@ -31,6 +32,7 @@ import moment from 'moment'
 import { mapGetters } from 'vuex'
 
 import PersonalSetting from './Settings'
+import HeaderShortcut from './HeaderShortcut'
 
 export default {
   name: 'Headers',
@@ -41,7 +43,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userName', 'avatar', 'windowMaxState', 'headerHeight'])
+    ...mapGetters(['userName', 'avatar', 'shortcutMenu', 'windowMaxState', 'headerHeight'])
   },
   mounted () {
     const now = parseInt(moment().format('HH'))
@@ -65,7 +67,8 @@ export default {
     }
   },
   components: {
-    PersonalSetting
+    PersonalSetting,
+    HeaderShortcut
   }
 }
 </script>

@@ -1,5 +1,7 @@
 const getters = {
   // 平台
+  systemTheme: state => state.plateform.systemTheme,
+  shortcutMenu: state => state.plateform.shortcutMenu,
   sidebarState: state => state.plateform.sidebarState,
   windowMaxState: state => state.plateform.windowMaxState,
   headerHeight: state => state.plateform.headerHeight,

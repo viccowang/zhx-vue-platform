@@ -41,6 +41,7 @@ export default {
     flex:1 auto;
     display: inherit;
     flex-direction: column;
+    transition:all .3s ease-in-out 0s;
 
     .main-wrapper{
       flex:1;

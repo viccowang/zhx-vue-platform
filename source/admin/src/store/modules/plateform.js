@@ -1,5 +1,7 @@
 import Cookie from 'vue-cookie'
 import { BASE_PER_FIX_KEY } from '@/utils/basePer'
+import { setLocalStorage, getLocalStorage } from '@/utils/session'
+import { Message } from 'element-ui'
 
 const SIDEBAR_EXPANDED_WIDTH = '180px' // 展开宽度
 const SIDEBAR_COLLAPSED_WIDTH = '60px' // 折叠宽度
@@ -9,9 +11,12 @@ const TAGTAB_HEIGHT = '30px'
 const plateform = {
   state: {
     sidebarState: {
+      isHidden: Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_isHidden`) === 'true',
       isOpen: Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_state`) === 'true', // 边栏折叠状态
       width: Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_state`) === 'true' ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH // 边栏宽度,elementUI 折叠变量为64px
     },
+    systemTheme: Cookie.get(`${BASE_PER_FIX_KEY}_SYSTEM_THEME`) || 'chalk',
+    shortcutMenu: getLocalStorage(`${BASE_PER_FIX_KEY}_shortcut_menu`) || [], // 自定义菜单项,由用户自定义出的菜单项
     windowMaxState: false,
     headerHeight: HEADER_HEIGHT,
     tagTabHeight: TAGTAB_HEIGHT
@@ -24,15 +29,52 @@ const plateform = {
       state.sidebarState.width = sidebarStatus ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH
       Cookie.set(`${BASE_PER_FIX_KEY}_sidebar_state`, sidebarStatus, 60)
     },
+    SET_HIDDEN_SIDEBAR (state, isHidden) {
+      state.sidebarState.isHidden = isHidden
+      // 为了保证隐藏动效,这里设置sidebar隐藏后的宽度
+      state.sidebarState.width = isHidden ? 0 : Cookie.get(`${BASE_PER_FIX_KEY}_sidebar_state`) === 'true' ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH
+      Cookie.set(`${BASE_PER_FIX_KEY}_sidebar_isHidden`, isHidden, 1000)
+    },
+    ADD_SHORTCUTMENU (state, menuItem) {
+      if (!state.shortcutMenu || state.shortcutMenu.some(menu => menu.name === menuItem.name)) return
+      if (state.shortcutMenu.length > 15) {
+        return Message({
+          message: `已添加满了,请移除不必要的菜单后再尝试添加.`,
+          type: 'warning',
+          duration: 5000
+        })
+      }
+      state.shortcutMenu.push(menuItem)
+      setLocalStorage(`${BASE_PER_FIX_KEY}_shortcut_menu`, state.shortcutMenu)
+    },
+    REMOVE_SHORTCUTMENU (state, menuItem) {
+      state.shortcutMenu = state.shortcutMenu.filter(menu => menu.name !== menuItem.name)
+      setLocalStorage(`${BASE_PER_FIX_KEY}_shortcut_menu`, state.shortcutMenu)
+    },
     //
     SET_WINDOW_MAXIMIZE (state, isMaxWindow) {
       state.windowMaxState = isMaxWindow
+    },
+    SET_THEME (state, theme) {
+      state.systemTheme = theme
     }
   },
 
   actions: {
     collapseSidebar ({ commit }, sidebarStatus) {
       commit('SET_COLLAPSE_SIDEBAR', sidebarStatus)
+    },
+    hideSidebar ({ commit }, isHidden) {
+      commit('SET_HIDDEN_SIDEBAR', isHidden)
+    },
+    addShortcutMenu ({ commit }, menuItem) {
+      commit('ADD_SHORTCUTMENU', menuItem)
+    },
+    removeShortcutMenu ({ commit }, menuItem) {
+      commit('REMOVE_SHORTCUTMENU', menuItem)
+    },
+    setTheme ({ commit }, theme) {
+      commit('SET_THEME', theme)
     },
     maxWindow ({ commit }, isMaxWindow) {
       commit('SET_WINDOW_MAXIMIZE', isMaxWindow)

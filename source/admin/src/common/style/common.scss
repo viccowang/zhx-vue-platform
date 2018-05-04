@@ -69,3 +69,19 @@ $base-gray-color: #9E9E9E;
 .BMap_cpyCtrl, .anchorBL{
     display: none;
 }
+
+/**
+ * 自定义 Vue Transition Animation
+ * 
+ */
+.scale-left-enter-active {
+    animation: scaleLeft .3s;
+}
+.scale-left-leave-active {
+    animation: scaleLeft .3s reverse;
+}
+
+@keyframes scaleLeft {
+    0% { transform: scaleX(0); transform-origin:left; }
+    100% { transform: scaleX(1); transform-origin:left; }
+}
