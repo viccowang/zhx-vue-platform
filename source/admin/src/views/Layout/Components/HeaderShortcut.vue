@@ -1,7 +1,7 @@
 <template>
   <ul class="shortcut-menu-list">
       <li v-for="item in menu" :key="item.name" @click="goToMenu(item)" :class="{active: activeMenu.name === item.name }">
-          <el-tooltip :content="item.meta.title" placement="bottom-start">
+          <el-tooltip :content="item.meta.title" placement="bottom-start" :enterable="false">
             <span :class="item.meta.icon"></span>
           </el-tooltip>
           <i class="active-dot" :style="{background: systemThemeColor}"></i>

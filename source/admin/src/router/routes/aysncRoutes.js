@@ -36,6 +36,19 @@ export const aysncRoutesMap = [
     ]
   },
   {
+    path: '/video',
+    component: Layout,
+    meta: { title: 'Video', icon: 'zvpfont icon-video', role: ['user'] },
+    children: [
+      {
+        path: '',
+        name: 'VideoPlayer',
+        component: _import_('Video/index'),
+        meta: { title: 'Video', icon: 'zvpfont icon-video' }
+      }
+    ]
+  },
+  {
     path: '/map',
     component: Layout,
     meta: { title: 'Map', icon: 'zvpfont icon-map', role: ['user'] },
