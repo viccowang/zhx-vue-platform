@@ -1,9 +1,10 @@
 /**
  * Vue-Video-Player
  * Base on Vue-Video-Player
- * Github: https://github.com/surmon-china/vue-video-player
+ * Original: https://github.com/surmon-china/vue-video-player
  * Author: surmon@foxmail.com
- * Modified by Vicco.Wang
+ * Modified: Vicco.Wang
+ * Date: 2018.05.05
  *
  */
 import _videojs from 'video.js'

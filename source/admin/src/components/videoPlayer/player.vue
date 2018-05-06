@@ -54,7 +54,7 @@ export default {
         // autoplay: false,
         controls: true,
         // preload: 'auto',
-        // fluid: false,
+        fluid: true, // 自适应包裹元素宽高
         // muted: false,
         controlBar: {
           remainingTimeDisplay: false,

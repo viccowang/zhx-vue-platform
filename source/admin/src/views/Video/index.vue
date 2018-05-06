@@ -22,7 +22,7 @@
       </div>
         <!-- RTMP LIVE -->
       <div class="player">
-          <h3>LIVE / RTMP STREAM</h3>
+          <h3>LIVE / RTMP STREAM &nbsp;&nbsp;(目前主流直播流推荐使用HLS方式. RTMP因必须使用swf组件而不再受主流技术支持.)</h3>
           <video-player
             ref="videoPlayer3"
             :options="playerOpts3"
@@ -45,7 +45,6 @@ export default {
       playerOpts1: {
         autoplay: false,
         muted: true,
-        fluid: true, // 自适应包裹元素宽高
         playbackRates: [0.7, 1.0, 1.5, 2.0],
         sources: [{
           type: 'video/mp4',
@@ -57,7 +56,6 @@ export default {
         autoplay: false,
         preload: 'none',
         muted: true,
-        fluid: true,
         sources: [{
           withCredentials: false,
           type: 'application/x-mpegURL',
@@ -74,7 +72,6 @@ export default {
         autoplay: false,
         preload: 'none',
         muted: true,
-        fluid: true,
         // rtmp 必须指定techOrder 为 flash
         techOrder: ['flash'],
         sources: [{
