@@ -36,6 +36,7 @@
 
 <script>
 import { startAnimation } from './loginAni'
+import { WebVerifyCode } from '@/components/verifyCode'
 
 export default {
   name: 'Login',
@@ -80,7 +81,8 @@ export default {
     resetForm (formName) {
       this.$refs[formName].resetFields()
     }
-  }
+  },
+  components: { WebVerifyCode }
 }
 </script>
 
