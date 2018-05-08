@@ -25,10 +25,8 @@
             <el-form-item prop="verifyCode">
               <div class="verify">
                 <div class="verify-input">
-                  <!-- <el-input v-model="loginForm.verifyCode"></el-input> -->
                 </div>
                 <div class="verify-code">
-                  <!-- <web-verify-code v-bind="verifyCodeOpts" /> -->
                 </div>
               </div>
             </el-form-item>
