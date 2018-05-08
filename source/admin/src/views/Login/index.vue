@@ -22,6 +22,7 @@
                 placeholder="密码">
               </el-input>
             </el-form-item>
+
             <el-form-item prop="verifyCode">
               <div class="verify">
                 <div class="verify-input">
