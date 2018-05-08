@@ -22,6 +22,16 @@
                 placeholder="密码">
               </el-input>
             </el-form-item>
+            <el-form-item prop="verifyCode">
+              <div class="verify">
+                <div class="verify-input">
+                  <!-- <el-input v-model="loginForm.verifyCode"></el-input> -->
+                </div>
+                <div class="verify-code">
+                  <!-- <web-verify-code v-bind="verifyCodeOpts" /> -->
+                </div>
+              </div>
+            </el-form-item>
             <el-form-item >
               <div style="margin-top:8px;">
                 <el-button class="login-button" type="primary" :loading="isLoginning" @click="login('loginForm')">登录</el-button>
@@ -56,7 +66,7 @@ export default {
         ]
       },
       verifyCodeOpts: {
-        identifyCode: '',
+        identifyCode: '2345',
         contentWidth: 85
       }
     }
@@ -120,6 +130,20 @@ export default {
 
       .login-button {
         width:136px;
+      }
+
+      .verify {
+        display: flex;
+        align-content: space-around;
+
+        .verify-input {
+           width:85px;
+        }
+
+        .verify-code {
+            width: 85px;
+        }
+
       }
 
     }
