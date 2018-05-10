@@ -1,11 +1,11 @@
 // initialize base framework
 import Vue from 'vue'
-import App from './App'
 // vue router
 import {router} from './router'
 import './router/permission'
 // vuex
 import store from './store'
+import App from './App'
 // load custom theme
 import { loadCurrentTheme } from '@/utils/theme'
 // Element UI module & style
