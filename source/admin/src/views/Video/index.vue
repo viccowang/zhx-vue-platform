@@ -59,8 +59,8 @@ export default {
         sources: [{
           withCredentials: false,
           type: 'application/x-mpegURL',
-          //   src: 'http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8'
-          src: 'https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8'
+          src: 'http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8'
+          // src: 'https://logos-channel.scaleengine.net/logos-channel/live/biblescreen-ad-free/playlist.m3u8'
         }],
         controlBar: {
           timeDivider: false,
