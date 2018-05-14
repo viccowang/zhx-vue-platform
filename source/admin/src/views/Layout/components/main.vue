@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       scrollOptions: {
-        maxScrollbarLength: 500
+        // maxScrollbarLength: 500
       }
     }
   },

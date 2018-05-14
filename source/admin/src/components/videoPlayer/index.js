@@ -16,7 +16,7 @@ videojs.addLanguage('zh', zh)
 // set default options
 videojs.options.language = 'zh'
 // set default local swf location
-videojs.options.flash.swf = './static/videoPlayer/video-js.swf'
+// videojs.options.flash.swf = './static/videoPlayer/video-js.swf'
 
 const install = function (Vue, config) {
   if (config) {

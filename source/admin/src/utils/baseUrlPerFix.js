@@ -8,4 +8,5 @@ const baseUrl = {
   prod: 'http://117.34.118.17:8083'
 }
 //
-export const BASE_PER_FIX_URL = process.env.NODE_ENV === 'production' ? baseUrl.prod : baseUrl.dev
+// export const BASE_PER_FIX_URL = process.env.NODE_ENV === 'production' ? baseUrl.prod : baseUrl.dev
+export const BASE_PER_FIX_URL = baseUrl.dev
