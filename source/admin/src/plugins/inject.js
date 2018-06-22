@@ -9,10 +9,14 @@ import ElementUI from 'element-ui'
 import contextmenu from '@/components/contextmenu'
 // nextPage
 import NextPage from '@/components/nextPage/'
+//
+import { loadCurrentTheme } from '@/utils/theme'
 
 Vue.use(ElementUI, { size: 'mini' })
 Vue.use(NextPage, { router, store })
 Vue.use(contextmenu)
+//
+loadCurrentTheme()
 
 export default {
   install (Vue, options) {

@@ -1,5 +1,8 @@
 /**
  * AXIOS Interceptors Configuration
+ * =================================
+ * Author: Vicco Wang
+ * Date: 2018.06.22
  */
 
 /**
@@ -34,7 +37,16 @@ export function axiosRequestFailFunc (error) {
  */
 export function axiosResponseSucessFunc (response) {
   /**
-   *
+   * response 基本格式如下
+   * {
+   *  ...
+   *  status: 200,
+   *  data: {
+   *    head: { success: 'true' },
+   *    data: { some data here }
+   *  }
+   *  ...
+   * }
    */
   if (response.status === 200 || response.status === 304) {
     const responseData = response.data

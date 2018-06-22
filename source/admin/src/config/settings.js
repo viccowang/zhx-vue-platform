@@ -1,6 +1,8 @@
 /**
  * Global Configurations
- *
+ * =========================
+ * Author: Vicco Wang
+ * Date: 2018.0622
  */
 
 /**

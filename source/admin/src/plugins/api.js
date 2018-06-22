@@ -1,5 +1,17 @@
 /**
+ * API CONSTRUCTION ClASS
+ * ========================================================================
+ * 该类负责构建生成对应全局API对象。API对象可以通过直接导入该类实例使用， 也可以
+ * 通过在Vue组件中通过 this.$api 方式调用。注入方式请参考 inject.js
+ * 例如：
+ * this.$api['user/login'](params)
+ * 或
+ * import api from '@/plugins/api'
  *
+ * api['user/login'](params)
+ * ========================================================================
+ * Author: Vicco Wang
+ * Date: 2018.06.22
  */
 import http from './axios'
 

@@ -1,11 +1,12 @@
 /**
  * Global Configurations
- *
+ * =================================
+ * Author: Vicco Wang
+ * Date: 2018.06.22
  */
 
 import * as GlobalSettings from './settings'
 import GLOBAL_CONST from './const'
-import { loadCurrentTheme } from '@/utils/theme'
 
 export default {
   install (Vue, options) {
@@ -13,9 +14,7 @@ export default {
     Vue.prototype.$config = GlobalSettings
     // set custom consts
     Vue.prototype.$const = GLOBAL_CONST
-    //
+    // set vue productionTip in console
     Vue.config.productionTip = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.productionTip
-    //
-    loadCurrentTheme()
   }
 }
