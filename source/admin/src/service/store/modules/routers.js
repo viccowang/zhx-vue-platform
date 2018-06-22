@@ -2,14 +2,14 @@ import { constantRouterMap } from '@/router/staticRoutes'
 import { aysncRoutesMap } from '@/router/aysncRoutes'
 import api from '@/plugins/api'
 import { setSession, getSession, removeSession } from '@/utils/session'
-import { GlobalSettings } from '@/config'
+import { ROUTER_DEFAULT_CONFIG } from '@/config/settings'
 // layout component
 import Layout from '@/views/Layout'
 // async load
 const _import_ = file => () => import('@/views/' + file + '.vue')
 
 // session storage key
-const ZVP_USER_PERMISSION_ROUTERS = GlobalSettings.ROUTER_DEFAULT_CONFIG.permissonRoutesKey
+const ZVP_USER_PERMISSION_ROUTERS = ROUTER_DEFAULT_CONFIG.permissonRoutesKey
 
 /**
  * 判断传入的权限是否能和路由匹配
@@ -92,7 +92,7 @@ function generateNewRoutes (remoteRoutes) {
   return addRouters
 }
 
-const asyncRouter = {
+const routers = {
   //
   state: {
     addRouters: null, // 动态添加的路由表
@@ -117,7 +117,7 @@ const asyncRouter = {
   actions: {
     generateRouters: ({ commit }, roles) => {
       // 获取静态路由
-      if (GlobalSettings.ROUTER_DEFAULT_CONFIG.isUseStaticeRouter) {
+      if (ROUTER_DEFAULT_CONFIG.isUseStaticeRouter) {
         return new Promise((resolve, reject) => {
           // 这里通过权限来过滤出该权限所拥有的动态路由表,然后再SET_ROUTERS
           const addRoutes = filterAsyncRoutes(aysncRoutesMap, roles)
@@ -154,4 +154,4 @@ const asyncRouter = {
 
 }
 
-export default asyncRouter
+export default routers

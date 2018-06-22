@@ -1,23 +1,24 @@
 import Cookie from 'vue-cookie'
 import { setLocalStorage, getLocalStorage } from '@/utils/session'
 import { Message } from 'element-ui'
-import { GlobalSettings } from '@/config'
+import { PLATEFORM_DEFAULT_CONFIG } from '@/config/settings'
+import GLOBAL_CONST from '@/config/const'
 
 // 侧边栏属性
-const SIDEBAR_COLLAPSED_WIDTH = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.sidebar.minWidth // 折叠宽度
-const SIDEBAR_EXPANDED_WIDTH = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.sidebar.maxWidth // 展开宽度
-const HEADER_HEIGHT = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.header.height // 头部(header)高度
-const TAGTAB_HEIGHT = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.header.tagBarHeight // 标签页(tagTabs)高度
+const SIDEBAR_COLLAPSED_WIDTH = PLATEFORM_DEFAULT_CONFIG.sidebar.minWidth // 折叠宽度
+const SIDEBAR_EXPANDED_WIDTH = PLATEFORM_DEFAULT_CONFIG.sidebar.maxWidth // 展开宽度
+const HEADER_HEIGHT = PLATEFORM_DEFAULT_CONFIG.header.height // 头部(header)高度
+const TAGTAB_HEIGHT = PLATEFORM_DEFAULT_CONFIG.header.tagBarHeight // 标签页(tagTabs)高度
 // 侧边栏隐藏状态
-const SIDEBAR_HIDDEN_STATE_KEY = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.sidebar.isHiddenSideBarKey
+const SIDEBAR_HIDDEN_STATE_KEY = GLOBAL_CONST.sidebar.isHiddenSideBarKey
 const SIDEBAR_HIDDEN_STATE = Cookie.get(SIDEBAR_HIDDEN_STATE_KEY)
 // 侧边栏折叠状态
-const SIDEBAR_OPEN_KEY = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.sidebar.isCollpasedSideBarKey
+const SIDEBAR_OPEN_KEY = GLOBAL_CONST.sidebar.isCollpasedSideBarKey
 const SIDEBAR_OPEN_STATE = Cookie.get(SIDEBAR_OPEN_KEY)
 // THEME
-const SYSTEM_THEME_KEY = GlobalSettings.THEME_DEFAULT_CONFIG.systemThemeKey
+const SYSTEM_THEME_KEY = GLOBAL_CONST.systemTheme.systemThemeKey
 // Shortcut
-const SHORTCUT_MENU_KEY = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.shortcut.shortcutKey
+const SHORTCUT_MENU_KEY = GLOBAL_CONST.shortcut.shortcutKey
 
 const plateform = {
   state: {

@@ -25,9 +25,6 @@
 </template>
 
 <script>
-// API
-import { editPassword } from '@/api/user'
-
 export default {
   name: 'ModifyPassword',
   data () {
@@ -89,7 +86,7 @@ export default {
             oldUserPassword: this.passwordForm.oldPassword,
             userPassword: this.passwordForm.password
           }
-          editPassword(params).then(() => {
+          this.$api['user/password/edit'](params).then(() => {
             this.$refs.passwordForm.resetFields()
 
             this.$alert('密码修改成功! 点击确认后重新登录.', '修改密码', {

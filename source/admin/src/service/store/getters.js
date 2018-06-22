@@ -14,8 +14,8 @@ const getters = {
   token: state => state.user.token,
   roles: state => state.user.roles,
   // 路由
-  addRouters: state => state.asyncRouter.addRouters,
-  asyncRouter: state => state.asyncRouter.router,
+  addRouters: state => state.routers.addRouters,
+  asyncRouter: state => state.routers.router,
   // 页面
   cachedViews: state => state.views.cachedViews,
   visitedViews: state => state.views.visitedViews

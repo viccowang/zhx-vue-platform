@@ -2,9 +2,9 @@
  * Load custom theme
  */
 import Cookie from 'vue-cookie'
-import { GlobalSettings } from '@/config'
+import GLOBAL_CONST from '@/config/const'
 
-const SYSTEM_THEME_KEY = GlobalSettings.THEME_DEFAULT_CONFIG.systemThemeKey
+const SYSTEM_THEME_KEY = GLOBAL_CONST.systemTheme.systemThemeKey
 
 /**
  * 根据主题名称动态配置当前系统主题包

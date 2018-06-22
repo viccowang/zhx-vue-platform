@@ -1,7 +1,7 @@
 import Cookie from 'vue-cookie'
-import { GlobalSettings } from '@/config'
+import GLOBAL_CONST from '@/config/const'
 
-const TOKEN_KEY = GlobalSettings.TOKEN_DEFAULT_CONFIG.tokenKey
+const TOKEN_KEY = GLOBAL_CONST.token.tokenKey
 
 function getToken () {
   return Cookie.get(TOKEN_KEY)

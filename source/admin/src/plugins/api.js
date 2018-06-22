@@ -32,8 +32,7 @@ class ApiCounstructor {
           return http(axiosParamBuilder(Object.assign({}, {url, method, desc}, outerOptions), data))
         }
       })
-
-      console.log(this.api)
+      // console.log(this.api)
     })
   }
 }

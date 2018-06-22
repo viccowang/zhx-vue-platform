@@ -1,5 +1,6 @@
 /**
- *
+ * USER API
+ * Namespace: User
  */
 
 export const UserApi = {
@@ -22,6 +23,17 @@ export const UserApi = {
       mockPath: '/user/info',
       params: {
         userId: ''
+      },
+      desc: ''
+    },
+    {
+      name: 'password/edit',
+      method: 'POST',
+      path: '/user/password/edit',
+      mockPath: '/user/password/edit',
+      params: {
+        oldPassword: '',
+        newPassword: ''
       },
       desc: ''
     }
