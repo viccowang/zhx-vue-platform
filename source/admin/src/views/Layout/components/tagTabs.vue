@@ -27,8 +27,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import scrollPane from '@/components/scrollPane'
-import { baseTheme } from '@/utils/theme'
-// import eventBus from '@/components/eventBus'
 
 export default {
   name: 'TagTabs',
@@ -41,6 +39,7 @@ export default {
   computed: {
     ...mapGetters(['visitedViews', 'tagTabHeight', 'systemTheme']),
     systemThemeColor: function () {
+      const baseTheme = this.$config.THEME_DEFAULT_CONFIG.theme
       return baseTheme[this.systemTheme]
     }
   },

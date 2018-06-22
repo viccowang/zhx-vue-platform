@@ -1,16 +1,15 @@
-import Vue from 'vue'
-import { constantRouterMap } from '@/router/routes/staticRoutes'
-import { aysncRoutesMap } from '@/router/routes/aysncRoutes'
-import { BASE_PER_FIX_KEY } from '@/utils/basePer'
+import { constantRouterMap } from '@/router/staticRoutes'
+import { aysncRoutesMap } from '@/router/aysncRoutes'
+import api from '@/plugins/api'
 import { setSession, getSession, removeSession } from '@/utils/session'
+import { GlobalSettings } from '@/config'
 // layout component
 import Layout from '@/views/Layout'
-// api
-import { getGenerateRoutes } from '@/api/route'
 // async load
 const _import_ = file => () => import('@/views/' + file + '.vue')
+
 // session storage key
-const ZVP_USER_PERMISSION_ROUTERS = `${BASE_PER_FIX_KEY}_USER_PERMISSION_ROUTERS`
+const ZVP_USER_PERMISSION_ROUTERS = GlobalSettings.ROUTER_DEFAULT_CONFIG.permissonRoutesKey
 
 /**
  * 判断传入的权限是否能和路由匹配
@@ -118,7 +117,7 @@ const asyncRouter = {
   actions: {
     generateRouters: ({ commit }, roles) => {
       // 获取静态路由
-      if (Vue.useStaticRouter) {
+      if (GlobalSettings.ROUTER_DEFAULT_CONFIG.isUseStaticeRouter) {
         return new Promise((resolve, reject) => {
           // 这里通过权限来过滤出该权限所拥有的动态路由表,然后再SET_ROUTERS
           const addRoutes = filterAsyncRoutes(aysncRoutesMap, roles)
@@ -140,7 +139,11 @@ const asyncRouter = {
           })
         } else {
         // 动态读取数据,构建路由表,这里可以后端通过传入用户ID来获取对应的路由表
-          return getGenerateRoutes({userRoles: roles}).then(routerRawData => {
+          // return getGenerateRoutes({userRoles: roles}).then(routerRawData => {
+          //   const addRoutes = generateNewRoutes(routerRawData)
+          //   commit('SET_ROUTERS', {addRoutes, routerRawData})
+          // })
+          return api['menu/list']({userRoles: roles}).then(routerRawData => {
             const addRoutes = generateNewRoutes(routerRawData)
             commit('SET_ROUTERS', {addRoutes, routerRawData})
           })

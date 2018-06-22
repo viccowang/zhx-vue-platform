@@ -1,5 +1,5 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { commonLogin, getUserInfo } from '@/api/user'
+import api from '@/plugins/api'
 /**
  * User STORE
  */
@@ -57,14 +57,21 @@ const store = {
      */
     userLogin ({commit, state}, params) {
       return new Promise((resolve, reject) => {
-        commonLogin(params)
-          .then(res => {
-            // 假装有TOKEN, 将Token暂时存为userId
-            commit('SET_TOKEN', res.userId)
-            resolve()
-          }).catch(err => {
-            reject(err)
-          })
+        api['user/login'](params).then(res => {
+          // 假装有TOKEN, 将Token暂时存为userId
+          commit('SET_TOKEN', res.userId)
+          resolve()
+        }).catch(err => {
+          reject(err)
+        })
+        // commonLogin(params)
+        //   .then(res => {
+        //     // 假装有TOKEN, 将Token暂时存为userId
+        //     commit('SET_TOKEN', res.userId)
+        //     resolve()
+        //   }).catch(err => {
+        //     reject(err)
+        //   })
       })
     },
     /**
@@ -98,7 +105,7 @@ const store = {
      */
     getUserInfo ({commit, state}, params) {
       return new Promise((resolve, reject) => {
-        getUserInfo(state.token)
+        api['user/info']({userId: state.token})
           .then(res => {
             // TODO: 暂时这里把权限写死, 用户暂时无权限列表
             // TODO: 需要暂时配置一个最高管理员权限

@@ -1,18 +1,18 @@
-import { router } from './index'
+import router from '@/plugins/router'
 import { getToken } from '@/utils/auth'
 import store from '@/store'
 
 const whiteList = ['/login']
 
-router.beforeEach((to, from, next) => {
+export function routerBeforeEachFunc (to, from, next) {
   if (getToken()) {
     if (to.path === '/login') {
       next('/')
     } else {
       /**
-       * 首次进入系统，刷新页面会需要重新获取用户权限信息
-       * 如果没有获取到当前用户的权限数据则需要远程获取用户权限
-       */
+           * 首次进入系统，刷新页面会需要重新获取用户权限信息
+           * 如果没有获取到当前用户的权限数据则需要远程获取用户权限
+           */
       if (!store.getters.roles) {
         // TODO 还没有权限部分 获取权限列表
         store.dispatch('getUserInfo').then(res => {
@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
               }
             })
         })
-      // 未刷新页面,在系统中跳转路由
+        // 未刷新页面,在系统中跳转路由
       } else {
         if (to.name === null) {
           next({path: '*', replace: true})
@@ -48,4 +48,4 @@ router.beforeEach((to, from, next) => {
   if (store.getters.windowMaxState) {
     store.dispatch('maxWindow', false)
   }
-})
+}

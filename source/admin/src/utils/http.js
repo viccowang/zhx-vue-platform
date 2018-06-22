@@ -8,19 +8,19 @@ import { BASE_PER_FIX_URL } from './baseUrlPerFix.js'
 const basePerfix = BASE_PER_FIX_URL
 
 // request interceptors
-axios.interceptors.request.use(config => {
-  // dosth before request
-  // config.headers['Content-type'] = 'application/x-www-form-urlencoded'
+// axios.interceptors.request.use(config => {
+//   // dosth before request
+//   // config.headers['Content-type'] = 'application/x-www-form-urlencoded'
 
-  return config
-}, error => Promise.reject(error))
+//   return config
+// }, error => Promise.reject(error))
 
-// response interceptors
-axios.interceptors.response.use(response => {
-  // do sth befor response
+// // response interceptors
+// axios.interceptors.response.use(response => {
+//   // do sth befor response
 
-  return response
-}, error => Promise.reject(error.response))
+//   return response
+// }, error => Promise.reject(error.response))
 
 // check response code
 function checkResponseStatus (response) {

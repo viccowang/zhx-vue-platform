@@ -13,8 +13,7 @@
 </template>
 <script>
 import Cookie from 'vue-cookie'
-import { BASE_PER_FIX_KEY } from '@/utils/basePer'
-import { loadCurrentTheme, baseTheme } from '@/utils/theme'
+import { loadCurrentTheme } from '@/utils/theme'
 
 export default {
   name: 'Theme',
@@ -24,7 +23,8 @@ export default {
     }
   },
   beforeMount () {
-    for (let key of Object.keys(baseTheme)) {
+    const systemTheme = this.$config.THEME_DEFAULT_CONFIG.theme
+    for (let key of Object.keys(systemTheme)) {
       this.themeName.push(key)
     }
   },
@@ -38,12 +38,14 @@ export default {
       // set theme to store
       this.$store.dispatch('setTheme', theme)
       // save cookie
-      Cookie.set(`${BASE_PER_FIX_KEY}_SYSTEM_THEME`, theme, 365)
+      const systemThemeKey = this.$config.THEME_DEFAULT_CONFIG.systemThemeKey
+      Cookie.set(systemThemeKey, theme, 365)
       //
       loadCurrentTheme(theme)
     },
     getColor (theme) {
-      return baseTheme[theme]
+      const systemTheme = this.$config.THEME_DEFAULT_CONFIG.theme
+      return systemTheme[theme]
     }
   }
 }

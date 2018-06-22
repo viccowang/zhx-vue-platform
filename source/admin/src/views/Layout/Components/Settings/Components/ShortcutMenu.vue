@@ -24,7 +24,6 @@
 
 <script>
 import { getLocalStorage } from '@/utils/session'
-import { BASE_PER_FIX_KEY } from '@/utils/basePer'
 
 export default {
   name: 'ShortcutMenu',
@@ -33,7 +32,8 @@ export default {
   },
   computed: {
     storedShurtcutMenu () {
-      return this.$store.getters.shortcutMenu || getLocalStorage(`${BASE_PER_FIX_KEY}_shortcut_menu`)
+      const shortcutKey = this.$config.PLATEFORM_DEFAULT_CONFIG.shortcut.shortcutKey
+      return this.$store.getters.shortcutMenu || getLocalStorage(shortcutKey)
     },
     shortMenu () {
       const menuData = this.menuList.concat()

@@ -37,7 +37,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { baseTheme } from '@/utils/theme'
 
 import UserInfo from './Components/UserInfo'
 import theme from './Components/Theme'
@@ -54,9 +53,13 @@ export default {
   computed: {
     ...mapGetters(['systemTheme']),
     menuList () {
+      console.log(this)
       return this.$store.getters.asyncRouter
     },
-    headerColor: () => baseTheme[this.systemTheme]
+    headerColor: () => {
+      const baseTheme = this.$config.THEME_DEFAULT_CONFIG.theme
+      return baseTheme[this.systemTheme]
+    }
   },
   components: { UserInfo, theme, ShortcutMenu, SystemConfig }
 }

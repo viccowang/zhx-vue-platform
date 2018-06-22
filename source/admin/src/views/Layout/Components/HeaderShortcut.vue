@@ -10,7 +10,6 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { baseTheme } from '@/utils/theme'
 
 export default {
   name: 'HeaderShortcut',
@@ -25,6 +24,7 @@ export default {
   computed: {
     ...mapGetters(['systemTheme']),
     systemThemeColor: function () {
+      const baseTheme = this.$config.THEME_DEFAULT_CONFIG.theme
       return baseTheme[this.systemTheme]
     }
   },

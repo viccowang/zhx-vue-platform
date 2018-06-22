@@ -1,7 +1,7 @@
 import Cookie from 'vue-cookie'
-import { BASE_PER_FIX_KEY } from '@/utils/basePer'
+import { GlobalSettings } from '@/config'
 
-const TOKEN_KEY = `${BASE_PER_FIX_KEY}_PlateForm`
+const TOKEN_KEY = GlobalSettings.TOKEN_DEFAULT_CONFIG.tokenKey
 
 function getToken () {
   return Cookie.get(TOKEN_KEY)
