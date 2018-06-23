@@ -1,7 +1,7 @@
 import { constantRouterMap } from '@/router/staticRoutes'
 import { aysncRoutesMap } from '@/router/aysncRoutes'
 import api from '@/plugins/api'
-import { setSession, getSession, removeSession } from '@/utils/session'
+import { setSession, getSession, removeSession } from '@/service/expands/session'
 import { ROUTER_DEFAULT_CONFIG } from '@/config/settings'
 // layout component
 import Layout from '@/views/Layout'

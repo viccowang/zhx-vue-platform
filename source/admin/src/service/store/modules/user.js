@@ -1,4 +1,4 @@
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/service/expands/auth'
 import api from '@/plugins/api'
 /**
  * User STORE

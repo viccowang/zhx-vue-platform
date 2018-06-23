@@ -26,13 +26,13 @@ class ApiCounstructor {
   }
 
   //
-  apiBuilder ({ apis = {}, isMocked = false, mockBaseUrl, prodBaseUrl }) {
+  apiBuilder ({ apis = {}, mockBaseUrl, prodBaseUrl, isMocked = false, isDebug = false }) {
     Object.keys(apis).forEach(namespace => {
-      this.buildApiWidthNamespace({ namespace, isMocked, mockBaseUrl, prodBaseUrl, apis: apis[namespace] })
+      this.buildApiWidthNamespace({ namespace, apis: apis[namespace], isMocked, isDebug, mockBaseUrl, prodBaseUrl })
     })
   }
 
-  buildApiWidthNamespace ({ namespace, isMocked, mockBaseUrl, prodBaseUrl, apis }) {
+  buildApiWidthNamespace ({ namespace, apis, mockBaseUrl, prodBaseUrl, isMocked, isDebug }) {
     apis.forEach(api => {
       const { name, method, path, mockPath, params, desc } = api
       const apiNamespace = `${namespace}/${name}`
@@ -41,6 +41,10 @@ class ApiCounstructor {
       Object.defineProperty(this.api, apiNamespace, {
         value (outerParams, outerOptions) {
           const data = outerParams || params
+
+          // 开启debug时打印一些提示信息
+          isDebug && console.info(`调用业务接口名称:${apiNamespace}, 类型:${method}, 地址:${url}, 描述:${desc}`)
+
           return http(axiosParamBuilder(Object.assign({}, {url, method, desc}, outerOptions), data))
         }
       })

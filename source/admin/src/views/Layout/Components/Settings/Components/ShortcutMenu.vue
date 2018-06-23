@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { getLocalStorage } from '@/utils/session'
+import { getLocalStorage } from '@/service/expands/session'
 
 export default {
   name: 'ShortcutMenu',

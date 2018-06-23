@@ -1,5 +1,5 @@
 import Cookie from 'vue-cookie'
-import { setLocalStorage, getLocalStorage } from '@/utils/session'
+import { setLocalStorage, getLocalStorage } from '@/service/expands/session'
 import { Message } from 'element-ui'
 import { PLATEFORM_DEFAULT_CONFIG } from '@/config/settings'
 import GLOBAL_CONST from '@/config/const'
