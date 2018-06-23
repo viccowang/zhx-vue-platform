@@ -3,9 +3,7 @@
 </template>
 
 <script>
-
 import EChart from 'vue-echarts/components/Echarts'
-import EventBus from '@/components/eventBus'
 
 import 'echarts/lib/chart/bar'
 // import 'echarts/lib/chart/pie'
@@ -13,7 +11,7 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/tooltip'
 
-import { barChar1Data } from '@/testData/chartData'
+import { barChar1Data } from '@/mock/chartData'
 
 const COM_NAME = 'DashChart1'
 
@@ -28,17 +26,20 @@ export default {
   activated () {
     this.resizeChart()
   },
+  watch: {
+    '$store.state.Dashboard.operateItem': {
+      handler (item) {
+        if (item.component === COM_NAME) this.resizeChart()
+      },
+      deep: true
+    }
+  },
   mounted () {
     this.chartData = barChar1Data
     window.addEventListener('resize', this.resizeChart)
-    // watch resized
-    EventBus.$on('resized', item => {
-      if (item.component === COM_NAME) this.resizeChart()
-    })
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.resizeChart)
-    EventBus.$off('resized')
   },
   methods: {
     resizeChart () {
@@ -47,7 +48,7 @@ export default {
       }, 100)
     }
   },
-  components: { EChart, EventBus }
+  components: { EChart }
 }
 </script>
 <style>

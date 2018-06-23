@@ -4,8 +4,7 @@ import api from '@/plugins/api'
  * User STORE
  */
 
-const store = {
-
+const user = {
   state: {
     userId: '',
     userAccount: '',
@@ -121,4 +120,4 @@ const store = {
 
 }
 
-export default store
+export default user

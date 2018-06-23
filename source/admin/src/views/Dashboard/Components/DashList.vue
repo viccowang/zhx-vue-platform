@@ -11,7 +11,7 @@
 <script>
 import CommonTable from '@/components/commonTable'
 
-import { tableData } from '@/testData/tableData'
+import { tableData } from '@/mock/tableData'
 
 export default {
   name: 'DashList',

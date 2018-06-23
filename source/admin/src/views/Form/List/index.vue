@@ -36,8 +36,8 @@ import NavPremissonButton from '@/components/navButton/navPremissonButton'
 
 import UserListSearch from './Components/search'
 
-import { tableData } from '@/testData/tableData'
-import { buttonData } from '@/testData/buttonData'
+import { tableData } from '@/mock/tableData'
+import { buttonData } from '@/mock/buttonData'
 
 export default {
   name: 'TableList',

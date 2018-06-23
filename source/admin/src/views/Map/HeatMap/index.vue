@@ -14,7 +14,7 @@
 <script>
 import { BaiduMap, BmlHeatmap } from 'vue-baidu-map'
 
-import { heatMapData } from '@/testData/heatmapData'
+import { heatMapData } from '@/mock/heatmapData'
 
 export default {
   name: 'HeatMap',

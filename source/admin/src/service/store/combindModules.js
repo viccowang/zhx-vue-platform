@@ -4,11 +4,11 @@
  */
 const requireModule = require.context('./modules/', false, /\.js$/)
 
-let Modules = {}
+let modules = {}
 
 requireModule.keys().forEach(fileName => {
   const moduleName = fileName.replace(/(\.\/|\.js)/g, '')
-  Modules[moduleName] = requireModule(fileName).default
+  modules[moduleName] = requireModule(fileName).default
 })
 
-export default Modules
+export default modules

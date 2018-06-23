@@ -17,7 +17,7 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/toolbox'
 import 'echarts/lib/component/tooltip'
 
-import { barChar1Data, barChar2Data } from '@/testData/chartData'
+import { barChar1Data, barChar2Data } from '@/mock/chartData'
 
 export default {
   name: 'Charts',

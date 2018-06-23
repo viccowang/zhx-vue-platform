@@ -35,9 +35,9 @@
 <script>
 import { GridLayout, GridItem } from 'vue-grid-layout'
 import DynamicComponent from './DynamicComponent'
-import EventBus from '@/components/eventBus'
+import DashboardStore from './Store'
 
-import { layoutData } from '@/testData/layoutData'
+import { layoutData } from '@/mock/layoutData'
 // vue-grid-layout css
 import './layout.scss'
 
@@ -58,6 +58,16 @@ export default {
       itemMargin: [10, 10]
     }
   },
+  beforeRouteEnter (to, from, next) {
+    //
+    DashboardStore.install()
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    //
+    DashboardStore.uninstall()
+    next()
+  },
   mounted () {
     this.initLayoutData()
   },
@@ -73,10 +83,10 @@ export default {
 
     },
     itemResize (item) {
-      EventBus.$emit('resized', item)
+      this.$store.dispatch('Dashboard/setOperateItem', item)
     },
     itemMoved (item) {
-      EventBus.$emit('moved', item)
+      this.$store.dispatch('Dashboard/setOperateItem', item)
     },
     removeComponent (item) {
       this.$confirm(`是否要移除组件:${item.component}?`, '提示', {
@@ -90,7 +100,7 @@ export default {
       }).catch(() => { })
     }
   },
-  components: { GridLayout, GridItem, DynamicComponent, EventBus }
+  components: { GridLayout, GridItem, DynamicComponent }
 }
 </script>
 <style lang="scss" scoped>
