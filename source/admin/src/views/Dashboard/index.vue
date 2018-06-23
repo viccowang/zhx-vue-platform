@@ -58,15 +58,13 @@ export default {
       itemMargin: [10, 10]
     }
   },
-  beforeRouteEnter (to, from, next) {
+  beforeCreate () {
     //
     DashboardStore.install()
-    next()
   },
-  beforeRouteLeave (to, from, next) {
+  beforeDestroy () {
     //
     DashboardStore.uninstall()
-    next()
   },
   mounted () {
     this.initLayoutData()

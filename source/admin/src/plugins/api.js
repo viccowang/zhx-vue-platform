@@ -24,7 +24,7 @@ import apis from '@/service/api'
 class ApiCounstructor {
   //
   constructor (options) {
-    this.api = {}
+    this.api = Object.create(null)
     this.apiBuilder(options)
   }
 

@@ -3,9 +3,9 @@ import Dashboard from './store'
 
 export default {
   install () {
-    store.registerModule(['Dashboard'], Dashboard)
+    store.registerModule('Dashboard', Dashboard)
   },
   uninstall () {
-    store.unregisterModule(['Dashboard'])
+    store.unregisterModule('Dashboard')
   }
 }
