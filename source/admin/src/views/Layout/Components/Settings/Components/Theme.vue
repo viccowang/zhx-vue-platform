@@ -13,7 +13,7 @@
 </template>
 <script>
 import Cookie from 'vue-cookie'
-import { loadCurrentTheme } from '@/utils/theme'
+import { loadCurrentTheme } from '@/service/expands/theme'
 
 export default {
   name: 'Theme',

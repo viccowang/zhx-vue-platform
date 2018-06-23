@@ -9,8 +9,8 @@ import ElementUI from 'element-ui'
 import contextmenu from '@/components/contextmenu'
 // nextPage
 import NextPage from '@/components/nextPage/'
-//
-import { loadCurrentTheme } from '@/utils/theme'
+// system theme
+import { loadCurrentTheme } from '@/service/expands/theme'
 
 Vue.use(ElementUI, { size: 'mini' })
 Vue.use(NextPage, { router, store })
@@ -21,6 +21,6 @@ loadCurrentTheme()
 export default {
   install (Vue, options) {
     Vue.prototype.$api = api
-    Vue.prototype.$http = axios
+    Vue.prototype.$ajax = axios
   }
 }
