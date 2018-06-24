@@ -27,7 +27,7 @@ export const UserApi = {
       desc: ''
     },
     {
-      name: 'password/edit',
+      name: 'password.edit',
       method: 'POST',
       path: '/user/password/edit',
       mockPath: '/user/password/edit',
@@ -37,6 +37,5 @@ export const UserApi = {
       },
       desc: ''
     }
-
   ]
 }

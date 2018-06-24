@@ -143,7 +143,7 @@ const routers = {
           //   const addRoutes = generateNewRoutes(routerRawData)
           //   commit('SET_ROUTERS', {addRoutes, routerRawData})
           // })
-          return api['menu/list']({userRoles: roles}).then(routerRawData => {
+          return api['menu.list']({userRoles: roles}).then(routerRawData => {
             const addRoutes = generateNewRoutes(routerRawData)
             commit('SET_ROUTERS', {addRoutes, routerRawData})
           })

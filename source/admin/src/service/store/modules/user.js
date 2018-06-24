@@ -56,7 +56,7 @@ const user = {
      */
     userLogin ({commit, state}, params) {
       return new Promise((resolve, reject) => {
-        api['user/login'](params).then(res => {
+        api['user.login'](params).then(res => {
           // 假装有TOKEN, 将Token暂时存为userId
           commit('SET_TOKEN', res.userId)
           resolve()
@@ -104,7 +104,7 @@ const user = {
      */
     getUserInfo ({commit, state}, params) {
       return new Promise((resolve, reject) => {
-        api['user/info']({userId: state.token})
+        api['user.info']({userId: state.token})
           .then(res => {
             // TODO: 暂时这里把权限写死, 用户暂时无权限列表
             // TODO: 需要暂时配置一个最高管理员权限
