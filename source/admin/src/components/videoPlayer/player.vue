@@ -175,15 +175,15 @@ export default {
         }
         this.player.dispose()
         this.player = null
-        // this.$nextTick(() => {
-        //   this.reseted = false
-        //   this.$nextTick(() => {
-        //     this.reseted = true
-        //     this.$nextTick(() => {
-        //       callback && callback()
-        //     })
-        //   })
-        // })
+        this.$nextTick(() => {
+          this.reseted = false
+          this.$nextTick(() => {
+            this.reseted = true
+            this.$nextTick(() => {
+              callback && callback()
+            })
+          })
+        })
         /*
           if (!this.$el.children.length) {
             const video = document.createElement('video')

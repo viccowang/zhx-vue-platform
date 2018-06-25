@@ -10,9 +10,9 @@ export function routerBeforeEachFunc (to, from, next) {
       next('/')
     } else {
       /**
-           * 首次进入系统，刷新页面会需要重新获取用户权限信息
-           * 如果没有获取到当前用户的权限数据则需要远程获取用户权限
-           */
+       * 首次进入系统，刷新页面会需要重新获取用户权限信息
+       * 如果没有获取到当前用户的权限数据则需要远程获取用户权限
+       */
       if (!store.getters.roles) {
         // TODO 还没有权限部分 获取权限列表
         store.dispatch('getUserInfo').then(res => {

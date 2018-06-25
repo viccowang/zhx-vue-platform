@@ -69,15 +69,6 @@ export default {
     this.isMaxWin = this.store.getters.windowMaxState
   },
   mounted () {
-    // 监听如果当前navTab被关闭后, 当前NextPage组件需要同步销毁
-    // TODO: 咱不使用该方式来监听是否销毁当前NextPage
-    // eventBus.$on('plateform.navTab.removed', res => {
-    //   if (res.removed.name === this.currentRoute.name) {
-    //     this.__closeNextPageComponentsByCrumb(this.currentRoute.name)
-    //     // $on并不会跟随组件一起销毁,需要自行移除
-    //     eventBus.$off('plateform.navTab.removed')
-    //   }
-    // })
   },
   methods: {
     closeNextPage (name) {

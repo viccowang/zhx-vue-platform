@@ -78,10 +78,13 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.isLoginning = true
-          this.$store.dispatch('userLogin', {...this.loginForm}).then(() => {
-            this.isLoginning = false
-            this.$router.push('/dash')
-          })
+          this.$store.dispatch('userLogin', {...this.loginForm})
+            .then(() => {
+              this.$router.push('/dash')
+            })
+            .finally(() => {
+              this.isLoginning = false
+            })
         } else {
           return false
         }

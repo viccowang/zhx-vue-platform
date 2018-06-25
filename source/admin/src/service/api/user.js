@@ -14,7 +14,7 @@ export const UserApi = {
         userAccount: '',
         userPassword: ''
       },
-      desc: ''
+      desc: '用户登录'
     },
     {
       name: 'info',
@@ -24,7 +24,7 @@ export const UserApi = {
       params: {
         userId: ''
       },
-      desc: ''
+      desc: '获取用户信息'
     },
     {
       name: 'password.edit',
@@ -35,7 +35,7 @@ export const UserApi = {
         oldPassword: '',
         newPassword: ''
       },
-      desc: ''
+      desc: '修改登录用户密码'
     }
   ]
 }

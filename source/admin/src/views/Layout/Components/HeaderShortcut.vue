@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapGetters(['systemTheme']),
     systemThemeColor: function () {
-      const baseTheme = this.$config.THEME_DEFAULT_CONFIG.theme
+      const baseTheme = this.$const.systemTheme.theme
       return baseTheme[this.systemTheme]
     }
   },

@@ -3,7 +3,6 @@ import store from '@/plugins/store'
 import router from '@/plugins/router'
 import api from './api'
 import axios from './axios'
-// Element UI module & style
 import ElementUI from 'element-ui'
 // contextmenu
 import contextmenu from '@/components/contextmenu'
