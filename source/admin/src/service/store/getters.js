@@ -1,11 +1,11 @@
 const getters = {
   // 平台
-  systemTheme: state => state.plateform.systemTheme,
-  shortcutMenu: state => state.plateform.shortcutMenu,
-  sidebarState: state => state.plateform.sidebarState,
-  windowMaxState: state => state.plateform.windowMaxState,
-  headerHeight: state => state.plateform.headerHeight,
-  tagTabHeight: state => state.plateform.tagTabHeight,
+  systemTheme: state => state.platform.systemTheme,
+  shortcutMenu: state => state.platform.shortcutMenu,
+  sidebarState: state => state.platform.sidebarState,
+  windowMaxState: state => state.platform.windowMaxState,
+  headerHeight: state => state.platform.headerHeight,
+  tagTabHeight: state => state.platform.tagTabHeight,
   // 用户
   userAccount: state => state.user.userAccount,
   userName: state => state.user.userName,

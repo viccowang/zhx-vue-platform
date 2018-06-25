@@ -15,6 +15,6 @@ export default {
     // set custom consts
     Vue.prototype.$const = GLOBAL_CONST
     // set vue productionTip in console
-    Vue.config.productionTip = GlobalSettings.PLATEFORM_DEFAULT_CONFIG.productionTip
+    Vue.config.productionTip = GlobalSettings.PLATFORM_DEFAULT_CONFIG.productionTip
   }
 }

@@ -1,5 +1,5 @@
-import plateform from './plateform'
+import platform from './platform'
 
 export default {
-  ...plateform
+  ...platform
 }

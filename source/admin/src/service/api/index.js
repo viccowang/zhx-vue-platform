@@ -1,7 +1,7 @@
 import { UserApi } from './user'
-import { plateFormApi } from './plateform'
+import { platformApi } from './platform'
 
 export default {
   ...UserApi,
-  ...plateFormApi
+  ...platformApi
 }

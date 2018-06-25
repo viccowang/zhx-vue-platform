@@ -2,7 +2,7 @@
  *
  */
 
-export const plateFormApi = {
+export const platformApi = {
   menu: [
     {
       name: 'list',
@@ -12,7 +12,7 @@ export const plateFormApi = {
       params: {
         role: []
       },
-      desc: ''
+      desc: '获取菜单列表'
     }
   ]
 }

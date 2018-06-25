@@ -32,7 +32,7 @@ export const AXIOS_DEFAULT_CONFIG = {
 /**
   * 平台基础参数配置
   */
-export const PLATEFORM_DEFAULT_CONFIG = {
+export const PLATFORM_DEFAULT_CONFIG = {
   header: {
     height: '35px',
     tagBarHeight: '30px'

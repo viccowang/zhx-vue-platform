@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     storedShurtcutMenu () {
-      const shortcutKey = this.$config.PLATEFORM_DEFAULT_CONFIG.shortcut.shortcutKey
+      const shortcutKey = this.$config.PLATFORM_DEFAULT_CONFIG.shortcut.shortcutKey
       return this.$store.getters.shortcutMenu || getLocalStorage(shortcutKey)
     },
     shortMenu () {

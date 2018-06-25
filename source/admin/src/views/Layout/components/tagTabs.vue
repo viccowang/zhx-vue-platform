@@ -96,7 +96,7 @@ export default {
         })
         // 关闭标签时触发一个广播
         // TODO: 暂时不发送广播
-        // eventBus.$emit('plateform.navTab.removed', { removed: view })
+        // eventBus.$emit('platform.navTab.removed', { removed: view })
       })
     },
     beforeShowContextmenu (contextmenu, event, { name }) {

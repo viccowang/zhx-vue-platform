@@ -5,8 +5,8 @@ import store from '@/plugins/store'
 import inject from '@/plugins/inject'
 import router from '@/plugins/router'
 import App from './App'
-// custom zhx-vue-plateform icons
-import '@/assets/plateform-font/iconfont.css'
+// custom zhx-vue-platform icons
+import '@/assets/platform-font/iconfont.css'
 
 Vue.use(config)
 Vue.use(inject)
