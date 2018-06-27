@@ -35,6 +35,7 @@
 <script>
 import { GridLayout, GridItem } from 'vue-grid-layout'
 import DynamicComponent from './DynamicComponent'
+// Dashboard store
 import DashboardStore from './Store'
 
 import { layoutData } from '@/mock/layoutData'
@@ -59,7 +60,7 @@ export default {
     }
   },
   beforeCreate () {
-    //
+    // Dashboard 动态注册 store
     DashboardStore.install()
   },
   beforeDestroy () {
@@ -67,6 +68,9 @@ export default {
     DashboardStore.uninstall()
   },
   mounted () {
+    this.initLayoutData()
+  },
+  activated () {
     this.initLayoutData()
   },
   methods: {

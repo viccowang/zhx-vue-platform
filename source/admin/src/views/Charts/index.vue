@@ -29,6 +29,9 @@ export default {
       }
     }
   },
+  activated () {
+    this.resizeChart()
+  },
   mounted () {
     this.chart1 = barChar1Data
     this.chart2 = barChar2Data
