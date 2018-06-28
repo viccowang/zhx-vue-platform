@@ -17,6 +17,16 @@ export const UserApi = {
       desc: '用户登录'
     },
     {
+      name: 'logout',
+      method: 'POST',
+      path: '/user/logout',
+      mockPath: '/user/logout',
+      params: {
+        token: ''
+      },
+      desc: '用户注销'
+    },
+    {
       name: 'info',
       method: 'POST',
       path: '/user/info',

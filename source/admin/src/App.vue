@@ -3,9 +3,22 @@
 </template>
 
 <script>
-
+import { MessageBox } from 'element-ui'
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    this.initGlobalEvents()
+  },
+  methods: {
+    initGlobalEvents () {
+      window.$GLOBAL.$eventBus.$on('global.message.show', (msg, callback) => {
+        MessageBox.alert(msg, '提醒', {
+          confirmButtonText: '确定',
+          callback: () => { callback() }
+        })
+      })
+    }
+  }
 }
 </script>
 

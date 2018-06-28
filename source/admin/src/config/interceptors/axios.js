@@ -4,7 +4,7 @@
  * Author: Vicco Wang
  * Date: 2018.06.22
  */
-
+import store from '@/plugins/store'
 /**
  *
  *
@@ -48,16 +48,34 @@ export function axiosResponseSucessFunc (response) {
    *  ...
    * }
    */
-  if (response.status === 200 || response.status === 304) {
-    const responseData = response.data
-
-    if (responseData.head && responseData.head.success === 'true') {
-      return responseData.data || ''
-    } else {
-      return Promise.reject(responseData.msg)
-    }
-  } else {
-    return Promise.reject(response.data)
+  // response by remote server
+  switch (response.status) {
+    case 200:
+    case 304:
+      const responseData = response.data
+      const responseHead = responseData.head
+      // response success and response data
+      if (responseHead && responseHead.success === 'true') {
+        return responseData.data
+      } else {
+        // case response data error code
+        switch (responseHead.code) {
+          case '401':
+            const callback = () => {
+              // 权限不够,重新登录
+              store.dispatch('userLogout').then(() => {
+                location.reload()
+              })
+            }
+            // 全局eventbus触发事件
+            window.$GLOBAL.$eventBus.$emit('global.message.show', '您当前的会话已过期，请点击确认后重新登录', callback)
+            return Promise.reject(response.data).catch(() => {})
+          default:
+            return Promise.reject(response.data)
+        }
+      }
+    default:
+      return Promise.reject(response.data)
   }
 }
 

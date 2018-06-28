@@ -82,16 +82,20 @@ const user = {
      */
     userLogout ({commit}) {
       return new Promise((resolve, reject) => {
-        // 重置用户相关信息
-        commit('REMOVE_TOKEN')
-        // 重置用户信息
-        commit('RESET_USERINFO')
-        // 重置浏览记录以及tab页面记录等,该mutation访问 store/views.js
-        commit('REMOVE_ALL_VISITED')
-        // 重置权限路由表, 该mutation 访问 store/asyncRouter.js
-        commit('RESET_ROUTERS')
-        //
-        resolve()
+        api['user.logout']().then(() => {
+          // 重置用户相关信息
+          commit('REMOVE_TOKEN')
+          // 重置用户信息
+          commit('RESET_USERINFO')
+          // 重置浏览记录以及tab页面记录等,该mutation访问 store/views.js
+          commit('REMOVE_ALL_VISITED')
+          // 重置权限路由表, 该mutation 访问 store/asyncRouter.js
+          commit('RESET_ROUTERS')
+          //
+          resolve()
+        }).catch(err => {
+          reject(err)
+        })
       })
     },
     /**
@@ -106,11 +110,10 @@ const user = {
       return new Promise((resolve, reject) => {
         api['user.info']({userId: state.token})
           .then(res => {
-            // TODO: 暂时这里把权限写死, 用户暂时无权限列表
-            // TODO: 需要暂时配置一个最高管理员权限
-            // res.roles = res.userAccount === 'sysadmin' ? ['admin'] : ['user']
-            commit('SET_USERINFO', res)
-            resolve(res)
+            if (res) {
+              commit('SET_USERINFO', res)
+              resolve(res)
+            }
           }).catch(err => {
             reject(err)
           })
