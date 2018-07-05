@@ -89,11 +89,11 @@ const getUserComponentAsync = (userOptions) => {
     if (typeof userOptions.component === 'function') {
       try {
         userOptions.component().then(res => {
-          resolve(res.default)
+          resolve(Object.assign({}, res.default))
         })
       } catch (e) {}
     } else {
-      resolve(userOptions.component)
+      resolve(Object.assign({}, userOptions.component))
     }
   })
 }
