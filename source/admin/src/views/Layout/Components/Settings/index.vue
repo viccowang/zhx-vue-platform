@@ -53,7 +53,6 @@ export default {
   computed: {
     ...mapGetters(['systemTheme']),
     menuList () {
-      console.log(this)
       return this.$store.getters.asyncRouter
     },
     headerColor: () => {

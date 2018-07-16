@@ -23,7 +23,8 @@ export default {
     }
   },
   beforeMount () {
-    const systemTheme = this.$config.THEME_DEFAULT_CONFIG.theme
+    console.log(this.$const)
+    const systemTheme = this.$const.systemTheme.theme
     for (let key of Object.keys(systemTheme)) {
       this.themeName.push(key)
     }
@@ -38,13 +39,13 @@ export default {
       // set theme to store
       this.$store.dispatch('setTheme', theme)
       // save cookie
-      const systemThemeKey = this.$config.THEME_DEFAULT_CONFIG.systemThemeKey
+      const systemThemeKey = this.$const.systemTheme.systemThemeKey
       Cookie.set(systemThemeKey, theme, 365)
       //
       loadCurrentTheme(theme)
     },
     getColor (theme) {
-      const systemTheme = this.$config.THEME_DEFAULT_CONFIG.theme
+      const systemTheme = this.$const.systemTheme.theme
       return systemTheme[theme]
     }
   }
