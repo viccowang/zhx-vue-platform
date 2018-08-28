@@ -4,6 +4,7 @@ import router from '@/plugins/router'
 import api from './api'
 import axios from './axios'
 import ElementUI from 'element-ui'
+import VueKonva from 'vue-konva'
 // contextmenu
 import contextmenu from '@/components/contextmenu'
 // nextPage
@@ -14,6 +15,7 @@ import { loadCurrentTheme } from '@/service/expands/theme'
 Vue.use(ElementUI, { size: 'mini' })
 Vue.use(NextPage, { router, store })
 Vue.use(contextmenu)
+Vue.use(VueKonva)
 //
 loadCurrentTheme()
 

@@ -32,6 +32,12 @@ export const aysncRoutesMap = [
         name: 'Charts',
         component: _import_('Charts/index'),
         meta: { title: 'Chart', icon: 'zvpfont icon-chart2' }
+      },
+      {
+        path: 'lineGraph',
+        name: 'LineGraph',
+        component: _import_('lineGraph/index'),
+        meta: { title: 'Line Graph', icon: 'zvpfont icon-chart2' }
       }
     ]
   },
