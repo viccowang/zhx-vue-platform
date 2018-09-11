@@ -48,5 +48,5 @@ export const PLATFORM_DEFAULT_CONFIG = {
   * 路由表默认参数配置
   */
 export const ROUTER_DEFAULT_CONFIG = {
-  isUseStaticeRouter: true
+  isUseStaticRouter: true
 }

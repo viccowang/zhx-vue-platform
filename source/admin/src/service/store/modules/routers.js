@@ -117,7 +117,7 @@ const routers = {
   actions: {
     generateRouters: ({ commit }, roles) => {
       // 获取静态路由
-      if (ROUTER_DEFAULT_CONFIG.isUseStaticeRouter) {
+      if (ROUTER_DEFAULT_CONFIG.isUseStaticRouter) {
         return new Promise((resolve, reject) => {
           // 这里通过权限来过滤出该权限所拥有的动态路由表,然后再SET_ROUTERS
           const addRoutes = filterAsyncRoutes(aysncRoutesMap, roles)
