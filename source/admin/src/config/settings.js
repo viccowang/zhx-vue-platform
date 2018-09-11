@@ -8,7 +8,7 @@
 /**
   * 全局项目名称配置
   */
-export const PLATFORM_PERFIX_NAME = 'ZVP'
+export const PLATFORM_PERFIX_NAME = 'ZHX_VUE_PLATFORM_V201'
 
 /**
   * API接口默认参数配置
