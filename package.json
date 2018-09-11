@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "element-ui": "^2.3.8",
+    "element-ui": "^2.4.6",
     "konva": "^2.1.7",
     "lodash": "^4.17.10",
     "moment": "^2.20.1",
