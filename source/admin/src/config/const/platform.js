@@ -1,4 +1,4 @@
-import { PLATFORM_PERFIX_NAME } from '../settings'
+import { PLATFORM_PREFIX_NAME } from '../settings'
 
 /**
  * 平台通用常量配置
@@ -11,20 +11,20 @@ import { PLATFORM_PERFIX_NAME } from '../settings'
 export default {
   // 侧边栏
   sidebar: {
-    isHiddenSideBarKey: `${PLATFORM_PERFIX_NAME}_SIDEBAR_HIDDEN_STATE`,
-    isCollpasedSideBarKey: `${PLATFORM_PERFIX_NAME}_SIDEBAR_COLLAPSED_STATE`
+    isHiddenSideBarKey: `${PLATFORM_PREFIX_NAME}_SIDEBAR_HIDDEN_STATE`,
+    isCollpasedSideBarKey: `${PLATFORM_PREFIX_NAME}_SIDEBAR_COLLAPSED_STATE`
   },
   // 快捷菜单
   shortcut: {
-    shortcutKey: `${PLATFORM_PERFIX_NAME}_SHORTCUT_MENU`
+    shortcutKey: `${PLATFORM_PREFIX_NAME}_SHORTCUT_MENU`
   },
   // TOKEN NAME
   token: {
-    tokenKey: `${PLATFORM_PERFIX_NAME}_PLATFORM`
+    tokenKey: `${PLATFORM_PREFIX_NAME}_PLATFORM`
   },
   // ROUTER NAME
   router: {
-    permissonRoutesKey: `${PLATFORM_PERFIX_NAME}_USER_PERMISSION_ROUTERS`
+    permissonRoutesKey: `${PLATFORM_PREFIX_NAME}_USER_PERMISSION_ROUTERS`
   },
   // SYSTEM THEME
   systemTheme: {
@@ -34,6 +34,6 @@ export default {
       batman: '#37474F',
       belles: '#F06292'
     },
-    systemThemeKey: `${PLATFORM_PERFIX_NAME}_SYSTEM_THEME`
+    systemThemeKey: `${PLATFORM_PREFIX_NAME}_SYSTEM_THEME`
   }
 }
