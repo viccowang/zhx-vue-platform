@@ -1,6 +1,6 @@
 <template>
-    <div class="shortcut-menu">
-        <div class="shortcut-menu-item" v-for="(menu,index) in shortMenu" :key="index" v-if="!menu.hidden && menu.redirect !== '/dash' ">
+    <div class="menu-list">
+        <div class="menu-list-item" v-for="(menu,index) in menuList" :key="index" v-if="!menu.hidden && menu.redirect !== '/dash' ">
             <div class="item" v-if="!menu.children" >
                 <i class="el-icon-document"></i>
                 <span class="title">{{ menu.meta.title }}</span>
@@ -12,7 +12,7 @@
                          <child-menu-item :menuList="[item]"></child-menu-item>
                      </template>
                      <template v-else>
-                        <li class="menu-item">
+                       <li class="menu-item">
                             <el-checkbox v-model="item.meta.checked" @change="selectShortcut(item)">{{ item.meta.title }}</el-checkbox>
                         </li>
                      </template>
@@ -26,10 +26,8 @@
 import { getLocalStorage } from '@/service/expands/session'
 import { PLATFORM_PREFIX_NAME } from '@/config/settings'
 
-import ChildMenuItem from './ChildMenuItem'
-
 export default {
-  name: 'ShortcutMenu',
+  name: 'ChildMenuItem',
   props: {
     menuList: Array
   },
@@ -60,18 +58,17 @@ export default {
       })
       return constrctMenu
     }
-  },
-  components: { ChildMenuItem }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.shortcut-menu {
+.menu-list {
     width:100%;
     display:flex;
     flex-wrap: wrap;
 
-    .shortcut-menu-item{
+    .menu-list-item{
         padding:10px 45px 20px 0;
         cursor: pointer;
 
@@ -79,7 +76,6 @@ export default {
             display: inline-block;
             margin:0 0 8px 10px;
             font-size:14px;
-            font-style:italic;
             white-space: nowrap;
             color: darken($base-light-color, 45%);
         }
