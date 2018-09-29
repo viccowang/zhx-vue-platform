@@ -68,6 +68,10 @@ const platform = {
       state.shortcutMenu = state.shortcutMenu.filter(menu => menu.name !== menuItem.name)
       setLocalStorage(SHORTCUT_MENU_KEY, state.shortcutMenu)
     },
+    DRAGED_SHORTCUTS (state, items) {
+      state.shortcutMenu = items
+      setLocalStorage(SHORTCUT_MENU_KEY, state.shortcutMenu)
+    },
     // 设置最大化操作区域(隐藏顶部)
     SET_WINDOW_MAXIMIZE (state, isMaxWindow) {
       state.windowMaxState = isMaxWindow
@@ -90,6 +94,9 @@ const platform = {
     },
     removeShortcutMenu ({ commit }, menuItem) {
       commit('REMOVE_SHORTCUTMENU', menuItem)
+    },
+    dragedShortcuts ({ commit }, items) {
+      commit('DRAGED_SHORTCUTS', items)
     },
     setTheme ({ commit }, theme) {
       commit('SET_THEME', theme)

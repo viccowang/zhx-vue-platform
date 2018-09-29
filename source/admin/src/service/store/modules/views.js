@@ -1,4 +1,3 @@
-
 const views = {
   //
   state: {
@@ -36,12 +35,34 @@ const views = {
         }
       }
     },
+    // 移除除当前路由的其他所有路由页面
+    REMOVE_OTHER_VIEW (state, route) {
+      state.visitedViews = state.visitedViews.filter(r => {
+        return r.name === 'Dashboard' || r.path === route.path
+      })
+    },
+    // 移除当前标签右侧的所有标签页
+    REMOVE_RIGHT_VIEW (state, route) {
+      const idx = state.visitedViews.findIndex(view => view.path === route.path)
+      state.visitedViews = state.visitedViews.filter((view, index) => (index <= idx || view.name === 'Dashboard'))
+    },
     //
     REMOVE_ALL_VISITED (state, route) {
       state.visitedViews = []
       state.cachedViews = []
       state.breadcrumb = []
       state._theNextView = null
+    },
+    ADD_CACHED_VIEW (state, view) {
+      if (!state.cachedViews.some(v => v === view)) {
+        state.cachedViews.push(view)
+      }
+    },
+    REMOVE_CACHED_VIEW (state, view) {
+      state.cachedViews = state.cachedViews.filter(v => v === view)
+    },
+    DRAGED_VIEWS (state, views) {
+      state.visitedViews = views
     }
   },
 
@@ -49,15 +70,39 @@ const views = {
     addVisitedViews ({commit}, route) {
       commit('ADD_VISITED_VIEW', route)
     },
+    addCachedView ({commit}, view) {
+      commit('ADD_CACHED_VIEW', view)
+    },
+    removeCachedView ({commit}, view) {
+      commit('REMOVE_CACHED_VIEW', view)
+    },
     removeVisitedViews ({commit, state}, route) {
       return new Promise((resolve, reject) => {
         commit('REMOVE_VISITED_VIEW', route)
         resolve({views: state.visitedViews, theNextView: state._theNextView})
       })
     },
+    removeOtherViews ({commit, state}, route) {
+      return new Promise((resolve, reject) => {
+        commit('REMOVE_OTHER_VIEW', route)
+        resolve()
+      })
+    },
+    removeRightViews ({commit, state}, route) {
+      return new Promise((resolve, reject) => {
+        commit('REMOVE_RIGHT_VIEW', route)
+        resolve()
+      })
+    },
     removeAllVisited ({ commit }) {
       return new Promise((resolve, reject) => {
         commit('REMOVE_ALL_VISITED')
+        resolve()
+      })
+    },
+    dragedViews ({commit}, views) {
+      return new Promise((resolve, reject) => {
+        commit('DRAGED_VIEWS', views)
         resolve()
       })
     }

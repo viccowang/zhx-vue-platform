@@ -2,30 +2,36 @@
   <div class="tag-tabs" v-bind:style="{height: tagTabHeight}">
     <v-contextmenu ref="menu" @beforeShow="beforeShowContextmenu">
       <v-contextmenu-item :disabled="isDisableCloseItem" @click="closeTabByContextmenu">关闭标签页</v-contextmenu-item>
+      <v-contextmenu-item divider />
+      <v-contextmenu-item @click="closeOthersTabByContextmenu">关闭其他标签页</v-contextmenu-item>
+      <v-contextmenu-item @click="closeRightTabByContextmenu">关闭右侧标签页</v-contextmenu-item>
     </v-contextmenu>
     <scroll-pane>
-      <router-link
-        tag="div"
-        class="tab-item"
-        v-contextmenu:menu="tab"
-        v-for="tab in visitedViews"
-        :to="tab.path"
-        :key="tab.path"
-        :class="{active: isActive(tab), isShowCloseBtn: !isShowCloseBtn(tab)}"
-      >
-        <span>
-          <i :class="tab.meta.icon"></i>
-          <span class="top-line" v-bind:style="{background: systemThemeColor}"></span>
-          {{ tab.meta.title }}
-        </span>
-        <span v-if="isShowCloseBtn(tab)" class="close el-icon-close" @click.prevent.stop="closeTab(tab)"></span>
-      </router-link>
+      <draggable v-model="visitedViews" :options="tabDragOptions">
+        <router-link
+          tag="div"
+          class="tab-item"
+          v-contextmenu:menu="tab"
+          v-for="tab in visitedViews"
+          :to="tab.path"
+          :key="tab.path"
+          :class="{'no-drag': tab.name === 'Dashboard',active: isActive(tab), isShowCloseBtn: !isShowCloseBtn(tab)}"
+        >
+          <span>
+            <i :class="tab.meta.icon"></i>
+            <span class="top-line" v-bind:style="{background: systemThemeColor}"></span>
+            {{ tab.meta.title }}
+          </span>
+          <span v-if="isShowCloseBtn(tab)" class="close el-icon-close" @click.prevent.stop="closeTab(tab)"></span>
+        </router-link>
+      </draggable>
     </scroll-pane>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import draggable from 'vuedraggable'
 import scrollPane from '@/components/scrollPane'
 
 export default {
@@ -33,11 +39,23 @@ export default {
   data () {
     return {
       isDashboard: false,
-      isDisableCloseItem: false
+      isDisableCloseItem: false,
+      tabDragOptions: {
+        animation: 120,
+        filter: '.no-drag'
+      }
     }
   },
   computed: {
-    ...mapGetters(['visitedViews', 'tagTabHeight', 'systemTheme']),
+    ...mapGetters(['tagTabHeight', 'systemTheme']),
+    visitedViews: {
+      get () {
+        return this.$store.state.views.visitedViews
+      },
+      set (views) {
+        this.$store.dispatch('dragedViews', views)
+      }
+    },
     systemThemeColor: function () {
       const baseTheme = this.$const.systemTheme.theme
       return baseTheme[this.systemTheme]
@@ -99,15 +117,32 @@ export default {
         // eventBus.$emit('platform.navTab.removed', { removed: view })
       })
     },
+    closeOtherTabs (view) {
+      this.$store.dispatch('removeOtherViews', view).then(() => {
+        this.$router.push(view.path)
+      })
+    },
+    closeRightTabs (view) {
+      this.$store.dispatch('removeRightViews', view).then(() => {
+        this.$router.push(view.path)
+      })
+    },
     beforeShowContextmenu (contextmenu, event, { name }) {
       this.isDisableCloseItem = name === 'Dashboard'
     },
     closeTabByContextmenu (contextmenu, event, tabView) {
       this.closeTab(tabView)
+    },
+    closeOthersTabByContextmenu (contextmenu, event, tabView) {
+      this.closeOtherTabs(tabView)
+    },
+    closeRightTabByContextmenu (contextmenu, event, tabView) {
+      this.closeRightTabs(tabView)
     }
   },
   components: {
-    scrollPane
+    scrollPane,
+    draggable
   }
 }
 </script>
@@ -117,78 +152,84 @@ export default {
   background-color: $base-light-color;
   box-shadow: 10px 0 15px -6px rgba(0,0,0,.4) inset;
 
-  .tab-item{
+  div {
     display: flex;
-    align-items: center;
-    padding:7px 10px 6px 15px;
-    background-color: lighten($base-gray-color, 21%);
-    border-right:1px solid lighten($base-gray-color, 14%);
-    box-sizing: border-box;
-    cursor:pointer;
-    overflow: hidden;
-    user-select: none;
-    transition: all .2s ease 0s;
 
-    &.isShowCloseBtn > span {
-      padding-right: 10px;
-    }
+     .tab-item{
+      display: flex;
+      align-items: center;
+      padding:7px 10px 6px 15px;
+      background-color: lighten($base-gray-color, 21%);
+      border-right:1px solid lighten($base-gray-color, 14%);
+      box-sizing: border-box;
+      cursor:pointer;
+      overflow: hidden;
+      user-select: none;
+      transition: all .2s ease 0s;
 
-    > span {
-      display: inline-block;
-      white-space:nowrap;
-      vertical-align: middle;
-
-      > i {
-        color: lighten($base-dark-color, 30%);
-        position:relative;
-        top:1px;
-        margin-right:5px;
+      &.isShowCloseBtn > span {
+        padding-right: 10px;
       }
 
-      &.close {
-        width:12px;height:12px;
-        border-radius:15px;
-        margin:1px 0 0 10px;
+      > span {
+        display: inline-block;
+        white-space:nowrap;
+        vertical-align: middle;
 
-        &:before {
+        > i {
+          color: lighten($base-dark-color, 30%);
           position:relative;
           top:1px;
+          margin-right:5px;
         }
 
-        &:hover {
-          color: darken($base-red-color, 30%);
-          font-weight:600;
-          background-color: lighten($base-red-color, 5%);
+        &.close {
+          width:12px;height:12px;
+          border-radius:15px;
+          margin:1px 0 0 10px;
+
+          &:before {
+            position:relative;
+            top:1px;
+          }
+
+          &:hover {
+            color: darken($base-red-color, 30%);
+            font-weight:600;
+            background-color: lighten($base-red-color, 5%);
+          }
+
         }
 
       }
 
-    }
+      &.active{
+        position:relative;
+        background-color: lighten($base-light-color, 100%);
+        box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
 
-    &.active{
-      position:relative;
-      background-color: lighten($base-light-color, 100%);
-      box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+        span.top-line {
+          width:100%;
+          height:3px;
+          overflow:hidden;
+          position:absolute;
+          top:0;left:0;
+        }
 
-      span.top-line {
-        width:100%;
-        height:3px;
-        overflow:hidden;
-        position:absolute;
-        top:0;left:0;
       }
 
-    }
+      &:last-child{
+        border-right:none;
+      }
 
-    &:last-child{
-      border-right:none;
-    }
+      &:hover:not(.active) {
+        background-color: lighten($base-gray-color, 24%);
+        box-shadow: 0 5px 10px -3px rgba(0,0,0,.2), 0 8px 15px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+      }
 
-    &:hover:not(.active) {
-       background-color: lighten($base-gray-color, 24%);
-       box-shadow: 0 5px 10px -3px rgba(0,0,0,.2), 0 8px 15px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
     }
 
   }
+
 }
 </style>
