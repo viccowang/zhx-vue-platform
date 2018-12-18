@@ -66,10 +66,18 @@ export const aysncRoutesMap = [
         meta: { title: 'Baidu Map', icon: 'zvpfont icon-dizhi1' }
       },
       {
-        path: 'heat-map',
-        name: 'HeatMap',
-        component: _import_('Map/HeatMap/index'),
-        meta: { title: 'Heat Map', icon: 'zvpfont icon-icheatmap' }
+        path: '/map/other-map',
+        name: 'OtherMaps',
+        component: _import_('Map/OtherMaps/index'),
+        meta: { title: 'other maps', icon: 'zvpfont icon-icheatmap' },
+        children: [
+          {
+            path: 'heat-map',
+            name: 'HeatMap',
+            component: _import_('Map/OtherMaps/HeatMap/index'),
+            meta: { title: 'Heat Map', icon: 'zvpfont icon-icheatmap' }
+          }
+        ]
       }
     ]
   },

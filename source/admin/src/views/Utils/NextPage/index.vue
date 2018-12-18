@@ -34,6 +34,13 @@ export default {
           text: this.input
         },
         component: NextOne,
+        show: () => {
+          console.log('before show')
+        },
+        beforeClose: (childComp) => {
+          console.log(childComp)
+          console.log(this)
+        },
         cache: true
       })
     }

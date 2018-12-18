@@ -100,17 +100,17 @@ const getUserComponentAsync = (userOptions) => {
 
 export default {
   install: (Vue, option) => {
-    const defaultOptions = {
-      cacheList: [],
-      currentRoute: null,
-      currentCrumb: null,
-      nextPages: []
-    }
-    // 合并总配置项
-    const mergeOptions = Object.assign({}, option, defaultOptions)
     // 创建组件
     Vue.prototype.$nextPage = (options) => {
       let NpInstance
+      const defaultOptions = {
+        cacheList: [],
+        currentRoute: null,
+        currentCrumb: null,
+        nextPages: []
+      }
+      // 合并总配置项
+      const mergeOptions = Object.assign({}, option, defaultOptions)
       // console.log(mergeOptions.router.currentRoute)
       let userOptions = Object.assign({}, mergeOptions, options)
       if (!userOptions.router) {
@@ -133,14 +133,14 @@ export default {
         userComponent.methods.closeNextPage = (component) => {
           NpInstance.__closeNextPage(component.$options.name)
         }
-
+        // binding router name
         const routerName = userOptions.router.currentRoute.name
         // 每一个路由节点只能创建一个Nextpage组件;
         if (!__hasCreated(routerName)) {
         //
           NpInstance = __createNextPage(userOptions)
           //
-          NpInstance.store = userOptions.store
+          NpInstance.$store = userOptions.store
           // 根据目前项目的路径挂载DOM
           document.getElementById('mainWrapper').childNodes[0].childNodes[0].appendChild(NpInstance.$mount().$el)
           NEXTPAGES.push(NpInstance)
@@ -151,10 +151,18 @@ export default {
         }
 
         NpInstance.nextPages.push(userComponent)
+        // @ show hook
+        if (NpInstance.show && typeof NpInstance.show === 'function') {
+          NpInstance.show()
+        }
 
         // 关闭当前Nextpage下的特定自定义组件
         NpInstance.__closeNextPage = (name) => {
           __removeNextPageComponentByName(name, NpInstance.nextPages)
+          // @ beforeClose hook
+          if (NpInstance.beforeClose && typeof NpInstance.beforeClose === 'function') {
+            NpInstance.beforeClose(NpInstance)
+          }
           if (NpInstance.nextPages.length) {
           // 最后一个组件
             const lastNpInstance = NpInstance.nextPages[ NpInstance.nextPages.length - 1 ]
