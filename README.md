@@ -1,5 +1,5 @@
 # 中航讯 前端基础框架 zhx-vue-platform
-#### Author:Vicco Wang / Date: 2018.06.20 / ver:2.0.2
+#### Author:Vicco Wang / ver:2.0.3
 ---
 
 ## Domain Driven Model
@@ -8,11 +8,15 @@
 
 ## 更新记录
 
-### Ver 2.0.2
+### Ver 2.0.3  2018-12-18
+- FIXES 三级包括三级以上的子路由组件无法被正常缓存的Bug
+- FIXES NextPage组件在多个页面组件同时存在时造成数据异常的Bug
+
+### Ver 2.0.2   2018-09-29
 - NEW tagsTab右键菜单
 - NEW tagsTab / shortcuts 菜单拖拽排序功能
 
-### Ver 2.0.1
+### Ver 2.0.1   2018-07-28
 - FIXES API接口生成器问题
 - NEW 自定义验证
 - NEW 业务Tree生成器
