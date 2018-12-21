@@ -1,5 +1,5 @@
 # 中航讯 前端基础框架 zhx-vue-platform
-#### Author:Vicco Wang / ver:2.0.3
+#### Author:Vicco Wang / ver:2.0.4
 ---
 
 ## Domain Driven Model
