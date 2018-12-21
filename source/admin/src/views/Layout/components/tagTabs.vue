@@ -5,6 +5,9 @@
       <v-contextmenu-item divider />
       <v-contextmenu-item @click="closeOthersTabByContextmenu">关闭其他标签页</v-contextmenu-item>
       <v-contextmenu-item @click="closeRightTabByContextmenu">关闭右侧标签页</v-contextmenu-item>
+      <v-contextmenu-item divider />
+      <v-contextmenu-item :disabled="isDisableCloseItem " @click="addToShortcutMenu">添加为快捷菜单</v-contextmenu-item>
+      <v-contextmenu-item @click="removeShortcutMenu">移除快捷菜单</v-contextmenu-item>
     </v-contextmenu>
     <scroll-pane>
       <draggable v-model="visitedViews" :options="tabDragOptions">
@@ -40,6 +43,7 @@ export default {
     return {
       isDashboard: false,
       isDisableCloseItem: false,
+      isAddedToShortcut: false,
       tabDragOptions: {
         animation: 120,
         filter: '.no-drag'
@@ -47,7 +51,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['tagTabHeight', 'systemTheme']),
+    ...mapGetters(['tagTabHeight', 'systemTheme', 'shortcutMenu']),
     visitedViews: {
       get () {
         return this.$store.state.views.visitedViews
@@ -74,7 +78,7 @@ export default {
       return this.$route.path === view.path
     },
     isShowCloseBtn (view) {
-      return view.path !== '/dash'
+      return view.path !== this.$const.dashboard.router
     },
     addViewToVisided () {
       var thisRoute = this.$route.name ? this.$route : null
@@ -107,7 +111,6 @@ export default {
                     t: new Date().getTime()
                   }
                 })
-              // if (view.path === '/dash') this.$store.dispatch('addVisitedViews', view)
               }
             }
           }
@@ -127,8 +130,17 @@ export default {
         this.$router.push(view.path)
       })
     },
-    beforeShowContextmenu (contextmenu, event, { name }) {
-      this.isDisableCloseItem = name === 'Dashboard'
+    addToShortcutMenu (contextmenu, event, {path, name, meta}) {
+      const menuItem = { path, name, meta }
+      this.$store.dispatch('addShortcutMenu', menuItem)
+    },
+    removeShortcutMenu (contextmenu, event, {path, name, meta}) {
+      const menuItem = { path, name, meta }
+      this.$store.dispatch('removeShortcutMenu', menuItem)
+    },
+    beforeShowContextmenu (contextmenu, event, { path, name }) {
+      this.isDisableCloseItem = name === this.$const.dashboard.name
+      // this.isAddedToShortcut = this.shortcutMenu.some(menu => menu.name === name && menu.path === path)
     },
     closeTabByContextmenu (contextmenu, event, tabView) {
       this.closeTab(tabView)

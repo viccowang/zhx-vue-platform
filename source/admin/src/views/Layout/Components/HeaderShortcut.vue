@@ -1,12 +1,15 @@
 <template>
   <ul class="shortcut-menu-list">
+    <v-contextmenu ref="menu">
+      <v-contextmenu-item @click="removeShortcut">移除快捷菜单</v-contextmenu-item>
+    </v-contextmenu>
     <draggable v-model="shortcuts" :options="sortOptions">
-      <li v-for="item in shortcuts" :key="item.name" @click="goToMenu(item)" :class="{active: activeMenu.name === item.name }">
-          <el-tooltip :content="item.meta.title" placement="bottom-start" :enterable="false">
-            <span v-if="item.meta.icon !==''" :class="item.meta.icon"></span>
-            <span v-else>{{ item.meta.title !== '' ? item.meta.title.substring(0,2) : 'icon' }}</span>
-          </el-tooltip>
-          <i class="active-dot" :style="{background: systemThemeColor}"></i>
+      <li v-for="item in shortcuts" v-contextmenu:menu="item" :key="item.name" @click="goToMenu(item)" :class="{active: activeMenu.name === item.name }">
+        <el-tooltip :content="item.meta.title" placement="bottom-start" :enterable="false">
+          <span v-if="item.meta.icon !==''" :class="item.meta.icon"></span>
+          <span v-else>{{ item.meta.title !== '' ? item.meta.title.substring(0,2) : 'icon' }}</span>
+        </el-tooltip>
+        <i class="active-dot" :style="{background: systemThemeColor}"></i>
       </li>
     </draggable>
   </ul>
@@ -55,6 +58,9 @@ export default {
   methods: {
     goToMenu (item) {
       this.$router.push({ name: item.name })
+    },
+    removeShortcut (contextmenu, event, item) {
+      this.$store.dispatch('removeShortcutMenu', item)
     }
   },
   components: { draggable }

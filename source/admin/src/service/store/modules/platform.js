@@ -20,6 +20,20 @@ const SYSTEM_THEME_KEY = GLOBAL_CONST.systemTheme.systemThemeKey
 // Shortcut
 const SHORTCUT_MENU_KEY = GLOBAL_CONST.shortcut.shortcutKey
 
+/**
+ *
+ * @param {*} userId
+ * @param {*} shortcuts
+ */
+const updateStorageShortcutMenu = (userId, shortcuts) => {
+  const shortcutMenuArr = getLocalStorage(SHORTCUT_MENU_KEY) || {}
+  shortcutMenuArr.userId && delete shortcutMenuArr[userId]
+  setLocalStorage(SHORTCUT_MENU_KEY, {
+    ...shortcutMenuArr,
+    [userId]: shortcuts
+  })
+}
+
 const platform = {
   state: {
     sidebarState: {
@@ -29,10 +43,12 @@ const platform = {
         : SIDEBAR_OPEN_STATE === 'true' ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH // 边栏宽度,elementUI 折叠变量为64px
     },
     systemTheme: Cookie.get(SYSTEM_THEME_KEY) || 'chalk',
-    shortcutMenu: getLocalStorage(SHORTCUT_MENU_KEY) || [], // 自定义菜单项,由用户自定义出的菜单项
+    shortcutMenu: [], // 自定义菜单项,由用户自定义出的菜单项
     windowMaxState: false, // 最大化操作区域(因此顶部header)的显示状态,该属性一般在展示地图等时使用
     headerHeight: HEADER_HEIGHT, // 头部(header)高度
-    tagTabHeight: TAGTAB_HEIGHT //  标签页(tagTabs)高度
+    tagTabHeight: TAGTAB_HEIGHT, //  标签页(tagTabs)高度
+    mainScrollHeight: 0, // main部分的实时滚动高度scrollTop
+    ctrlKeyState: false // 判断是否全局按了ctrl按键
   },
 
   mutations: {
@@ -50,6 +66,13 @@ const platform = {
       state.sidebarState.width = isHidden ? '0px' : SIDEBAR_OPEN_STATE === 'true' ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_COLLAPSED_WIDTH
       Cookie.set(SIDEBAR_HIDDEN_STATE_KEY, isHidden, 1000)
     },
+    INIT_SHORTCUTMENU (state, menuItems) {
+      state.shortcutMenu = menuItems
+      const userId = this.state.user.userId
+      if (userId) {
+        updateStorageShortcutMenu(userId, state.shortcutMenu)
+      }
+    },
     // 添加快捷菜单
     ADD_SHORTCUTMENU (state, menuItem) {
       if (!state.shortcutMenu || state.shortcutMenu.some(menu => menu.name === menuItem.name)) return
@@ -61,16 +84,26 @@ const platform = {
         })
       }
       state.shortcutMenu.push(menuItem)
-      setLocalStorage(SHORTCUT_MENU_KEY, state.shortcutMenu)
+      //
+      const userId = this.state.user.userId
+      if (userId) {
+        updateStorageShortcutMenu(userId, state.shortcutMenu)
+      }
     },
     // 移除快捷菜单
     REMOVE_SHORTCUTMENU (state, menuItem) {
       state.shortcutMenu = state.shortcutMenu.filter(menu => menu.name !== menuItem.name)
-      setLocalStorage(SHORTCUT_MENU_KEY, state.shortcutMenu)
+      const userId = this.state.user.userId
+      if (userId) {
+        updateStorageShortcutMenu(userId, state.shortcutMenu)
+      }
     },
     DRAGED_SHORTCUTS (state, items) {
       state.shortcutMenu = items
-      setLocalStorage(SHORTCUT_MENU_KEY, state.shortcutMenu)
+      const userId = this.state.user.userId
+      if (userId) {
+        updateStorageShortcutMenu(userId, state.shortcutMenu)
+      }
     },
     // 设置最大化操作区域(隐藏顶部)
     SET_WINDOW_MAXIMIZE (state, isMaxWindow) {
@@ -79,6 +112,12 @@ const platform = {
     // 设置主题
     SET_THEME (state, theme) {
       state.systemTheme = theme
+    },
+    SET_MAIN_SCROLL_TOP (state, scrollTop) {
+      state.mainScrollHeight = scrollTop
+    },
+    SET_CTRL_KEY_STATE (state, isPushed) {
+      state.ctrlKeyState = isPushed
     }
   },
 
@@ -89,8 +128,14 @@ const platform = {
     hideSidebar ({ commit }, isHidden) {
       commit('SET_HIDDEN_SIDEBAR', isHidden)
     },
+    initShortcutMenu ({ commit }, menuItems) {
+      commit('INIT_SHORTCUTMENU', menuItems)
+    },
     addShortcutMenu ({ commit }, menuItem) {
       commit('ADD_SHORTCUTMENU', menuItem)
+    },
+    addShortcutMenuFromTab ({ commit }, tabView) {
+      commit('ADD_SHORTCUT_FROM_TAB', tabView)
     },
     removeShortcutMenu ({ commit }, menuItem) {
       commit('REMOVE_SHORTCUTMENU', menuItem)
@@ -103,6 +148,12 @@ const platform = {
     },
     maxWindow ({ commit }, isMaxWindow) {
       commit('SET_WINDOW_MAXIMIZE', isMaxWindow)
+    },
+    setMainScrollHeight ({ commit }, scrollTop) {
+      commit('SET_MAIN_SCROLL_TOP', scrollTop)
+    },
+    setCtrlKeyState ({ commit }, isPushed) {
+      commit('SET_CTRL_KEY_STATE', isPushed)
     }
   }
 }

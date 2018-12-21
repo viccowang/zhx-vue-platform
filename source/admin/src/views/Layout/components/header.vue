@@ -21,18 +21,22 @@
                     </el-dropdown-menu>
                 </el-dropdown>
             </li>
-            <li class="zvpfont icon-logout" @click="logout">注销</li>
+            <li class="iconfont icon-logout" @click="logout">注销</li>
         </ul>
         </div>
     </el-header>
 </template>
 
 <script>
-import moment from 'moment'
 import { mapGetters } from 'vuex'
-
+import GLOBAL_CONST from '@/config/const'
 import PersonalSetting from './Settings'
 import HeaderShortcut from './HeaderShortcut'
+import { getLocalStorage } from '@/service/expands/session'
+
+import { getGreetingTime } from '@/utils/common'
+// Shortcut
+const SHORTCUT_MENU_KEY = GLOBAL_CONST.shortcut.shortcutKey
 
 export default {
   name: 'Headers',
@@ -43,14 +47,24 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['userName', 'avatar', 'shortcutMenu', 'windowMaxState', 'headerHeight'])
+    ...mapGetters(['userId', 'userName', 'avatar', 'shortcutMenu', 'windowMaxState', 'headerHeight'])
+  },
+  watch: {
+    userId: {
+      handler (userId) {
+        const shortcutMenus = getLocalStorage(SHORTCUT_MENU_KEY)
+        if (shortcutMenus) {
+          if (userId) {
+            const storageShortcuts = getLocalStorage(SHORTCUT_MENU_KEY)[userId]
+            if (storageShortcuts) this.$store.dispatch('initShortcutMenu', storageShortcuts)
+          }
+        }
+      },
+      deep: true
+    }
   },
   mounted () {
-    const now = parseInt(moment().format('HH'))
-    if (now < 12) this.dayTime = '早上'
-    else if (now >= 12 && now < 18) this.dayTime = '下午'
-    else if (now >= 18 && now <= 23) this.dayTime = '晚上'
-    else this.dayTime = ''
+    this.dayTime = getGreetingTime()
   },
   methods: {
     settingPersonal () {
@@ -60,10 +74,15 @@ export default {
       this.$router.replace({path: '/modify-password'})
     },
     logout () {
-      this.$store.dispatch('userLogout').then(() => {
-        // this.$router.push('/login')
-        location.reload()
-      })
+      this.$confirm('是否要退出系统?', '提醒', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'info'
+      }).then(() => {
+        this.$store.dispatch('userLogout').then(() => {
+          location.reload()
+        })
+      }).catch(() => {})
     }
   },
   components: {
@@ -132,7 +151,7 @@ export default {
                 }
             }
 
-            .zvpfont:before {
+            .iconfont:before {
                 margin-right:5px;
             }
 

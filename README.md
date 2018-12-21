@@ -8,6 +8,11 @@
 
 ## 更新记录
 
+### Ver 2.0.4  2018-12-21
+- FIXES  shortcut menu 不同用户登录展示的问题
+- UPDATE shortcut menu / tag tabs 右键菜单新增快捷项目
+- NEW utils 新增了一些方法
+
 ### Ver 2.0.3  2018-12-18
 - FIXES 三级包括三级以上的子路由组件无法被正常缓存的Bug
 - FIXES NextPage组件在多个页面组件同时存在时造成数据异常的Bug

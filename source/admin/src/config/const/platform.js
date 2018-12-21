@@ -6,9 +6,13 @@ import { PLATFORM_PREFIX_NAME } from '../settings'
  * 这里的配置在每次项目创建后基本不会做任何修改。
  * =========================================
  * Author: Vicco Wang
- * Date: 2018.0622
+ * Date: 2018.06.22
  */
 export default {
+  dashboard: {
+    router: '/workbench/dashboard',
+    name: 'Dashboard'
+  },
   // 侧边栏
   sidebar: {
     isHiddenSideBarKey: `${PLATFORM_PREFIX_NAME}_SIDEBAR_HIDDEN_STATE`,
