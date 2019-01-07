@@ -6,6 +6,8 @@ const config = isAdmin ? require('../config').admin : require('../config').clien
 //
 const srcPath = isAdmin ? resolve('source/admin/src') : resolve('source/client/src')
 
+const vueLoaderConfig = require('./vue-loader.conf')
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -46,7 +48,9 @@ module.exports = {
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
-        loader: 'happypack/loader?id=happy-vue'
+        // loader: 'happypack/loader?id=happy-vue'
+        loader: 'vue-loader',
+        options: vueLoaderConfig
       },
       {
         test: /\.js$/,
